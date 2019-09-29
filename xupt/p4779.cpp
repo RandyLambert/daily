@@ -21,7 +21,6 @@ vector <edge> e[maxn];
 bool vis[maxn];
 int dist[maxn];
 //点的编号从1开始
-//
 
 void disa(int n,int start)
 {

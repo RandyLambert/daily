@@ -26,33 +26,28 @@ int main(){
         }
 
         a1[0] = a[0];
+        b1[0] = a[0];
+
         for(int i = 1;i < n;i++)
         {
             if(a1[cnt1]<=a[i]){
-                cnt1++;
-                a1[cnt1] = a[i];
+
+                a1[++cnt1] = a[i];
             }
             else{
-                int y = lower_bound(a1,a1+cnt1,a[i]) - a1;
+                int y = upper_bound(a1,a1+cnt1,a[i]) - a1;
                 a1[y] = a[i];
             }
-        }
-        /* for(int i = 0;i < 2;i++) */
-        /*     cout<<a1[i]<<"\n"; */
 
-        b1[0] = a[0];
-        for(int i = 1;i < n;i++)
-        {
             if(b1[cnt2]>=a[i]){
-                cnt2++;
-                b1[cnt2] = a[i];
+                b1[++cnt2] = a[i];
             }
             else{
-                int y = lower_bound(b1,b1+cnt2,b1[i],greater<int>()) - b1;
+                int y = upper_bound(b1,b1+cnt2,a[i],greater<int>()) - b1;
                 b1[y] = a[i];
             }
+
         }
-        /* printf("%d %d\n",cnt1,cnt2); */
         if(cnt1+1 >= n-1 || cnt2+1 >= n-1){
             printf("YES\n");
         }
@@ -60,7 +55,5 @@ int main(){
             printf("NO\n");
         }
     }
-
     return 0;
 }
-

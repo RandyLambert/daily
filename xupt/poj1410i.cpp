@@ -21,7 +21,7 @@ struct Point{
     bool operator == (Point b)const{
         return sgn(x - b.x) == 0 && sgn(y - b.y) == 0;
     }
-    Point operator - (const Point &b)const{
+    Point operator -(const Point &b)const{
         return Point(x - b.x,y - b.y);
     }
     Point operator +(const Point &b)const{
@@ -29,6 +29,11 @@ struct Point{
     }
     double operator ^(const Point &b)const{
         return x*b.y - y*b.x;
+    }
+
+    //点积
+    double operator *(const Point &b)const{
+        return x*b.x + y*b.y;
     }
     void input(){
         scanf("%lf%lf",&x,&y);
@@ -102,24 +107,58 @@ struct Line{
         double a2 = (v.e - v.s)^(e - v.s);
         return Point((s.x*a2 - e.x*a1)/(a2 - a1),(s.y*a2 - e.y*a1)/(a2 - a1));
     }
+    int segcrossseg(Line v){
+        int d1 = sgn((e - s)^(v.s - s));
+        int d2 = sgn((e - s)^(v.e - s));
+        int d3 = sgn((v.e - v.s)^(s - v.s));
+        int d4 = sgn((v.e - v.s)^(e - v.s));
+        if( (d1^d2)== - 2 && (d3^d4)== - 2 )return 2;
+        return (d1==0 && sgn((v.s - s)*(v.s - e))<=0) ||
+            (d2==0 && sgn((v.e - s)*(v.e - e))<=0) ||
+            (d3==0 && sgn((s - v.s)*(s - v.e))<=0) ||
+            (d4==0 && sgn((e - v.s)*(e - v.e))<=0);
+    }
 };
 
 int main(){
-    int t,n;
+    int t;
+    double x1,y1,x2,y2;
     scanf("%d",&t);
     while(t--){
-        scanf("%d",&n);
+        int xx,yy;
+        scanf("%lf%lf%lf%lf",&x1,&y1,&x2,&y2);
+        xx = x1;
+        yy = y1;
+        int xx2 = x2;
+        int yy2 = y2;
 
-        for(int i = 0;i < n;i++){
-            
-        }
+        Line line = Line(Point(x1,y1),Point(x2,y2));
+        scanf("%lf%lf%lf%lf",&x1,&y1,&x2,&y2);
+        if(x1 > x2)swap(x1,x2);
+        if(y1 > y2)swap(y1,y2);
+        Point p[10];
+        p[0] = Point(x1,y1);
+        p[1] = Point(x2,y1);
+        p[2] = Point(x2,y2);
+        p[3] = Point(x1,y2);
 
-        if(x==0){
-        }
-        else if(x==1){
+        Line a = Line(p[0],p[1]);
+        Line b = Line(p[0],p[3]);
+        Line c = Line(p[1],p[2]);
+        Line d = Line(p[2],p[3]);
+
+        if(line.segcrossseg(a) || line.segcrossseg(b) || line.segcrossseg(c) || line.segcrossseg(d)){
+            printf("T\n");
         }
         else{
+            if((xx <= x2 && yy <= y1 && yy >= y2 && xx >= x1) || (xx2 <= x2 && yy2 <= y1 && yy2 >= y2 && xx2 >= x1)){
+                printf("T\n");
+            }
+            else{
+                printf("F\n");
+            }
         }
     }
     return 0;
 }
+

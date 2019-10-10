@@ -65,16 +65,14 @@ void shanchu(node *head,int m){
 int main(){
     node *head;
     int y;
-    printf("请输入约瑟夫环的长度：");
     scanf("%d",&y);
     create(&head,y);
     /* print(head); */
     int x;
-    printf("请输入循环节大小：");
     scanf("%d",&x);
     shanchu(head,x);
-    printf("删除顺序为：");
-    if(y == 0 && x == 0){
+    if(y == 0 && x == 0)
+    {
         exit(0);
     }
     for(int i = 0;i < ci;i++){

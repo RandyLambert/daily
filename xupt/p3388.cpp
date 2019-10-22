@@ -20,7 +20,7 @@ int dianquan[N];   //点权
 int dianquan2[N];
 int dp[N];
 int vis[N];
-/* int ru[N];           //入度 */
+int ru[N];           //入度
 int num[N]; //各个强连通分量包含点的个数,数组编号 1 ∼ scc
 void init() //清空容器，数组
 {
@@ -105,7 +105,7 @@ int dfs(int u){
         dp[u] = dianquan2[u];
         for(size_t i = 0;i < Component[u].size();i++){
             int y = Component[u][i];
-            dp[u] = max(dp[u],dfs(y));
+            dp[u] = max(dp[u],dfs(y)+dianquan2[u]);
         }
         return dp[u];
     }
@@ -119,11 +119,16 @@ void solve()
     for(int i = 1;i <= n;i++){
         for(size_t j = 0;j < gra[i].size();j++){
             if(InComponent[i] != InComponent[gra[i][j]]){
-                Component[InComponent[i]].push_back(InComponent[gra[i][j]]); 
+                Component[InComponent[gra[i][j]]].push_back(InComponent[i]); 
             }
         }
     }
     int aans = 0;
+    for(int i = 1;i <= ComponentNumber;i++){
+        memset(dp,0,sizeof(dp));
+        aans = max(dfs(i),aans);
+        /* printf("%d ",dianquan2[i]); */
+    }
     printf("%d\n",aans);
 }
 

@@ -1,77 +1,63 @@
-#include<cstdio> 
-#include<vector>
-#include<cstring>
-#include<iostream>
-#include<algorithm>
+#include <bits/stdc++.h>
+#define mp make_pair
+#define pb push_back
+typedef long long LL;
+const int maxn = 3e5 + 10;
 using namespace std;
-vector<int> g[10010];
-int dfn[10010],low[10010],iscut[10010],son[10010];
-int deep,root,n,m,ans;
-int tarjan(int u,int fa)
-{
-    int child=0,lowu;
-    lowu=dfn[u]=++deep;
-    int sz=g[u].size();
-    for(int i=0;i<sz;i++)
-    {
-        int v=g[u][i];
-        if(!dfn[v])
-        {
-            child++;
-            int lowv=tarjan(v,u);
-            lowu=min(lowu,lowv);
-            if(lowv>dfn[u])
-            {
-                iscut[u]=1;
-            }
-        }
-        else
-        {
-            if(v!=fa&&dfn[v]<dfn[u])
-            {
-                lowu=min(lowu,dfn[v]);
-            }
-        } 
-    }
-    if(fa<0&&child==1)
-    {
-        iscut[u]=false;
-    }
-    low[u]=lowu;
-    return lowu;
-} 
+int u, v, n, m, path[maxn], vis[maxn];
+LL ans = 1, cnt, mod = 998244353, sum = 0;
+vector<int> g[maxn];
 
-int main()
-{
-    scanf("%d%d",&n,&m);
-    for(int i=1;i<=m;i++)
-    {
-        int from,to;
-        scanf("%d%d",&from,&to);
-        g[from].push_back(to);
-        g[to].push_back(from);
+LL qpow(LL x) {
+    LL res = 1, temp = 2;
+    while (x) {
+        if (x & 1) {
+            res = (res * temp) % mod;
+        }
+        temp = (temp * temp) % mod;
+        x >>= 1;
     }
-    for(int i=1;i<=n;i++)
-    {
-        if(!dfn[i])
-        {
-            root=i;
-            tarjan(i,-1);
+    return res % mod;
+}
+
+void dfs(int now, int pre) {
+    vis[now] = 1;
+    for (size_t i = 0; i < g[now].size(); ++i) {
+        int to = g[now][i];
+        if (to == pre)
+            continue;
+        if (vis[to] == 0) {
+            path[to] = now;
+            dfs(to, now);
+        }
+        else if (vis[to] == 2) {
+            continue;
+        }
+        else {
+            int temp = now;
+            cnt = 1;
+            while (temp != to) {
+                ++cnt;
+                temp = path[temp];
+            }
+            sum += cnt;
+            ans = (ans * (qpow(cnt) - 1)) % mod;
         }
     }
-    for(int i=1;i<=n;i++)
-    {
-        if(iscut[i])
-        {
-            ans++;
+    vis[now] = 2;
+}
+int main() {
+    scanf("%d %d", &n, &m);
+    for (int i = 1; i <= m; ++i) {
+        scanf("%d %d", &u, &v);
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+    for (int i = 1; i <= n; ++i) {
+        if (vis[i] == 0) {
+            dfs(i, 0);
         }
     }
-    printf("%d\n",ans);
-    for(int i=1;i<=n;i++)
-    {
-        if(iscut[i])
-        {
-            printf("%d ",i);
-        }
-    }
+
+    printf("%lld\n", qpow(m - sum) * ans % mod);
 }

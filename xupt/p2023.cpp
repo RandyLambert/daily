@@ -62,7 +62,7 @@ void change2(int p,int x,int y,int z)
 {
     if(t[p].l>=x&&t[p].r<=y)
     {
-        t[p].sum *= 1LL*z*(t[p].r-t[p].l+1);
+        t[p].sum += 1LL*z*(t[p].r-t[p].l+1);
         t[p].tag+=z;
         return ;
     }

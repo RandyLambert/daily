@@ -2,7 +2,7 @@
 using namespace std;
 struct node
 {
-    long long sum,l,r,tag;
+    long long cheng,sum,l,r,tag;
 }t[400010];
 long long num[100010];
 int mod;
@@ -11,6 +11,7 @@ void build(int p,int l,int r)
 {
     t[p].l=l;
     t[p].r=r;
+    t[p].cheng = 1;
     if(l==r)
     {
         t[p].sum=num[l];
@@ -20,17 +21,23 @@ void build(int p,int l,int r)
     build(2*p,l,mid);
     build(2*p+1,mid+1,r);
     t[p].sum=t[2*p].sum+t[2*p+1].sum;
+    
 }
 /* 懒标记（区间求和） */
 void lazy(int p)
 {
-    if(t[p].tag)
+    if(t[p].tag || t[p].cheng!=1)
     {
         t[2*p].sum+=t[p].tag*(t[p*2].r-t[p*2].l+1);
         t[2*p+1].sum+=t[p].tag*(t[p*2+1].r-t[p*2+1].l+1);
+        
+        t[2*p].cheng*=t[p].cheng;
+        t[2*p+1].cheng*=t[p].cheng;
+
         t[2*p].tag+=t[p].tag;
         t[2*p+1].tag+=t[p].tag;
         t[p].tag=0;
+        t[p].cheng=1;
     }
 }
 
@@ -39,7 +46,7 @@ void change1(int p,int x,int y,int z)
 {
     if(t[p].l>=x&&t[p].r<=y)
     {
-        t[p].sum+=1LL*z*(t[p].r-t[p].l+1);
+        t[p].sum+=(1LL*z*(t[p].r-t[p].l+1))%mod;
         t[p].tag+=z;
         return ;
     }
@@ -53,7 +60,7 @@ void change1(int p,int x,int y,int z)
     {
         change1(p*2+1,x,y,z);
     }
-    t[p].sum=t[2*p].sum+t[p*2+1].sum;
+    t[p].sum=(t[2*p].sum%mod+t[p*2+1].sum%mod)%mod;
     return ;
 }
 
@@ -62,8 +69,8 @@ void change2(int p,int x,int y,int z)
 {
     if(t[p].l>=x&&t[p].r<=y)
     {
-        t[p].sum += 1LL*z*(t[p].r-t[p].l+1);
-        t[p].tag+=z;
+        t[p].sum += (1LL*z*(t[p].r-t[p].l+1))%mod;
+        t[p].cheng*=z;
         return ;
     }
     int mid=(t[p].l+t[p].r)/2;
@@ -76,7 +83,7 @@ void change2(int p,int x,int y,int z)
     {
         change2(p*2+1,x,y,z);
     }
-    t[p].sum=t[2*p].sum + t[p*2+1].sum;
+    t[p].sum=(t[2*p].sum%mod + t[p*2+1].sum%mod)%mod;
     return ;
 }
 

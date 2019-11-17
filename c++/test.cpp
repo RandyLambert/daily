@@ -1,5 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
+class a{
+
+};
+class b : private a{
+
+};
 int main(){
 
     printf("%lf\n",(3.14+1e20)-1e20);

@@ -15,6 +15,15 @@ private:
     T* m_elements;
     int m_size;
 };
+
+//当编译器用一个名字来表示类型时，必须使用typename而不能用class
+template <typename T>
+typename T::value_type top(const T& c){
+    if(!c.empty())
+        return c.back();
+    else
+        return typename T::value_type();
+}
 int main(){
 
     return 0;

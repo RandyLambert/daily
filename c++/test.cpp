@@ -38,6 +38,7 @@ int main(){
     cout<<sizeof(c)<<endl; //当一个类没有一个数据成员定义的时候，这个类大小为1，有了之后是数据大小
     string y = string(10,'x');
     cout<<y<<endl;
+    /* const int &xxx = 10; */
 
     return 0;
 }

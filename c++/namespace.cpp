@@ -35,6 +35,25 @@ namespace dfasdasdasdasda{
     int m = 214;
 }
 
+namespace A{
+    int i,k;
+    class c1{
+    public:
+        c1():i(0),j(0){  }//正确 初始化c1::i和c1::j
+        int f1(){return k;}//返回a::k
+        /* int f2(){return hh;}//错误：hh未定义 */
+        int f3();
+    private:
+        int i;//在c1中隐藏A::i
+        int j;
+    };
+    int hh = i; //用A::i进行初始化
+}
+//成员f3定义在c1和命名空间A外面
+int A::c1::f3(){
+    return hh;//正确，返回A::h
+}
+
 //using声明和using编译指令有区别
 void test02(){
     //2using编译指令
@@ -56,5 +75,8 @@ int main(){
     //编译会不通过
     cout<<m<<endl;
     test02();
+
+
+
     return 0;
 }

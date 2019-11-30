@@ -37,6 +37,8 @@ protected:
     using Base::n;
 };
 int main(){
+    Derived a;
+    a.size();
 
     return 0;
 }

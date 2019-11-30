@@ -1,6 +1,12 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
+class a{
+public:
+    int x;
+    int y;
+    void print(){cout<<x<<y<<endl;}
+};
 int main(){
     int i;
 while(1)
@@ -21,6 +27,8 @@ while(1)
         char ch = in.get();
         cout << ch;
     }
+    a x = {1,2};
+    x.print();
 
     return 0;
 }

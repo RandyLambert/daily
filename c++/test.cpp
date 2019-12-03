@@ -27,6 +27,8 @@ public:
     void aa(){}
     void aaa(){}
 };
+
+
 int main(){
     //浮点数的存储
     printf("%lf\n",(3.14+1e20)-1e20);
@@ -39,15 +41,19 @@ int main(){
     string y = string(10,'x');
     cout<<y<<endl;
     /* const int &xxx = 10; */
+    int i = 121;
+    ++i = 10; //前置++返回的是一个对象
+    /* i++ = 10;//后置++返回的是一个值,所以该行语句错误 */
+    cout<<i<<endl;
 
     return 0;
 }
 
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
-//hhhhhhhhhhhh
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */
+/* //hhhhhhhhhhhh */

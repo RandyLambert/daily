@@ -1,6 +1,7 @@
 #include <stdio.h>
+int n = 0;
 static inline int dfs(int a){
-    if(a == 100000000){
+    if(a == 10000){
         return a;
     }
     else{
@@ -9,6 +10,7 @@ static inline int dfs(int a){
     }
 }
 int main(){
+    static int xx;
 
     printf("%d\n",dfs(0));
     

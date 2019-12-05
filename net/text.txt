@@ -1,11 +1,9 @@
-iiiiiiiiiiiiiiiiiiiio
-dwadwad
-dawdddddddddddd
-d
-dwa
-wa
-dwad
-dwwa
+(13) 管道破裂
+(14) 闹钟
+(15) 缺省终止某个进程，终止掉
+(17) 子进程死的时候会给父进程发送这个信号
+(19) 进程暂停
+(23) SIGURG 紧急数据
+(29) 异步IO
 
-daasddwwd
-dawdwa
+

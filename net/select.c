@@ -58,7 +58,7 @@ int main(int argc,const char * argv[]){
         }
         //已经链接的客户端有数据到达
         for(int i = socketfd+1;i <= maxfd;i++){
-            char buf[1024];
+            char buf[1];
             if(FD_ISSET(socketfd,&temp)){
                 
                 int len = read(i,buf,sizeof(buf));
@@ -74,9 +74,8 @@ int main(int argc,const char * argv[]){
                 }
             }
             else{
-
                 printf("recv buf:%s\n",buf);
-                write(i,buf,strlen(buf)+1);
+                /* write(i,buf,strlen(buf)+1); */
             }
 
         }

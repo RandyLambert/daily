@@ -16,7 +16,7 @@ int main(){
     //一般选择第一个
     //在结构体里第二个参数中给可以添加信号，使该信号在处理函数执行过程中，临时屏蔽指定信号
     //处理结束时接触屏蔽
-     
+    
     struct sigaction act;
     act.sa_flags = 0;//只有在用第二个回调函数的时候用赋值 
     sigemptyset(&act.sa_mask);//清零mask

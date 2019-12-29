@@ -15,11 +15,17 @@ using namespace std;
 //普通函数可以和模板函数进行重载，优先调用普通函数，如果想要去强制走模板，谣传一个空参数列表
 //函数模板也可以发生函数重载
 //如果函数模板可以产生更好的匹配，那么优先使用函数模板，比如如果要是普通函数要进行自动类型转换，函数模板不需要，那么使用函数模板
+/* template<class T> */
+/* T mySwap(T &a ,T &b){ */
+/*     T temp = a; */
+/*     a = b; */
+/*     b =  temp; */
+/* } */
 template<class T>
 T mySwap(T &a ,T &b){
-    T temp = a;
-    a = b;
-    b =  temp;
+    T temp = std::move(a);
+    a = std::move(b);
+    b =  std::move(temp);
 }
 
 

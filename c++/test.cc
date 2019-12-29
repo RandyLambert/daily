@@ -7,6 +7,15 @@ public:
     int y;
     void print(){cout<<x<<y<<endl;}
 };
+
+
+class aa{
+private:
+    void fuc1();
+};
+void aa::fuc1(){
+    cout<<"dasdasd"<<endl;
+}
 int main(){
     int i;
 while(1)

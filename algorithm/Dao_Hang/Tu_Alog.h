@@ -9,37 +9,38 @@
 #include <queue>
 #include "Template_Tool.hpp"
 
-class Kruskal{
+class Kruskal
+{
 private:
     static const int MAXN = 1100;   //最大点数
     static const int MAXM = 100000; //最大边数
-    int tol;           //边数,加边前赋值为 0
-    int F[MAXN]; //并查集使用
+    int tol;                        //边数,加边前赋值为 0
+    int F[MAXN];                    //并查集使用
     struct Edge_Krus
     {
         int u, v, w;
-        Edge_Krus(int _u = 0, int _v = 0,int _w = 0) : u(_u),v(_v), w(_w) {}
-        bool operator<(const Edge_Krus &r){
+        Edge_Krus(int _u = 0, int _v = 0, int _w = 0) : u(_u), v(_v), w(_w) {}
+        bool operator<(const Edge_Krus &r)
+        {
             return w < r.w;
         }
     } edge_Krus[MAXM]; //存储边的信息,包括起点/终点/权值
 
     void Addedge_Krus(int u, int v, int w); //加边
-    int find(int x); //并查集查找
+    int find(int x);                        //并查集查找
 
 public:
     int solve(int n); //传入点数,返回最小生成树的权值,如果不连通返回 -1
-
 };
 
-
-class Dijkstra{
+class Dijkstra
+{
 private:
     static const int INF = 0x3f3f3f3f;
     static const int MAXN = 1100;   //最大点数
     static const int MAXM = 100000; //最大边数
-    bool vis[MAXN]; //标志有无
-    int dist[MAXN]; //最短路径
+    bool vis[MAXN];                 //标志有无
+    int dist[MAXN];                 //最短路径
     struct Edge_Dijk
     {
         int v;

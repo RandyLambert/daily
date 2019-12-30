@@ -1,7 +1,11 @@
 #include "Init.h"
 //初始化
-void Init_MySql(){
-    using namespace MySql;
+my_MySql::my_MySql(){
+
+res_ptr = nullptr;
+sqlrow = 0;
+fd = nullptr;
+res = 0, i = 0, j = 0;
     if (NULL == mysql_init(&mysql))
     {
         my_err("mysql_init", __LINE__);
@@ -24,5 +28,79 @@ void Init_MySql(){
     {
         my_err("mysql_set_character_set", __LINE__);
     }
+}
 
+my_MySql::~my_MySql(){
+    if(fd != nullptr){
+        delete fd;
+    }
+
+    if(res_ptr != nullptr){
+        delete res_ptr;
+    }
+}
+
+void my_MySql::Delete_Dian(){
+
+    char buffer[250];
+    memset(buffer, 0, sizeof(buffer));
+
+
+    sprintf(buffer, "delete from 朋友 where (fuid = %d and suid = %d) or (suid = %d and fuid = %d)", sendnum, delnum, sendnum, delnum);
+    res = mysql_query(&mysql, buffer); //查询语句
+    if (res)
+    {
+        printf("SELECT error:%s\n", mysql_error(&mysql));
+    }
+
+}
+
+void my_MySql::Insert_Dian(){
+char buffer[250];
+    memset(buffer, 0, sizeof(buffer));
+
+    printf("%s\n", pack->data.mes);
+    sprintf(buffer, "select uid from 用户数据 where `name` = '%s'", pack->data.mes);
+    printf("%s\n", buffer);
+    res = mysql_query(&mysql, buffer); //查询语句
+    if (res)
+    {
+        printf("SELECT error:%s\n", mysql_error(&mysql));
+    }
+    else
+    {
+        int fd = -1;
+        res_ptr = mysql_store_result(&mysql); //取出结果集  mysql_store_result()立即检索所有的行，
+        while ((sqlrow = mysql_fetch_row(res_ptr)))
+        { //依次取出记录
+            printf("%s\t", sqlrow[0]);
+            fd = atoi(sqlrow[0]); //输出
+            printf("\n");
+        }
+    }
+}
+
+void my_MySql::Insert_User(){
+char buffer[250];
+    memset(buffer, 0, sizeof(buffer));
+
+    printf("%s\n", pack->data.mes);
+    sprintf(buffer, "select uid from 用户数据 where `name` = '%s'", pack->data.mes);
+    printf("%s\n", buffer);
+    res = mysql_query(&mysql, buffer); //查询语句
+    if (res)
+    {
+        printf("SELECT error:%s\n", mysql_error(&mysql));
+    }
+    else
+    {
+        int fd = -1;
+        res_ptr = mysql_store_result(&mysql); //取出结果集  mysql_store_result()立即检索所有的行，
+        while ((sqlrow = mysql_fetch_row(res_ptr)))
+        { //依次取出记录
+            printf("%s\t", sqlrow[0]);
+            fd = atoi(sqlrow[0]); //输出
+            printf("\n");
+        }
+    }
 }

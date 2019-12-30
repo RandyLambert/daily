@@ -82,7 +82,10 @@ int main(){
                       [sz](const string &a)
                       {return a.size() >= sz;});
     cout<<*wc<<endl;
-
+    int* aia = new int;
+    *aia = 10; 
+    int bib = std::move(*aia);
+    cout<<*aia<<" "<<bib<<endl;
     return 0;
 }
 

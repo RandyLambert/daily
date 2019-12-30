@@ -18,11 +18,11 @@ void aa::fuc1(){
 }
 int main(){
     int i;
-while(1)
-{
-   cin >> i;
-   cout << i << endl;
-}
+    while(1)
+    {
+        cin >> i;
+        cout << i << endl;
+    }
     ifstream in("hello.txt");
 
     while(!in.eof()){
@@ -38,6 +38,9 @@ while(1)
     }
     a x = {1,2};
     x.print();
+    int a = 10;
+    int b = std::move(a);
+    cout<<a<<b<<endl;
 
     return 0;
 }

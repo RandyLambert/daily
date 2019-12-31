@@ -9,6 +9,7 @@ int main(){
 
     char x[10] = "dd";
     const char xx = x[0];
+    cout<<a.back()<<endl;
 
 
     return 0;

@@ -3,13 +3,6 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-//自定义错误处理函数
-void my_err(const char *err_myString, int line)
-{
-    fprintf(stderr, "line:%d ", line);
-    perror(err_myString);
-    exit(1);
-}
 
 template <typename T>
 bool cmp(T a, T b)
@@ -66,6 +59,7 @@ public:
 
     void clear() noexcept;
     char front() const;
+    char back() const;
     //const char *end() const;
     //const char *begin() const;
 
@@ -102,9 +96,11 @@ public:
     static const size_t npos = -1;
 
 private:
+    enum{BUF_LEN = 16};
+
     size_t ssize;
     union _Bxty {
-        char _Buf[16];
+        char _Buf[BUF_LEN];
         char *_ptr;
     } _Bx;
 
@@ -116,7 +112,6 @@ inline void myString::rrsize(size_t x)
 {
     if (ssize < x)
         _Bx._ptr = (char *)realloc(_Bx._ptr, x * 2);
-    //ssize = x * 2;
 }
 inline std::ostream &operator<<(std::ostream &out, myString &str)
 {
@@ -131,7 +126,7 @@ inline std::ostream &operator<<(std::ostream &out, myString &str)
     return out;
 }
 
-inline std::istream &operator>>(std::istream &in, myString &str)
+std::istream &operator>>(std::istream &in, myString &str)
 {
     char *tp = new char[1024];
     in >> tp;
@@ -304,10 +299,10 @@ myString &myString::operator=(const char *s)
     else
     {
         rrsize(strlen(s));
-        memset(_Bx._ptr, 0, ssize);
+        memset(_Bx._ptr, 0, 2*strlen(s));
         strcpy(_Bx._ptr, s);
     }
-    ssize = size();
+    ssize = strlen(s);
     return *this;
 }
 
@@ -471,15 +466,15 @@ inline myString::myString()
 
 myString::myString(const myString &str)
 {
+    ssize = 0;
     memset(&_Bx, 0, sizeof(_Bx));
-    if (str.length() <= 15)
+    if (str.ssize <= 15)
     {
         strcpy(_Bx._Buf, str.c_str());
     }
     else
     {
         rrsize(str.length());
-        std::cout<<ssize<<std::endl;
         strcpy(_Bx._ptr, str.c_str());
     }
     ssize = str.length();
@@ -487,6 +482,7 @@ myString::myString(const myString &str)
 
 myString::myString(const char *s)
 {
+    ssize = 0;
     memset(&_Bx, 0, sizeof(_Bx));
     size_t tp = strlen(s);
     if (tp <= 15)
@@ -505,6 +501,7 @@ myString::myString(const char *s)
 
 myString::myString(size_t n, char c)
 {
+    ssize = 0;
     memset(&_Bx, 0, sizeof(_Bx));
     if (n <= 15)
     {
@@ -515,13 +512,14 @@ myString::myString(size_t n, char c)
     {
         rrsize(n);
         for (size_t i = 0; i < n; i++)
-            _Bx._Buf[i] = c;
+            _Bx._ptr[i] = c;
     }
     ssize = n;
 }
 
 myString::myString(const char *s, size_t n)
 {
+    ssize = 0;
     memset(&_Bx, 0, sizeof(_Bx));
     if (strlen(s) <= n)
     {
@@ -532,27 +530,28 @@ myString::myString(const char *s, size_t n)
         }
         else
         {
-            rrsize(ssize);
+            rrsize(n);
             strcpy(_Bx._ptr, s);
         }
     }
     else
     {
-        ssize = n;
         if (n <= 15)
         {
             strncpy(_Bx._Buf, s, n);
         }
         else
         {
-            rrsize(ssize);
+            rrsize(n);
             strncpy(_Bx._ptr, s, n);
         }
+        ssize = n;
     }
 }
 
 myString::myString(const myString &str, size_t pos, size_t len)
 {
+    ssize = 0;
     memset(&_Bx, 0, sizeof(_Bx));
     if (pos > str.ssize)
     {
@@ -576,7 +575,7 @@ myString::myString(const myString &str, size_t pos, size_t len)
         }
         else
         {
-            rrsize(ssize);
+            rrsize(len+1);
             const char *p = str.c_str() + pos;
             for (size_t i = 0; i < ssize; i++)
             {
@@ -641,7 +640,24 @@ char myString::front() const
         }
         else
         {
-            return *_Bx._ptr;
+            return _Bx._ptr[0];
+        }
+    }
+}
+
+char myString::back() const
+{
+    if (ssize == 0)
+        return '\0';
+    else
+    {
+        if (ssize <= 15)
+        {
+            return _Bx._Buf[ssize-1];
+        }
+        else
+        {
+            return _Bx._ptr[ssize-1];
         }
     }
 }
@@ -733,7 +749,6 @@ const char *myString::fastfind(const myString &w)
     int i = 0, j = 0;
     while (j < tlen)
     {
-        //std::cout<<w[i]<<std::endl;
         if (i == -1 || w[i] == at(j))
         {
             i++;

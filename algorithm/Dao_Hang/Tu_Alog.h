@@ -7,10 +7,12 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
+/* #include "Init.h" */
 #include "Template_Tool.hpp"
 
 class Kruskal
 {
+    friend class my_MySql;
 private:
     static const int MAXN = 1100;   //最大点数
     static const int MAXM = 100000; //最大边数
@@ -35,6 +37,7 @@ public:
 
 class Dijkstra
 {
+    friend class my_MySql;
 private:
     static const int INF = 0x3f3f3f3f;
     static const int MAXN = 1100;   //最大点数

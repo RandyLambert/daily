@@ -39,7 +39,38 @@ int main(){
 
     myString d(a);
     d.size();
+    d = a+b;
     cout<<d<<endl;
+
+    if(d == a){
+        cout<<"aadadad"<<endl;
+    }
+    if(d != a){
+        cout<<"ccccccc"<<endl;
+    }
+    if(d > a){
+        cout<<"ddddddddd"<<endl;
+    }
+    if(d < a){
+        cout<<"aaaaaaaa"<<endl;
+    }
+    if(d <= a){
+        cout<<"aaaaaaaa"<<endl;
+    }
+    if(d >= a){
+        cout<<"ddddddddd"<<endl;
+    }
+
+    const char *e = "dsadasasdddsdasfsafddddddddd";
+    myString f = myString(e,5);
+    cout<<f<<" "<<f.size()<<endl;
+    myString h = myString(e,17);
+    cout<<h<<" "<<h.size()<<endl;
+
+    cout<<h.front()<<" "<<h.back()<<endl;
+
+    cout<<b.compare("dads")<<endl;
+
     return 0;
 }
 

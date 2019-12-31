@@ -1,11 +1,12 @@
 #include "Init.h"
 //初始化
-my_MySql::my_MySql(){
+my_MySql::my_MySql()
+{
 
-res_ptr = nullptr;
-sqlrow = 0;
-fd = nullptr;
-res = 0, i = 0, j = 0;
+    res_ptr = nullptr;
+    sqlrow = 0;
+    fd = nullptr;
+    res = 0, i = 0, j = 0;
     if (NULL == mysql_init(&mysql))
     {
         my_err("mysql_init", __LINE__);
@@ -30,36 +31,48 @@ res = 0, i = 0, j = 0;
     }
 }
 
-my_MySql::~my_MySql(){
-    if(fd != nullptr){
+my_MySql::~my_MySql()
+{
+    if (fd != nullptr)
+    {
         delete fd;
     }
 
-    if(res_ptr != nullptr){
+    if (res_ptr != nullptr)
+    {
         delete res_ptr;
     }
 }
 
-void my_MySql::Delete_Lu(){
+void my_MySql::Delete_Lu(const lu_data &data)
+{
 
-    char buffer[250];
     memset(buffer, 0, sizeof(buffer));
-    
-    sprintf(buffer, "delete from 朋友 where (u = %d and v = %d and w = %d) or (suid = v and u = %d and w = %d)", sendnum, delnum, sendnum, delnum);
+    sprintf(buffer, "delete from 朋友 where (u = %d and v = %d and w = %d) or (suid = v and u = %d and w = %d)", data.u, data.v, data.w, data.v, data.u, data.w);
     res = mysql_query(&mysql, buffer); //查询语句
     if (res)
     {
         printf("SELECT error:%s\n", mysql_error(&mysql));
     }
-
 }
 
-void my_MySql::Insert_Dian(){
-char buffer[250];
-    memset(buffer, 0, sizeof(buffer));
+void my_MySql::Delete_Dian(const myString &Dian)
+{
+}
 
-    printf("%s\n", pack->data.mes);
-    sprintf(buffer, "select uid from 用户数据 where `name` = '%s'", pack->data.mes);
+void my_MySql::Insert_Lu(const lu_data &data)
+{
+}
+
+void my_MySql::Queue_Tu(Dijkstra &OneDijk)
+{
+}
+
+void my_MySql::Insert_Dian(const myString &data)
+{
+    memset(buffer, 0, sizeof(buffer));
+    //printf("%s\n", pack->data.mes);
+    sprintf(buffer, "insert from 大 where (u = %d and v = %d and w = %d) or (suid = v and u = %d and w = %d)", data.u, data.v, data.w, data.v, data.u, data.w);
     printf("%s\n", buffer);
     res = mysql_query(&mysql, buffer); //查询语句
     if (res)
@@ -79,12 +92,11 @@ char buffer[250];
     }
 }
 
-void my_MySql::Insert_User(){
-char buffer[250];
-    memset(buffer, 0, sizeof(buffer));
+void my_MySql::Insert_User()
+{
 
-    printf("%s\n", pack->data.mes);
-    sprintf(buffer, "select uid from 用户数据 where `name` = '%s'", pack->data.mes);
+    memset(buffer, 0, sizeof(buffer));
+    sprintf(buffer, "select uid from 用户数据 where `name` = '%s'", );
     printf("%s\n", buffer);
     res = mysql_query(&mysql, buffer); //查询语句
     if (res)

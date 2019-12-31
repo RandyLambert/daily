@@ -1,5 +1,22 @@
 #include "Tu_Alog.h"
 
+
+Kruskal::Kruskal(){
+    edge_Krus = new Edge_Krus[MAXM];
+    F = new int[MAXN];
+}
+
+Kruskal::~Kruskal(){
+    if(F!=nullptr){
+        delete []F;
+    }
+    
+    if(edge_Krus!=nullptr){
+        delete []edge_Krus;
+    }
+
+}
+
 int Kruskal:: find(int x) //并查集查找
 {
     if (x == F[x])
@@ -46,7 +63,22 @@ int Kruskal:: solve(int n) //传入点数,返回最小生成树的权值,如果�
         return ans;
 }
 
+Dijkstra::Dijkstra()
+{
+    vis = new bool[MAXN];
+    dist = new int[MAXN];
+}
 
+Dijkstra::~Dijkstra(){
+    if(vis!=nullptr){
+        delete []vis;
+    }
+
+    if(dist!=nullptr)
+    {
+        delete []dist;
+    }
+}
 
 void Dijkstra:: Addedge_Dijk(int u, int v, int w) //加边
 {

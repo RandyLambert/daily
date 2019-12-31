@@ -42,7 +42,7 @@ typedef struct lu_data
 
 std::map<int, myString> mp;
 
-} // namespace User_Data
+} 
 
 using namespace User_Data;
 
@@ -56,15 +56,21 @@ private:
     int res, i, j;
     char buffer[MAX_BUF];
     my_MySql();
+    my_MySql(const my_MySql &c){}
     ~my_MySql();
+    static my_MySql * my_mysql;
 
 public:
+    static my_MySql * getInstance(){ return my_mysql;}
     void Insert_User();
     void Insert_Dian(const myString &Dian);
     void Delete_Dian(const myString &Dian);
     void Insert_Lu(const lu_data &data);
     void Delete_Lu(const lu_data &data);
-    void Queue_Tu(Dijkstra &OneDijk);
+    void Init_Dijk(Dijkstra *OneDijk);
+    void Init_Krus(Kruskal *OneKrus);
 };
+my_MySql * my_MySql::my_mysql = new my_MySql;
+my_MySql *OneMysql = my_MySql::getInstance();
 
 #endif

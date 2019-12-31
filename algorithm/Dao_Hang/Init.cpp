@@ -2,7 +2,6 @@
 //初始化
 my_MySql::my_MySql()
 {
-
     res_ptr = nullptr;
     sqlrow = 0;
     fd = nullptr;
@@ -64,7 +63,11 @@ void my_MySql::Insert_Lu(const lu_data &data)
 {
 }
 
-void my_MySql::Queue_Tu(Dijkstra &OneDijk)
+void my_MySql::Init_Dijk(Dijkstra *OneDijk)
+{
+}
+
+void my_MySql::Init_Krus(Kruskal *OneKrus)
 {
 }
 

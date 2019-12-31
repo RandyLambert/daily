@@ -1,37 +1,40 @@
 #include "View.h"
+using std::cin;
+using std::cout;
+using std::endl;
 
-void UI_Login(int conn_fd)
+void UI_Login::Login_Main()
 {
     int choice;
     do
     {
         system("clear");
-        std::cout<<"\n==============================\n";
-        std::cout<<"********* 校园导航系统 *********\n";
-        std::cout<<"         [1]  登录\n";
-        std::cout<<"         [2]  注册\n";
-        std::cout<<"         [3]  找回密码\n";
-        std::cout<<"         [4]  退出\n";
-        std::cout<<"\n==============================\n";
-        std::cout<<"请输出你的选择：";
-        std::cin>>choice;
+        std::cout << "\n==============================\n";
+        std::cout << "********* 校园导航系统 *********\n";
+        std::cout << "         [1]  登录\n";
+        std::cout << "         [2]  注册\n";
+        std::cout << "         [3]  找回密码\n";
+        std::cout << "         [4]  退出\n";
+        std::cout << "\n==============================\n";
+        std::cout << "请输出你的选择：";
+        std::cin >> choice;
         switch (choice)
         {
             //输入用户名和密码
         case 1:
-            if (login(conn_fd))
+            if (Login())
             {
                 return;
             }
             break;
         case 2:
-            if (UI_zhuce(conn_fd))
+            if (UI_zhuce())
             {
                 return;
             }
             break;
         case 3:
-            findpassword(conn_fd);
+            //findpassword();
             break;
         case 4:
             exit(0);
@@ -42,114 +45,69 @@ void UI_Login(int conn_fd)
     } while (1);
 }
 
-int login(int conn_fd)
+bool UI_Login::Login()
 {
 
-	int flag;
-	do
-	{ //输入用户信息直到正确为止
+    int flag;
+    do
+    { //输入用户信息直到正确为止
 
+        flag = 0;
+        cout << "[小于30字节]usrname:";
+        cin >> login_data.username;
 
-		PACK *senddata = NULL;
-		senddata = (PACK *)malloc(sizeof(PACK));
-		senddata->type = LOGIN;
+        cout << "[小于30字节]password:";
+        cin >> login_data.password;
 
-		flag = 0;
-		printf("[小于20字节]usrname:");
-		scanf("%s", senddata->data.send_name);
-
-		printf("[小于20字节]password:");
-		scanf("%s", senddata->data.recv_name);
-
-		senddata->data.send_fd = conn_fd;
-		input_userinfo(conn_fd, senddata); //发
-
-		PACK *recvdata = NULL;
-		recvdata = (PACK *)malloc(sizeof(PACK));
-
-		int len_pack = LEN_PACK;
-		char *p = (char *)(recvdata);
-		while (len_pack > 0)
-		{
-			size_t n;
-			if ((n = recv(conn_fd, p, len_pack, 0)) < 0)
-			{
-				if (errno != EAGAIN)
-				{
-					perror("recv");
-					exit(1);
-				}
-			}
-
-			len_pack -= n;
-			p += n;
-		}
-
-		if (recvdata->type == LOGIN)
-		{
-			if (recvdata->data.mes[0] == 'y')
-			{
-				flag = 1;
-				useruid = recvdata->data.recv_fd;
-				strcpy(username, senddata->data.send_name);
-				strcpy(password, senddata->data.recv_name);
-				printf("useruid = %d", useruid);
-				printf("登录成功\n");
-				return 1;
-			}
-			else
-			{
-				printf("你的用户名和密码不匹配，请重新输入，退出请输【10086】，继续请输【0】");
-				scanf("%d", &flag);
-				getchar();
-				if (flag == 10086)
-				{
-					return 0;
-				}
-			}
-		}
-		free(recvdata);
-		free(senddata);
-	} while (1);
-	
+        if (1)
+        {
+            printf("useruid = %d", login_data.uid);
+            printf("登录成功\n");
+            return 1;
+        }
+        else
+        {
+            printf("你的用户名和密码不匹配，请重新输入，退出请输【10086】，继续请输【0】");
+            cin >> flag;
+            if (flag == 10086)
+            {
+                return 0;
+            }
+        }
+    } while (true);
 }
-int UI_zhuce(int conn_fd)
+bool UI_zhuce()
 {
 
     int flag = 0;
     do
     {
-        std::cout<<"[请小于20个字符]usrname:";
-        scanf("%s", senddata->data.send_name);
+        std::cout << "[请小于30个字符]usrname:";
+        cin >> login_data.username;
 
-        std::cout<<"[请小于20个字符]password:";
-        scanf("%s", senddata->data.recv_name);
+        std::cout << "[请小于30个字符]password:";
+        cin >> login_data.password;
 
-        std::cout<<"[请小于20个字符]mibao:";
-        scanf("%s", senddata->data.mes);
+        std::cout << "[请小于30个字符]mibao:";
+        cin >> login_data.mibao;
 
-        std::cout<<"[1]是n|[2]是w|sex:";
-        std::cin>>senddata->data.send_fd;
+        std::cout << "[1]是n|[2]是w|sex:";
+        std::cin >> login_data.sex;
 
-        if (recvdata->type == REGISTER)
+        if (1)
         {
-            if (recvdata->data.mes[0] == 'y')
+            flag = 1;
+            std::cout << "注册成功,输回车返回登录\n";
+            return 0;
+        }
+        else
+        {
+            std::cout<<"你的用户名以使用过，请重新输入，或者选择退出，退出请输【10086】，继续请输【0】");
+            std::cin >> flag;
+            if (flag == 10086)
             {
-                flag = 1;
-                //recive(conn_fd,recvdata);
-                std::cout<<"注册成功,输回车返回登录\n";
                 return 0;
             }
-            else
-            {
-                std::cout<<"你的用户名以使用过，请重新输入，或者选择退出，退出请输【10086】，继续请输【0】");
-                std::cin>>flag;
-                if (flag == 10086)
-                {
-                    return 0;
-                    //exit(0);
-                }
-            }
         }
-    } while (1);
+    } while (true);
 }

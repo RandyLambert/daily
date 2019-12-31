@@ -27,8 +27,8 @@ struct login
     char password[MAX_CHAR];
 } login_data;
 
-struct dian_data{
-
+struct lu_data{
+    int u, v, w;
 };
 
 } // namespace User_Data
@@ -47,7 +47,7 @@ private:
 public:
     void Insert_User(struct info_user info_user);
     void Insert_Dian();
-    void Delete_Dian();
+    void Delete_Lu();
 };
 
 #endif

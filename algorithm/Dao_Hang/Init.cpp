@@ -40,13 +40,12 @@ my_MySql::~my_MySql(){
     }
 }
 
-void my_MySql::Delete_Dian(){
+void my_MySql::Delete_Lu(){
 
     char buffer[250];
     memset(buffer, 0, sizeof(buffer));
-
-
-    sprintf(buffer, "delete from 朋友 where (fuid = %d and suid = %d) or (suid = %d and fuid = %d)", sendnum, delnum, sendnum, delnum);
+    
+    sprintf(buffer, "delete from 朋友 where (u = %d and v = %d and w = %d) or (suid = v and u = %d and w = %d)", sendnum, delnum, sendnum, delnum);
     res = mysql_query(&mysql, buffer); //查询语句
     if (res)
     {

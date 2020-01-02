@@ -3,17 +3,13 @@
 #include <iostream>
 #include <mysql/mysql.h>
 #include <cstring>
-#include <map>
 #include "Template_Tool.hpp"
 #include "Tu_Alog.h"
+#include "myString.h"
+#include <unordered_map>
 
 //自定义错误处理函数
-void my_err(const char *err_myString, int line)
-{
-    fprintf(stderr, "line:%d ", line);
-    perror(err_myString);
-    exit(1);
-}
+void my_err(const char *err_myString, int line);
 
 namespace User_Data
 {
@@ -33,14 +29,10 @@ typedef struct info_user
     char mibao[MAX_MIB];
 } info_user;
 
-info_user login_data;
-
 typedef struct lu_data
 {
     int u, v, w;
 } lu_data;
-
-std::map<int, myString> mp;
 
 } 
 
@@ -62,15 +54,16 @@ private:
 
 public:
     static my_MySql * getInstance(){ return my_mysql;}
-    void Insert_User();
+    void Insert_User(const info_user& login_data);
+    bool Query_User(info_user& login_data);
     void Insert_Dian(const myString &Dian);
     void Delete_Dian(const myString &Dian);
     void Insert_Lu(const lu_data &data);
     void Delete_Lu(const lu_data &data);
     void Init_Dijk(Dijkstra *OneDijk);
     void Init_Krus(Kruskal *OneKrus);
+    void Init_Map(std::unordered_map<int, myString> mp);
 };
-my_MySql * my_MySql::my_mysql = new my_MySql;
-my_MySql *OneMysql = my_MySql::getInstance();
+
 
 #endif

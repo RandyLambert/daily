@@ -1,11 +1,5 @@
-#pragma once
-class HuFumann
-{
-public:
-    HuFumann() {}
-    ~HuFumann() {}
+#ifndef HUFUMAMM_H_
+#define HUFUMAMM_H_
+#include <iostream>
 
-private:
-
-};
-
+#endif

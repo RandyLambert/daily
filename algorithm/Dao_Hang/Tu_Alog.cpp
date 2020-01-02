@@ -37,8 +37,8 @@ void Kruskal:: Addedge_Krus(int u, int v, int w) //加边
 int Kruskal:: solve(int n) //传入点数,返回最小生成树的权值,如果不连通返回 -1
 {
     memset(F, - 1, sizeof(F));
-    mySort(edge_Krus,0,tol);     
-    /* std::sort(edge_Krus, edge_Krus + tol,cmp<Edge_Krus>); */
+    //mySort(edge_Krus,0,tol);     
+    std::sort(edge_Krus, edge_Krus + tol,cmp<Edge_Krus>);
     int cnt = 0; //计算加入的边数
     int ans = 0;
     for (int i = 0; i < tol; i++)

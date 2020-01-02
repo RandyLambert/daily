@@ -7,7 +7,8 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
-/* #include "Init.h" */
+/*#include "Init.h" */
+#include "myString.h" 
 #include "Template_Tool.hpp"
 
 class Kruskal
@@ -36,11 +37,9 @@ private:
     static Kruskal* kruskal;
 public:
     int solve(int n); //传入点数,返回最小生成树的权值,如果不连通返回 -1
-    static Kruskal * getInstance(){ return kruskal};
+    static Kruskal * getInstance(){ return kruskal;};
 };
 
-Kruskal * Kruskal::kruskal = new Kruskal;
-Kruskal *OneKrus = Kruskal::getInstance();
 
 /*****************************************************/
 
@@ -81,7 +80,6 @@ public:
     void solve(int n, int start); //点的编号从1开始
     static Dijkstra *getInstance(){return dijkstra; }
 };
-Dijkstra *Dijkstra::dijkstra = new Dijkstra;
-Dijkstra *OneDijk = Dijkstra::getInstance();
+
 
 #endif

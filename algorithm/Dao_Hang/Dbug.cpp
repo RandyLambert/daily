@@ -1,8 +1,10 @@
-#include "Template_Tool.hpp"
-#include <cstring>
+#include <iostream>
+#include "myString.h"
 using namespace std;
 int main(){
-    myString a("aaaaaaaaa");
+    std::pair<int, myString> ls{1, "aaa"} ;
+    std :: cout << ls.first << "    " << ls.second << std::endl ;
+     myString a("aaaaaaaaa");
     myString b = "aaaa";
     myString c(10,'c');
     myString aa;
@@ -70,7 +72,6 @@ int main(){
     cout<<h.front()<<" "<<h.back()<<endl;
 
     cout<<b.compare("dads")<<endl;
-
     return 0;
 }
 

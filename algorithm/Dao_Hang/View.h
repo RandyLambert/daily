@@ -3,6 +3,8 @@
 #include <iostream>
 #include <algorithm>
 #include "Init.h"
+#include "myString.h"
+#include <unordered_map>
 class UI_Login
 {
 public:
@@ -12,7 +14,7 @@ public:
     bool Login();
     bool Zhuce();
     void All_Lu();
-    void Dan_Lu();
+    void Dan_Lu(const Dijkstra *One_Dijk);
     void Min_Lu();
 private:
     UI_Login(){}
@@ -20,7 +22,5 @@ private:
     static UI_Login *uilogin;
 };
 
-UI_Login * UI_Login::uilogin = new UI_Login;
-UI_Login *OneUIlog = UI_Login::getInstance();
 
 #endif

@@ -2,7 +2,8 @@
 using std::cin;
 using std::cout;
 using std::endl;
-
+extern info_user login_data;
+extern unordered_map<int,myString> mp;
 void UI_Login::Login_Main()
 {
     int choice;
@@ -28,7 +29,7 @@ void UI_Login::Login_Main()
             }
             break;
         case 2:
-            if (UI_zhuce())
+            if (Zhuce())
             {
                 return;
             }
@@ -76,7 +77,7 @@ bool UI_Login::Login()
         }
     } while (true);
 }
-bool UI_zhuce()
+bool UI_Login::Zhuce()
 {
 
     int flag = 0;
@@ -102,7 +103,7 @@ bool UI_zhuce()
         }
         else
         {
-            std::cout<<"你的用户名以使用过，请重新输入，或者选择退出，退出请输【10086】，继续请输【0】");
+            std::cout<<"你的用户名以使用过，请重新输入，或者选择退出，退出请输【10086】，继续请输【0】";
             std::cin >> flag;
             if (flag == 10086)
             {
@@ -110,4 +111,12 @@ bool UI_zhuce()
             }
         }
     } while (true);
+}
+
+void UI_Login::Dan_Lu(const Dijkstra *One_Dijk){
+    cout<<mp[0]<<endl;
+    for(int i = 1;i < 10;i++){
+        cout<<"====>"<<mp[i]<<endl;
+    }
+
 }

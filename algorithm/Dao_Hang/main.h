@@ -1,3 +1,5 @@
+#ifndef MAIN_H_
+#define MAIN_H_
 #include <unordered_map>
 #include "Tu_Alog.h"
 #include "Template_Tool.hpp"
@@ -19,3 +21,4 @@ UI_Login *OneUIlog = UI_Login::getInstance();
 
 std::unordered_map<int, myString> mp;
 info_user login_data;
+#endif

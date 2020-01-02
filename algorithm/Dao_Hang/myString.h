@@ -3,29 +3,6 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-static bool operator==(const myString &lhs, const myString &rhs);
-static bool operator==(const char *lhs, const myString &rhs);
-static bool operator==(const myString &lhs, const char *rhs);
-static bool operator!=(const myString &lhs, const myString &rhs);
-static bool operator!=(const char *lhs, const myString &rhs);
-static bool operator!=(const myString &lhs, const char *rhs);
-static bool operator<(const myString &lhs, const myString &rhs);
-static bool operator<(const char *lhs, const myString &rhs);
-static bool operator<(const myString &lhs, const char *rhs);
-static bool operator<=(const myString &lhs, const myString &rhs);
-static bool operator<=(const char *lhs, const myString &rhs);
-static bool operator<=(const myString &lhs, const char *rhs);
-static bool operator>(const myString &lhs, const myString &rhs);
-static bool operator>(const char *lhs, const myString &rhs);
-static bool operator>(const myString &lhs, const char *rhs);
-static bool operator>=(const myString &lhs, const myString &rhs);
-static bool operator>=(const char *lhs, const myString &rhs);
-static bool operator>=(const myString &lhs, const char *rhs);
-static myString operator+(const myString &lhs, const myString &rhs);
-static myString operator+(const myString &lhs, const char *rhs);
-static myString operator+(const char *lhs, const myString &rhs);
-static myString operator+(const myString &lhs, char rhs);
-static myString operator+(char lhs, const myString &rhs);
 
 class myString
 {
@@ -35,7 +12,7 @@ class myString
 public:
     myString();
     myString(const myString &str);
-    myString(const myString &str, size_t pos, size_t len = npos);
+    myString(const myString &str, size_t pos, size_t len);
     myString(const char *s);
     myString(const char *s, size_t n);
     myString(size_t n, char c);
@@ -76,8 +53,6 @@ public:
     const char *data() const;
     bool empty() const;
 
-    static const size_t npos = -1;
-
 private:
     enum
     {
@@ -93,5 +68,29 @@ private:
     void rrsize(size_t x);              //扩容
     const char *getnext(const char *w); //kmp
 };
+
+bool operator==(const myString &lhs, const myString &rhs);
+bool operator==(const char *lhs, const myString &rhs);
+bool operator==(const myString &lhs, const char *rhs);
+bool operator!=(const myString &lhs, const myString &rhs);
+bool operator!=(const char *lhs, const myString &rhs);
+bool operator!=(const myString &lhs, const char *rhs);
+bool operator<(const myString &lhs, const myString &rhs);
+bool operator<(const char *lhs, const myString &rhs);
+bool operator<(const myString &lhs, const char *rhs);
+bool operator<=(const myString &lhs, const myString &rhs);
+bool operator<=(const char *lhs, const myString &rhs);
+bool operator<=(const myString &lhs, const char *rhs);
+bool operator>(const myString &lhs, const myString &rhs);
+bool operator>(const char *lhs, const myString &rhs);
+bool operator>(const myString &lhs, const char *rhs);
+bool operator>=(const myString &lhs, const myString &rhs);
+bool operator>=(const char *lhs, const myString &rhs);
+bool operator>=(const myString &lhs, const char *rhs);
+myString operator+(const myString &lhs, const myString &rhs);
+myString operator+(const myString &lhs, const char *rhs);
+myString operator+(const char *lhs, const myString &rhs);
+myString operator+(const myString &lhs, char rhs);
+myString operator+(char lhs, const myString &rhs);
 
 #endif

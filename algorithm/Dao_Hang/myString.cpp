@@ -5,7 +5,7 @@ inline void myString::rrsize(size_t x)
         _Bx._ptr = (char *)realloc(_Bx._ptr, x * 2);
 }
 
-inline std::ostream &operator<<(std::ostream &out, myString &str)
+std::ostream &operator<<(std::ostream &out, myString &str)
 {
     if (str.length() <= 15)
     {
@@ -66,101 +66,101 @@ inline const char *myString::c_str() const
     }
 }
 
-inline int myString::compare(const myString &str) const
+int myString::compare(const myString &str) const
 {
     return strcmp(c_str(), str.c_str());
 }
-inline int myString::compare(const char *s) const
+int myString::compare(const char *s) const
 {
     return strcmp(c_str(), s);
 }
 
-static inline bool operator==(const myString &lhs, const myString &rhs)
+bool operator==(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) == 0);
 }
 
-static inline bool operator==(const char *lhs, const myString &rhs)
+bool operator==(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) == 0);
 }
 
-static inline bool operator==(const myString &lhs, const char *rhs)
+bool operator==(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) == 0);
 }
 
-static inline bool operator!=(const myString &lhs, const myString &rhs)
+bool operator!=(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) != 0);
 }
 
-static inline bool operator!=(const char *lhs, const myString &rhs)
+bool operator!=(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) != 0);
 }
 
-static inline bool operator!=(const myString &lhs, const char *rhs)
+bool operator!=(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) != 0);
 }
 
-static inline bool operator<(const myString &lhs, const myString &rhs)
+bool operator<(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) < 0);
 }
 
-static inline bool operator<(const char *lhs, const myString &rhs)
+bool operator<(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) >= 0);
 }
 
-static inline bool operator<(const myString &lhs, const char *rhs)
+bool operator<(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) < 0);
 }
 
-static inline bool operator<=(const myString &lhs, const myString &rhs)
+bool operator<=(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) <= 0);
 }
 
-static inline bool operator<=(const char *lhs, const myString &rhs)
+bool operator<=(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) > 0);
 }
 
-static inline bool operator<=(const myString &lhs, const char *rhs)
+bool operator<=(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) <= 0);
 }
 
-static inline bool operator>(const myString &lhs, const myString &rhs)
+bool operator>(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) > 0);
 }
 
-static inline bool operator>(const char *lhs, const myString &rhs)
+bool operator>(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) <= 0);
 }
 
-static inline bool operator>(const myString &lhs, const char *rhs)
+bool operator>(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) > 0);
 }
 
-static inline bool operator>=(const myString &lhs, const myString &rhs)
+bool operator>=(const myString &lhs, const myString &rhs)
 {
     return (lhs.compare(rhs) >= 0);
 }
 
-static inline bool operator>=(const char *lhs, const myString &rhs)
+bool operator>=(const char *lhs, const myString &rhs)
 {
     return (rhs.compare(lhs) < 0);
 }
 
-static inline bool operator>=(const myString &lhs, const char *rhs)
+bool operator>=(const myString &lhs, const char *rhs)
 {
     return (lhs.compare(rhs) >= 0);
 }
@@ -324,35 +324,35 @@ myString &myString::operator+=(const myString &str)
     return *this;
 }
 
-static inline myString operator+(const myString &lhs, const myString &rhs)
+myString operator+(const myString &lhs, const myString &rhs)
 {
     myString str(lhs);
     str += rhs;
     return str;
 }
 
-static inline myString operator+(const myString &lhs, const char *rhs)
+myString operator+(const myString &lhs, const char *rhs)
 {
     myString str(lhs);
     str += rhs;
     return str;
 }
 
-static inline myString operator+(const char *lhs, const myString &rhs)
+myString operator+(const char *lhs, const myString &rhs)
 {
     myString str(lhs);
     str += rhs;
     return str;
 }
 
-static inline myString operator+(const myString &lhs, char rhs)
+myString operator+(const myString &lhs, char rhs)
 {
     myString str(lhs);
     str += rhs;
     return str;
 }
 
-static inline myString operator+(char lhs, const myString &rhs)
+myString operator+(char lhs, const myString &rhs)
 {
     myString str(&lhs);
     str += rhs;
@@ -495,12 +495,12 @@ myString::~myString()
     }
 }
 
-inline size_t myString::length() const noexcept
+inline  size_t myString::length() const noexcept
 {
     return ssize;
 }
 
-inline size_t myString::size() const noexcept
+inline  size_t myString::size() const noexcept
 {
     return ssize;
 }
@@ -563,12 +563,12 @@ char myString::back() const
     }
 }
 
-inline myString &myString::append(const myString &str)
+myString &myString::append(const myString &str)
 {
     *this += str;
     return *this;
 }
-inline myString &myString::append(const char *s)
+myString &myString::append(const char *s)
 {
     *this += s;
     return *this;
@@ -675,12 +675,12 @@ const char *myString::fastfind(const myString &w)
     }
 }
 
-inline const char *myString::find(const myString &w) const
+const char *myString::find(const myString &w) const
 {
     return strstr(c_str(), w.c_str());
 }
 
-inline void myString::swap(myString &str)
+void myString::swap(myString &str)
 {
     myString temp = std::move(*this);
     *this = std::move(str);

@@ -1,5 +1,4 @@
 #include "Init.h"
-#include "HuFumann.h"
 extern std::unordered_map<char,int>mp;
 extern std::vector<pair<char,string>> code;
 enum{MAX_LEN = 1024};
@@ -38,10 +37,12 @@ void File_Init(){
         }
         mp[tp]+=1;
     }
-HuffMan Htree(mp);  //构建哈弗曼树
+    HuffMan Htree(mp);  //构建哈弗曼树
     string ans;
-    Coding(&code,ans,Htree.root);
+    Coding(code,ans,Htree.root);
 }
+
+
 void Coding(vector<pair<char,string>> &codeorder,string &tp,Node *root){
     if(root->LeftChild == nullptr && root-> RightChild == nullptr) //遇到叶子节点
     {

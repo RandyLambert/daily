@@ -3,7 +3,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 extern info_user login_data;
-extern unordered_map<int,myString> mp;
+extern std::unordered_map<int,myString> mp;
 void UI_Login::Login_Main()
 {
     int choice;
@@ -14,8 +14,7 @@ void UI_Login::Login_Main()
         std::cout << "********* 校园导航系统 *********\n";
         std::cout << "         [1]  登录\n";
         std::cout << "         [2]  注册\n";
-        std::cout << "         [3]  找回密码\n";
-        std::cout << "         [4]  退出\n";
+        std::cout << "         [3]  退出\n";
         std::cout << "\n==============================\n";
         std::cout << "请输出你的选择：";
         std::cin >> choice;
@@ -35,15 +34,12 @@ void UI_Login::Login_Main()
             }
             break;
         case 3:
-            //findpassword();
-            break;
-        case 4:
             exit(0);
             break;
         default:
             break;
         }
-    } while (1);
+    } while (true);
 }
 
 bool UI_Login::Login()

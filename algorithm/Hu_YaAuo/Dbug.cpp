@@ -4,24 +4,43 @@
 using namespace std;
 unordered_map<unsigned char,int>mp; 
 enum{MAX_LEN = 1024};
+
+int getBit(ifstream &ifile)
+{
+	static int i = 0;//用来计数返回了几位了
+	static unsigned char ch;//接受读取到的信息
+	unsigned char bit[8] = {128,64,32,16,8,4,2,1};
+	i++;
+	if(i == 8)
+	{
+		ch = ifile.get();
+		i = 0;
+	}
+	return ch&bit[i];
+}
+
 int main(){
     ifstream ifile;
     ofstream ofile;
     cout<<"请输入文件名：";
     /* cin>>; */
     ifile.open("./ya.txt");
+    if(!ifile){
+        cout<<"fail open"<<endl;
+        exit(0);
+    }
+
+    char tp;
+    while(true){
+        ifile.read(&tp,1);
+        if(ifile.peek() == EOF){
+            break;        
+        }
+        mp[tp]+=1;
+    }
+
 
     /* int i=0,j,k; */
-    char buf[MAX_LEN];
-    string x;
-     while(true){      //读标题,请对比cin.get(),不可用>>,它不能读白字符
-        /* if(a[i]=='\n') break; */
-         if(ifile.eof()){
-             break;
-         }
-         ifile>>x;
-     }
-         cout<<x;
      /* a[i]='\0'; */
      /* cout<<a<<endl; */
 

@@ -74,9 +74,9 @@ void my_MySql::Delete_Lu(const lu_data &data)
 void my_MySql::Delete_Dian(const myString &Dian)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "delete Map(NULL,%s)", Dian.c_str());
+    sprintf(buffer, "delete from Map where name = '%s'", Dian.c_str());
     std::cout << buffer << std::endl;
-    /* res = mysql_query(&mysql, buffer); //查询语句 */
+    res = mysql_query(&mysql, buffer); //查询语句 
     if (res)
     {
         printf("SELECT error:%s\n", mysql_error(&mysql));
@@ -87,26 +87,28 @@ void my_MySql::Delete_Dian(const myString &Dian)
     }
 }
 
-void my_MySql::Insert_Lu(const lu_data &data)
+bool my_MySql::Insert_Lu(const lu_data &data)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "insert into Tu_data(NULL,%d,%d,%d)", data.u, data.v, data.w);
+    sprintf(buffer, "insert into Tu_data values(NULL,%d,%d,%d)", data.u, data.v, data.w);
     std::cout << buffer << std::endl;
-    /* res = mysql_query(&mysql, buffer); //查询语句 */
+    res = mysql_query(&mysql, buffer); //查询语句 
     if (res)
     {
         printf("SELECT error:%s\n", mysql_error(&mysql));
+        return false;
     }
     else
     {
         std::cout << "插入成功\n";
+        return true;
     }
 }
 
 void my_MySql::Init_Dijk(Dijkstra *OneDijk)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "select * from Map");
+    sprintf(buffer, "select * from Tu_data");
     mysql_free_result(res_ptr);                                   //释放空间
     res = mysql_query(&mysql, buffer);                            //查询语句
     res_ptr = mysql_store_result(&mysql);                         //取出结果集  mysql_store_result()立即检索所有的行，
@@ -133,11 +135,12 @@ void my_MySql::Init_Dijk(Dijkstra *OneDijk)
         }
         OneDijk->Addedge_Dijk(u, v, w);
         OneDijk->Addedge_Dijk(v, u, w);
+        cout<<buffer<<endl;
     }
 
     if (mysql_errno(&mysql))
     {
-        fprintf(stderr, "Retrive error:s\n", mysql_error(&mysql));
+        fprintf(stderr, "Retrive error:%s\n", mysql_error(&mysql));
     }
 
     mysql_free_result(res_ptr); //释放空间
@@ -146,7 +149,7 @@ void my_MySql::Init_Dijk(Dijkstra *OneDijk)
 void my_MySql::Init_Krus(Kruskal *OneKrus)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "select * from Map");
+    sprintf(buffer, "select * from Tu_data");
     mysql_free_result(res_ptr);                                   //释放空间
     res = mysql_query(&mysql, buffer);                            //查询语句
     res_ptr = mysql_store_result(&mysql);                         //取出结果集  mysql_store_result()立即检索所有的行，
@@ -177,7 +180,7 @@ void my_MySql::Init_Krus(Kruskal *OneKrus)
 
     if (mysql_errno(&mysql))
     {
-        fprintf(stderr, "Retrive error:s\n", mysql_error(&mysql));
+        fprintf(stderr, "Retrive error:%s\n", mysql_error(&mysql));
     }
 
     mysql_free_result(res_ptr); //释放空间
@@ -192,16 +195,18 @@ void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
     res_ptr = mysql_store_result(&mysql);                         //取出结果集  mysql_store_result()立即检索所有的行，
     printf("%lu Rows\n", (unsigned long)mysql_num_rows(res_ptr)); //返回所有的行
     j = mysql_num_fields(res_ptr);                                //获取 列数
-    int x;
     myString y;
     while ((sqlrow = mysql_fetch_row(res_ptr)))
     { //依次取出记录
+        int x;
         for (i = 0; i < j; i++)
         {
+            
             printf("%s\t", sqlrow[i]); //输出
             if (i == 0)
             {
                 x = atoi(sqlrow[i]);
+                //maxxdin = std::max(x,maxxdin);
             }
             else if (i == 1)
             {
@@ -209,36 +214,41 @@ void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
             }
         }
         mp[x] = y;
+        cout<<endl;
+        cout<<mp.size()<<endl;
+        
     }
 
     if (mysql_errno(&mysql))
     {
-        fprintf(stderr, "Retrive error:s\n", mysql_error(&mysql));
+        fprintf(stderr, "Retrive error:%s\n", mysql_error(&mysql));
     }
 
     mysql_free_result(res_ptr); //释放空间
 }
 
-void my_MySql::Insert_Dian(const myString &data)
+bool my_MySql::Insert_Dian(const myString &data)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "insert into Map(NULL,%s)", data.c_str());
+    sprintf(buffer, "insert into Map values(NULL,'%s')", data.c_str());
     std::cout << buffer << std::endl;
-    /* res = mysql_query(&mysql, buffer); //查询语句 */
+    res = mysql_query(&mysql, buffer); //查询语句 
     if (res)
     {
         printf("SELECT error:%s\n", mysql_error(&mysql));
+        return false;
     }
     else
     {
         std::cout << "插入成功\n";
+        return true;
     }
 }
 
 bool my_MySql::Query_User(info_user &login_data)
 {
     memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "select uid from User where name = %s and password = %s", login_data.username, login_data.password);
+    sprintf(buffer, "select uid from User where name = '%s' and password = '%s'", login_data.username, login_data.password);
     std::cout << buffer;
     res = mysql_query(&mysql, buffer); //查询语句
 
@@ -249,10 +259,8 @@ bool my_MySql::Query_User(info_user &login_data)
     else
     {
         res_ptr = mysql_store_result(&mysql); //取出结果集  mysql_store_result()立即检索所有的行，
-        int ress = mysql_num_rows(res_ptr);
-        if (ress == 0)
+        if (mysql_num_rows(res_ptr) == 0)
         {
-            Insert_User(login_data);
             return true;
         }
         else
@@ -262,18 +270,27 @@ bool my_MySql::Query_User(info_user &login_data)
     }
     return false;
 }
-void my_MySql::Insert_User(const info_user &login_data)
+
+bool my_MySql::Insert_User(info_user &login_data)
 {
-    memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer, "insert into User values(NULL,%s,%s,%s,%s)", login_data.username, login_data.sex, login_data.password, login_data.mibao);
-    std::cout << buffer;
-    /* res = mysql_query(&mysql, buffer); //查询语句 */
-    if (res)
-    {
-        printf("SELECT error:%s\n", mysql_error(&mysql));
+    if(Query_User(login_data) == false){
+        return false;
     }
-    else
-    {
-        std::cout << "插入成功" << std::endl;
+    else{
+        memset(buffer, 0, sizeof(buffer));
+        sprintf(buffer, "insert into User values(NULL,'%s','%s','%s','%s')", login_data.username, login_data.sex, login_data.password, login_data.mibao);
+        std::cout << buffer;
+        res = mysql_query(&mysql, buffer); //查询语句 
+        if (res)
+        {
+            printf("SELECT error:%s\n", mysql_error(&mysql));
+            return false;
+        }
+        else
+        {
+            std::cout << "插入成功" << std::endl;
+            return true;
+        }
     }
+   
 }

@@ -7,9 +7,13 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
-/*#include "Init.h" */
+#include <unordered_map>
 #include "myString.h" 
 #include "Template_Tool.hpp"
+using std::cout;
+using std::cin;
+using std::endl;
+extern std::unordered_map<int, myString> mp;
 
 class Kruskal
 {
@@ -78,6 +82,8 @@ private:
     void Addedge_Dijk(int u, int v, int w); //加边
 public:
     void solve(int n, int start); //点的编号从1开始
+    void Print_All();
+    void Print_Dan();
     static Dijkstra *getInstance(){return dijkstra; }
 };
 

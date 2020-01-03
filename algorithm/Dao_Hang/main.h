@@ -21,4 +21,6 @@ UI_Login *OneUIlog = UI_Login::getInstance();
 
 std::unordered_map<int, myString> mp;
 info_user login_data;
+
+int maxdin = 5;
 #endif

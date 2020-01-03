@@ -118,4 +118,22 @@ void Dijkstra:: solve(int n, int start) //点的编号从 1 开始
         }
     }
 }
+void Dijkstra::Print_Dan(){
+    for(int i = 0;i < 10;i++){
+        cout<<mp[i]<<" "<<dist[i]<<endl;
+    }
+}
 
+void Dijkstra::Print_All(){
+    for(int i = 0;i < 10;i++){
+        for(int j = 0;j < E_Dijk[i].size();i++){
+            if(j == 0){
+                cout<<mp[0]<<" :";
+            }
+            else{
+                cout<<mp[j];
+            }
+        }
+        putchar('\n');
+    }
+}

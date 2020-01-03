@@ -13,14 +13,16 @@ public:
     void View_Main();
     bool Login();
     bool Zhuce();
-    void All_Lu();
-    void Dan_Lu(const Dijkstra *One_Dijk);
+    void Init_All_Lu(my_MySql *OneMysql);
+    void Print_All_Lu(Dijkstra *One_Dijk);
+    void Dan_Lu(Dijkstra *One_Dijk);
     void Min_Lu();
+    void UI_TuMain(my_MySql *OneMysql);
 private:
     UI_Login(){}
     UI_Login(const UI_Login& c){}
     static UI_Login *uilogin;
 };
-
+//extern int maxdin;
 
 #endif

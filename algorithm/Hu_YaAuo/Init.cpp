@@ -1,41 +1,29 @@
 #include "Init.h"
 
-int getBit(std::ifstream &ifile)
-{
-    static int i = 0;        //用来计数返回了几位了
-    static unsigned char ch; //接受读取到的信息
-    unsigned char bit[8] = {128, 64, 32, 16, 8, 4, 2, 1};
-    i++;
-    if (i == 8)
-    {
-        ch = ifile.get();
-        i = 0;
-    }
-    return ch & bit[i];
-}
-
 void Main_UI()
 {
     char op;
-    cout << "*********************\n";
-    cout << "Huffman文件压缩程序\n";
-    cout << "【1】压缩文件\n";
-    cout << "【2】解压文件\n";
-    cout << "【3】退出\n";
-    cout << "*********************\n";
 
-    while (cin >> op)
+    while (true)
     {
+        cout << "*********************\n";
+        cout << "Huffman文件压缩程序\n";
+        cout << "【1】压缩文件\n";
+        cout << "【2】解压文件\n";
+        cout << "【3】退出\n";
+        cout << "*********************\n";
+        cin >> op;
         if (op != '1' && op != '2' && op != '3')
             cout << "error,选择错误,请重新选择" << endl;
         else if (op == '1')
         {
             File_Zip();
-            break;
+            continue;
         }
         else if (op == '2')
         {
             File_Uzip();
+            continue;
         }
         else if (op == '3')
         {
@@ -46,7 +34,7 @@ void Main_UI()
 
 void File_Zip()
 {
-    unordered_map<char, int> mp;
+    map<char, int> mp;
     vector<pair<char, string>> code;
     myString Fil_open;
     cout << "请输入想要压缩的文件路径：";
@@ -122,6 +110,7 @@ void File_Uzip()
     OutToTxt(strline, codestream,name);
     cout << "解压完成，任意键退出" << endl;
     getchar();
+    return ;
 }
 
 void Coding(vector<pair<char, string>> &codeorder, string &tp, Node *root)
@@ -149,7 +138,7 @@ void Coding(vector<pair<char, string>> &codeorder, string &tp, Node *root)
         tp.pop_back(); //逐层返回的时候一定要删掉最后的一个字符
 }
 
-void OutToBin(vector<pair<char, string>> &codeorder, unordered_map<char, int> &mp, myString &name)
+void OutToBin(vector<pair<char, string>> &codeorder, map<char, int> &mp, myString &name)
 {
 
     fstream ifile(name.c_str()); //打开待压缩文件
@@ -212,7 +201,7 @@ void OutToTxt(string &strline, string &codestream,myString &name) //构建map，
     int b;
     ulong t;
     string tmp;
-    unordered_map<char, int> data_b;
+    map<char, int> data;
 
     name+=".txt";
     fstream ofile(name.c_str(), ios::out); //打开压缩文件
@@ -231,9 +220,9 @@ void OutToTxt(string &strline, string &codestream,myString &name) //构建map，
         tmp = strline.substr(0, t);
         strline.erase(0, t + 1);
         b = stoi(tmp, nullptr, 10);
-        data_b.insert(pair<char, int>(a, b));
+        data.insert(pair<char, int>(a, b));
     }
-    HuffMan HTree(data_b); //建树
+    HuffMan HTree(data); //建树
     Node *p = HTree.root;
 
     string end = codestream.substr(codestream.size() - 16, 16); //处理末尾不够八位的情况

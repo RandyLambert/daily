@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-#include <unordered_map>
+#include <map>
 
 using std::cin;
 using std::cout;
@@ -25,9 +25,8 @@ class HuffMan
 {
 public:
     Node *root;
-    explicit HuffMan(std::unordered_map<char, int> d); //传入一个map，其中存储了所有的字符及其出现的频次
+    explicit HuffMan(std::map<char, int> d); //传入一个map，其中存储了所有的字符及其出现的频次
     void Node_Copy(Node *a, Node *b);
-
     void PreOrder(Node *root); //先序遍历
 };
 

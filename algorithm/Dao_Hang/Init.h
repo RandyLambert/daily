@@ -4,11 +4,11 @@
 #include <algorithm>
 #include <mysql/mysql.h>
 #include <cstring>
-#include "Template_Tool.hpp"
-#include "Tu_Alog.h"
-#include "myString.h"
 #include <unordered_map>
 
+#include "Tu_Alog.h"
+#include "myString.h"
+class my_MySql ;
 //自定义错误处理函数
 void my_err(const char *err_myString, int line);
 namespace User_Data
@@ -40,6 +40,18 @@ using namespace User_Data;
 
 class my_MySql
 {
+public:
+    int maxxdin;
+    static my_MySql * getInstance(){ return my_mysql;}
+    void Init_Map(std::unordered_map<int, myString>& mp) {}
+    bool Insert_User(info_user& login_data);
+    bool Query_User(info_user& login_data);
+    bool Insert_Dian(const myString &Dian);
+    void Delete_Dian(const myString &Dian);
+    bool Insert_Lu(const lu_data &data);
+    void Delete_Lu(const lu_data &data);
+    void Init_Dijk(Dijkstra *OneDijk);
+    void Init_Krus(Kruskal *OneKrus);
 private:
     MYSQL mysql;
     MYSQL_RES *res_ptr;
@@ -52,18 +64,6 @@ private:
     ~my_MySql();
     static my_MySql * my_mysql;
 
-public:
-    int maxxdin;
-    static my_MySql * getInstance(){ return my_mysql;}
-    bool Insert_User(info_user& login_data);
-    bool Query_User(info_user& login_data);
-    bool Insert_Dian(const myString &Dian);
-    void Delete_Dian(const myString &Dian);
-    bool Insert_Lu(const lu_data &data);
-    void Delete_Lu(const lu_data &data);
-    void Init_Dijk(Dijkstra *OneDijk);
-    void Init_Krus(Kruskal *OneKrus);
-    void Init_Map(std::unordered_map<int, myString> mp);
 };
 
 

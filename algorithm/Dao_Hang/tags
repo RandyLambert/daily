@@ -1,0 +1,195 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Addedge_Dijk	Tu_Alog.cpp	/^void Dijkstra:: Addedge_Dijk(int u, int v, int w) \/\/加边$/;"	f	class:Dijkstra
+Addedge_Krus	Tu_Alog.cpp	/^void Kruskal:: Addedge_Krus(int u, int v, int w) \/\/加边$/;"	f	class:Kruskal
+BUF_LEN	myString.h	/^        BUF_LEN = 16$/;"	e	enum:myString::__anon2
+Dan_Lu	View.cpp	/^void UI_Login::Dan_Lu(Dijkstra *One_Dijk)$/;"	f	class:UI_Login
+Delete_Dian	Init.cpp	/^void my_MySql::Delete_Dian(const myString &Dian)$/;"	f	class:my_MySql
+Delete_Lu	Init.cpp	/^void my_MySql::Delete_Lu(const lu_data &data)$/;"	f	class:my_MySql
+Dijkstra	Tu_Alog.cpp	/^Dijkstra::Dijkstra()$/;"	f	class:Dijkstra
+Dijkstra	Tu_Alog.h	/^    Dijkstra(const Dijkstra &c){}$/;"	f	class:Dijkstra
+Dijkstra	Tu_Alog.h	/^class Dijkstra$/;"	c
+E_Dijk	Tu_Alog.h	/^    std::vector<Edge_Dijk> E_Dijk[MAXN];$/;"	m	class:Dijkstra
+Edge_Dijk	Tu_Alog.h	/^        Edge_Dijk(int _v = 0, int _cost = 0) : v(_v), cost(_cost) {}$/;"	f	struct:Dijkstra::Edge_Dijk
+Edge_Dijk	Tu_Alog.h	/^    struct Edge_Dijk$/;"	s	class:Dijkstra
+Edge_Krus	Tu_Alog.h	/^        Edge_Krus(int _u = 0, int _v = 0, int _w = 0) : u(_u), v(_v), w(_w) {}$/;"	f	struct:Kruskal::Edge_Krus
+Edge_Krus	Tu_Alog.h	/^    struct Edge_Krus$/;"	s	class:Kruskal
+F	Tu_Alog.h	/^    int *F;                    \/\/并查集使用$/;"	m	class:Kruskal
+INF	Tu_Alog.h	/^    static const int INF = 0x3f3f3f3f;$/;"	m	class:Dijkstra
+INIT_H_	Init.h	2;"	d
+Init_All_Lu	View.cpp	/^void UI_Login::Init_All_Lu(my_MySql *OneMysql)$/;"	f	class:UI_Login
+Init_Dijk	Init.cpp	/^void my_MySql::Init_Dijk(Dijkstra *OneDijk)$/;"	f	class:my_MySql
+Init_Krus	Init.cpp	/^void my_MySql::Init_Krus(Kruskal *OneKrus)$/;"	f	class:my_MySql
+Init_Map	Init.cpp	/^void my_MySql::Init_Map(std::unordered_map<int, myString> mp)$/;"	f	class:my_MySql
+Insert_Dian	Init.cpp	/^bool my_MySql::Insert_Dian(const myString &data)$/;"	f	class:my_MySql
+Insert_Lu	Init.cpp	/^bool my_MySql::Insert_Lu(const lu_data &data)$/;"	f	class:my_MySql
+Insert_User	Init.cpp	/^bool my_MySql::Insert_User(info_user &login_data)$/;"	f	class:my_MySql
+Kruskal	Tu_Alog.cpp	/^Kruskal::Kruskal(){$/;"	f	class:Kruskal
+Kruskal	Tu_Alog.h	/^    Kruskal(const Kruskal &x){}$/;"	f	class:Kruskal
+Kruskal	Tu_Alog.h	/^class Kruskal$/;"	c
+Login	View.cpp	/^bool UI_Login::Login()$/;"	f	class:UI_Login
+Login_Main	View.cpp	/^void UI_Login::Login_Main()$/;"	f	class:UI_Login
+MAIN_H_	main.h	2;"	d
+MAXM	Tu_Alog.h	/^    static const int MAXM = 100000; \/\/最大边数$/;"	m	class:Dijkstra
+MAXM	Tu_Alog.h	/^    static const int MAXM = 100000; \/\/最大边数$/;"	m	class:Kruskal
+MAXN	Tu_Alog.h	/^    static const int MAXN = 1100;   \/\/最大点数$/;"	m	class:Dijkstra
+MAXN	Tu_Alog.h	/^    static const int MAXN = 1100;   \/\/最大点数$/;"	m	class:Kruskal
+MAX_BUF	Init.h	/^    MAX_BUF = 250$/;"	e	enum:User_Data::__anon1
+MAX_CHAR	Init.h	/^    MAX_CHAR = 50,$/;"	e	enum:User_Data::__anon1
+MAX_MIB	Init.h	/^    MAX_MIB = 100,$/;"	e	enum:User_Data::__anon1
+MYSTRING_H_	myString.h	2;"	d
+OneDijk	main.h	/^Dijkstra *OneDijk = Dijkstra::getInstance();$/;"	v
+OneKrus	main.h	/^Kruskal *OneKrus = Kruskal::getInstance();$/;"	v
+OneMysql	main.h	/^my_MySql *OneMysql = my_MySql::getInstance();$/;"	v
+OneUIlog	main.h	/^UI_Login *OneUIlog = UI_Login::getInstance();$/;"	v
+Print_All	Tu_Alog.cpp	/^void Dijkstra::Print_All(){$/;"	f	class:Dijkstra
+Print_All_Lu	View.cpp	/^void UI_Login::Print_All_Lu(Dijkstra *One_Dijk)$/;"	f	class:UI_Login
+Print_Dan	Tu_Alog.cpp	/^void Dijkstra::Print_Dan(){$/;"	f	class:Dijkstra
+Query_User	Init.cpp	/^bool my_MySql::Query_User(info_user &login_data)$/;"	f	class:my_MySql
+TEMPLATE_TOOL_HPP_	Template_Tool.hpp	2;"	d
+TU_ALOG_H_	Tu_Alog.h	2;"	d
+UI_Login	View.h	/^    UI_Login(){}$/;"	f	class:UI_Login
+UI_Login	View.h	/^    UI_Login(const UI_Login& c){}$/;"	f	class:UI_Login
+UI_Login	View.h	/^class UI_Login$/;"	c
+UI_TuMain	View.cpp	/^void UI_Login::UI_TuMain(my_MySql *OneMysql)$/;"	f	class:UI_Login
+User_Data	Init.h	/^namespace User_Data$/;"	n
+VIEW_H_	View.h	2;"	d
+Zhuce	View.cpp	/^bool UI_Login::Zhuce()$/;"	f	class:UI_Login
+_Buf	myString.h	/^        char _Buf[BUF_LEN];$/;"	m	union:myString::_Bxty
+_Bx	myString.h	/^    } _Bx;$/;"	m	class:myString	typeref:union:myString::_Bxty
+_Bxty	myString.h	/^    union _Bxty {$/;"	u	class:myString
+_ptr	myString.h	/^        char *_ptr;$/;"	m	union:myString::_Bxty
+append	myString.cpp	/^myString &myString::append(const char *s)$/;"	f	class:myString
+append	myString.cpp	/^myString &myString::append(const myString &str)$/;"	f	class:myString
+assign	myString.cpp	/^inline myString &myString::assign(const char *s)$/;"	f	class:myString
+assign	myString.cpp	/^inline myString &myString::assign(const myString &str)$/;"	f	class:myString
+at	myString.cpp	/^inline char &myString::at(size_t pos)$/;"	f	class:myString
+at	myString.cpp	/^inline const char &myString::at(size_t pos) const$/;"	f	class:myString
+back	myString.cpp	/^char myString::back() const$/;"	f	class:myString
+buffer	Init.h	/^    char buffer[MAX_BUF];$/;"	m	class:my_MySql
+c	Tu_Alog.h	/^        int c;$/;"	m	struct:Dijkstra::qnode
+c_str	myString.cpp	/^inline const char *myString::c_str() const$/;"	f	class:myString
+cmp	Template_Tool.hpp	/^bool cmp(T a, T b)$/;"	f
+compare	myString.cpp	/^int myString::compare(const char *s) const$/;"	f	class:myString
+compare	myString.cpp	/^int myString::compare(const myString &str) const$/;"	f	class:myString
+cost	Tu_Alog.h	/^        int cost;$/;"	m	struct:Dijkstra::Edge_Dijk
+data	myString.cpp	/^inline const char *myString::data() const$/;"	f	class:myString
+dijkstra	Tu_Alog.h	/^    static Dijkstra * dijkstra;$/;"	m	class:Dijkstra
+dijkstra	main.h	/^Dijkstra *Dijkstra::dijkstra = new Dijkstra;$/;"	m	class:Dijkstra
+dist	Tu_Alog.h	/^    int *dist;                 \/\/最短路径$/;"	m	class:Dijkstra
+edge_Krus	Tu_Alog.h	/^    } *edge_Krus; \/\/存储边的信息,包括起点\/终点\/权值$/;"	m	class:Kruskal	typeref:struct:Kruskal::Edge_Krus
+empty	myString.cpp	/^inline bool myString::empty() const$/;"	f	class:myString
+fastfind	myString.cpp	/^const char *myString::fastfind(const myString &w)$/;"	f	class:myString
+fd	Init.h	/^    MYSQL_FIELD *fd;$/;"	m	class:my_MySql
+find	Tu_Alog.cpp	/^int Kruskal:: find(int x) \/\/并查集查找$/;"	f	class:Kruskal
+find	myString.cpp	/^const char *myString::find(const myString &w) const$/;"	f	class:myString
+front	myString.cpp	/^char myString::front() const$/;"	f	class:myString
+getInstance	Init.h	/^    static my_MySql * getInstance(){ return my_mysql;}$/;"	f	class:my_MySql
+getInstance	Tu_Alog.h	/^    static Dijkstra *getInstance(){return dijkstra; }$/;"	f	class:Dijkstra
+getInstance	Tu_Alog.h	/^    static Kruskal * getInstance(){ return kruskal;};$/;"	f	class:Kruskal
+getInstance	View.h	/^    static UI_Login *getInstance(){return uilogin;}$/;"	f	class:UI_Login
+getnext	myString.cpp	/^const char *myString::getnext(const char *w)$/;"	f	class:myString
+i	Init.h	/^    int res, i, j;$/;"	m	class:my_MySql
+info_user	Init.h	/^typedef struct info_user$/;"	s	namespace:User_Data
+info_user	Init.h	/^} info_user;$/;"	t	namespace:User_Data	typeref:struct:User_Data::info_user
+j	Init.h	/^    int res, i, j;$/;"	m	class:my_MySql
+kruskal	Tu_Alog.h	/^    static Kruskal* kruskal;$/;"	m	class:Kruskal
+kruskal	main.h	/^Kruskal * Kruskal::kruskal = new Kruskal;$/;"	m	class:Kruskal
+login_data	main.h	/^info_user login_data;$/;"	v
+lu_data	Init.h	/^typedef struct lu_data$/;"	s	namespace:User_Data
+lu_data	Init.h	/^} lu_data;$/;"	t	namespace:User_Data	typeref:struct:User_Data::lu_data
+main	Dbug.cpp	/^int main(){$/;"	f
+main	main.cpp	/^int main(){$/;"	f
+maxdin	main.h	/^int maxdin = 5;$/;"	v
+maxxdin	Init.h	/^    int maxxdin;$/;"	m	class:my_MySql
+mibao	Init.h	/^    char mibao[MAX_MIB];$/;"	m	struct:User_Data::info_user
+mp	main.h	/^std::unordered_map<int, myString> mp;$/;"	v
+mySort	Template_Tool.hpp	/^void mySort(T &arr, size_t l, size_t r)$/;"	f
+myString	myString.cpp	/^myString::myString()$/;"	f	class:myString
+myString	myString.cpp	/^myString::myString(const char *s)$/;"	f	class:myString
+myString	myString.cpp	/^myString::myString(const char *s, size_t n)$/;"	f	class:myString
+myString	myString.cpp	/^myString::myString(const myString &str)$/;"	f	class:myString
+myString	myString.cpp	/^myString::myString(const myString &str, size_t pos, size_t len)$/;"	f	class:myString
+myString	myString.cpp	/^myString::myString(size_t n, char c)$/;"	f	class:myString
+myString	myString.h	/^class myString$/;"	c
+mySwap	Template_Tool.hpp	/^T mySwap(T &a, T &b)$/;"	f
+my_MySql	Init.cpp	/^my_MySql::my_MySql()$/;"	f	class:my_MySql
+my_MySql	Init.h	/^    my_MySql(const my_MySql &c){}$/;"	f	class:my_MySql
+my_MySql	Init.h	/^class my_MySql$/;"	c
+my_err	Init.cpp	/^void my_err(char const *err_myString, int line)$/;"	f
+my_mysql	Init.h	/^    static my_MySql * my_mysql;$/;"	m	class:my_MySql
+my_mysql	main.h	/^my_MySql * my_MySql::my_mysql = new my_MySql;$/;"	m	class:my_MySql
+mysql	Init.h	/^    MYSQL mysql;$/;"	m	class:my_MySql
+noexcept	myString.h	/^    size_t length() const noexcept;$/;"	m	class:myString
+noexcept	myString.h	/^    size_t size() const noexcept;$/;"	m	class:myString
+noexcept	myString.h	/^    void clear() noexcept;$/;"	m	class:myString
+operator !=	myString.cpp	/^bool operator!=(const char *lhs, const myString &rhs)$/;"	f
+operator !=	myString.cpp	/^bool operator!=(const myString &lhs, const char *rhs)$/;"	f
+operator !=	myString.cpp	/^bool operator!=(const myString &lhs, const myString &rhs)$/;"	f
+operator +	myString.cpp	/^myString operator+(char lhs, const myString &rhs)$/;"	f
+operator +	myString.cpp	/^myString operator+(const char *lhs, const myString &rhs)$/;"	f
+operator +	myString.cpp	/^myString operator+(const myString &lhs, char rhs)$/;"	f
+operator +	myString.cpp	/^myString operator+(const myString &lhs, const char *rhs)$/;"	f
+operator +	myString.cpp	/^myString operator+(const myString &lhs, const myString &rhs)$/;"	f
+operator +=	myString.cpp	/^myString &myString::operator+=(char c)$/;"	f	class:myString
+operator +=	myString.cpp	/^myString &myString::operator+=(const char *s)$/;"	f	class:myString
+operator +=	myString.cpp	/^myString &myString::operator+=(const myString &str)$/;"	f	class:myString
+operator <	Tu_Alog.h	/^        bool operator<(const Edge_Krus &r)$/;"	f	struct:Kruskal::Edge_Krus
+operator <	Tu_Alog.h	/^        bool operator<(const qnode &r) const$/;"	f	struct:Dijkstra::qnode
+operator <	myString.cpp	/^bool operator<(const char *lhs, const myString &rhs)$/;"	f
+operator <	myString.cpp	/^bool operator<(const myString &lhs, const char *rhs)$/;"	f
+operator <	myString.cpp	/^bool operator<(const myString &lhs, const myString &rhs)$/;"	f
+operator <<	myString.cpp	/^std::ostream &operator<<(std::ostream &out, myString &str)$/;"	f
+operator <=	myString.cpp	/^bool operator<=(const char *lhs, const myString &rhs)$/;"	f
+operator <=	myString.cpp	/^bool operator<=(const myString &lhs, const char *rhs)$/;"	f
+operator <=	myString.cpp	/^bool operator<=(const myString &lhs, const myString &rhs)$/;"	f
+operator =	myString.cpp	/^myString &myString::operator=(char c)$/;"	f	class:myString
+operator =	myString.cpp	/^myString &myString::operator=(const char *s)$/;"	f	class:myString
+operator =	myString.cpp	/^myString &myString::operator=(const myString &str)$/;"	f	class:myString
+operator ==	myString.cpp	/^bool operator==(const char *lhs, const myString &rhs)$/;"	f
+operator ==	myString.cpp	/^bool operator==(const myString &lhs, const char *rhs)$/;"	f
+operator ==	myString.cpp	/^bool operator==(const myString &lhs, const myString &rhs)$/;"	f
+operator >	myString.cpp	/^bool operator>(const char *lhs, const myString &rhs)$/;"	f
+operator >	myString.cpp	/^bool operator>(const myString &lhs, const char *rhs)$/;"	f
+operator >	myString.cpp	/^bool operator>(const myString &lhs, const myString &rhs)$/;"	f
+operator >=	myString.cpp	/^bool operator>=(const char *lhs, const myString &rhs)$/;"	f
+operator >=	myString.cpp	/^bool operator>=(const myString &lhs, const char *rhs)$/;"	f
+operator >=	myString.cpp	/^bool operator>=(const myString &lhs, const myString &rhs)$/;"	f
+operator >>	myString.cpp	/^std::istream &operator>>(std::istream &in, myString &str)$/;"	f
+operator []	myString.cpp	/^inline char &myString::operator[](size_t pos)$/;"	f	class:myString
+operator []	myString.cpp	/^inline const char &myString::operator[](size_t pos) const$/;"	f	class:myString
+password	Init.h	/^    char password[MAX_BUF];$/;"	m	struct:User_Data::info_user
+qnode	Tu_Alog.h	/^        qnode(int _v = 0, int _c = 0) : v(_v), c(_c) {}$/;"	f	struct:Dijkstra::qnode
+qnode	Tu_Alog.h	/^    struct qnode$/;"	s	class:Dijkstra
+quan	Init.h	/^    int quan; \/\/用户权限$/;"	m	struct:User_Data::info_user
+res	Init.h	/^    int res, i, j;$/;"	m	class:my_MySql
+res_ptr	Init.h	/^    MYSQL_RES *res_ptr;$/;"	m	class:my_MySql
+rrsize	myString.cpp	/^inline void myString::rrsize(size_t x)$/;"	f	class:myString
+sex	Init.h	/^    char sex[3];$/;"	m	struct:User_Data::info_user
+solve	Tu_Alog.cpp	/^int Kruskal:: solve(int n) \/\/传入点数,返回最小生成树的权值,如果不连通返回 -1$/;"	f	class:Kruskal
+solve	Tu_Alog.cpp	/^void Dijkstra:: solve(int n, int start) \/\/点的编号从 1 开始$/;"	f	class:Dijkstra
+sqlrow	Init.h	/^    MYSQL_ROW sqlrow;$/;"	m	class:my_MySql
+ssize	myString.h	/^    size_t ssize;$/;"	m	class:myString
+swap	myString.cpp	/^void myString::swap(myString &str)$/;"	f	class:myString
+tol	Tu_Alog.h	/^    int tol;                        \/\/边数,加边前赋值为 0$/;"	m	class:Kruskal
+u	Init.h	/^    int u, v, w;$/;"	m	struct:User_Data::lu_data
+u	Tu_Alog.h	/^        int u, v, w;$/;"	m	struct:Kruskal::Edge_Krus
+uid	Init.h	/^    int uid;$/;"	m	struct:User_Data::info_user
+uilogin	View.h	/^    static UI_Login *uilogin;$/;"	m	class:UI_Login
+uilogin	main.h	/^UI_Login * UI_Login::uilogin = new UI_Login;$/;"	m	class:UI_Login
+username	Init.h	/^    char username[MAX_CHAR];$/;"	m	struct:User_Data::info_user
+v	Init.h	/^    int u, v, w;$/;"	m	struct:User_Data::lu_data
+v	Tu_Alog.h	/^        int u, v, w;$/;"	m	struct:Kruskal::Edge_Krus
+v	Tu_Alog.h	/^        int v;$/;"	m	struct:Dijkstra::Edge_Dijk
+v	Tu_Alog.h	/^        int v;$/;"	m	struct:Dijkstra::qnode
+vis	Tu_Alog.h	/^    bool *vis;                 \/\/标志有无$/;"	m	class:Dijkstra
+w	Init.h	/^    int u, v, w;$/;"	m	struct:User_Data::lu_data
+w	Tu_Alog.h	/^        int u, v, w;$/;"	m	struct:Kruskal::Edge_Krus
+~Dijkstra	Tu_Alog.cpp	/^Dijkstra::~Dijkstra(){$/;"	f	class:Dijkstra
+~Kruskal	Tu_Alog.cpp	/^Kruskal::~Kruskal(){$/;"	f	class:Kruskal
+~myString	myString.cpp	/^myString::~myString()$/;"	f	class:myString
+~my_MySql	Init.cpp	/^my_MySql::~my_MySql()$/;"	f	class:my_MySql

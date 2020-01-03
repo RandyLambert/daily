@@ -185,8 +185,8 @@ void my_MySql::Init_Krus(Kruskal *OneKrus)
 
     mysql_free_result(res_ptr); //释放空间
 }
-
-void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
+/*
+void my_MySql::Init_Map(std::unordered_map<int, myString>&mp)
 {
     memset(buffer, 0, sizeof(buffer));
     sprintf(buffer, "select * from Map");
@@ -201,12 +201,12 @@ void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
         int x;
         for (i = 0; i < j; i++)
         {
-            
+
             printf("%s\t", sqlrow[i]); //输出
             if (i == 0)
             {
                 x = atoi(sqlrow[i]);
-                //maxxdin = std::max(x,maxxdin);
+                maxxdin = std::max(x,maxxdin);
             }
             else if (i == 1)
             {
@@ -216,7 +216,6 @@ void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
         mp[x] = y;
         cout<<endl;
         cout<<mp.size()<<endl;
-        
     }
 
     if (mysql_errno(&mysql))
@@ -224,9 +223,8 @@ void my_MySql::Init_Map(std::unordered_map<int, myString> mp)
         fprintf(stderr, "Retrive error:%s\n", mysql_error(&mysql));
     }
 
-    mysql_free_result(res_ptr); //释放空间
-}
-
+    mysql_free_result(res_ptr); //释放空
+}*/
 bool my_MySql::Insert_Dian(const myString &data)
 {
     memset(buffer, 0, sizeof(buffer));
@@ -294,3 +292,4 @@ bool my_MySql::Insert_User(info_user &login_data)
     }
    
 }
+ 

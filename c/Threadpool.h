@@ -25,7 +25,7 @@ typedef struct{
 
 
 /*线程池结构体*/
-struct threadpool_t {
+struct threadpool_t{
     pthread_mutex_t lock;   /*用于锁住本结构体*/
     pthread_mutex_t thread_counter ;    /*记录忙状态线程个数de琐-- busy_thr_num*/
 
@@ -218,6 +218,7 @@ void *threadpool_thread(void *threadpool)
  *获取管理线程池所用的变量   task_num,live_num,busy_thr_num
  *根据既定算法，使用上述变量，判断是否创建销毁线程池中指定步长的线程
  */
+
 void *adjust_thread(void *threadpool){
 
     threadpool_t *pool = (threadpool_t *)threadpool;
@@ -254,6 +255,7 @@ void *adjust_thread(void *threadpool){
 
         //销毁多余的空闲线程 算法：忙线程*2 小于 存活的线程数 且存活的线程数大于最小线程数时
         if((busy_thr_num * 2) < live_thr_num && live_thr_num > pool->min_thr_num){
+
             //一次销毁DEFAULT_THREAD个线程，随机10个即可
             pthread_mutex_lock(&(pool->lock));
             pool->wait_exit_thr_num = DEFAULT_THREAD_VARY; //需要销毁的线程数设为10
@@ -266,6 +268,7 @@ void *adjust_thread(void *threadpool){
         }
     }
     return NULL;
+    
 }
 
 /*threadpool_add()

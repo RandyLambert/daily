@@ -4,12 +4,16 @@ using namespace std;
 int main(){
     std::pair<int, myString> ls{1, "aaa"} ;
     std :: cout << ls.first << "    " << ls.second << std::endl ;
-     myString a("aaaaaaaaa");
+    myString a("aaaaaaaaa");
     myString b = "aaaa";
     myString c(10,'c');
     myString aa;
     cin>>aa;
     cout<<aa<<endl;
+
+    getline(cin,aa);
+    cout<<aa<<endl;
+
     cout<<a<<endl;
     cout<<b<<endl;
     cout<<c<<endl;

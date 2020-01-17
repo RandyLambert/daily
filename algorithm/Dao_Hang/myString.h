@@ -8,6 +8,8 @@ class myString
 {
     friend std::ostream &operator<<(std::ostream &out, myString &str);
     friend std::istream &operator>>(std::istream &in, myString &str);
+    friend std::istream& getline(std::istream& in, myString& str, char delim);
+    friend std::istream& getline(std::istream& in, myString& str);
 
 public:
     myString();
@@ -18,10 +20,11 @@ public:
     myString(size_t n, char c);
     ~myString();
     void clear() noexcept;
-    char front() const;
-    char back() const;
-    //const char *end() const;
-    //const char *begin() const;
+
+    char& front() ;
+    const char& front() const;
+    char& back();
+    const char& back() const;
 
     const char *c_str() const;
     size_t length() const noexcept;

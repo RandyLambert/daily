@@ -20,21 +20,43 @@ std::ostream &operator<<(std::ostream &out, myString &str)
 
 std::istream &operator>>(std::istream &in, myString &str)
 {
-    char *tp = new char[1024];
-    in >> tp;
-    if (strlen(tp) <= 15)
-    {
-        strcpy(str._Bx._Buf, tp);
-        str.ssize = strlen(tp);
-    }
-    else
-    {
-        str.rrsize(strlen(tp));
-        strcpy(str._Bx._ptr, tp);
-    }
-    delete[] tp;
+    char ch;
+    /* size_t oldSize = str.size(); */
+    bool hasPrevBlank = false;
+    while(in.get(ch))
+        if(isblank(ch) || ch == '\n'){
+            hasPrevBlank = true;
+        }
+        else
+            break;
+    in.putback(ch);
+    str.clear();
+    while (in.get(ch)){
+			if (ch != EOF && !isblank(ch) && ch != '\n'){
+				str+=ch;
+			}
+			else
+				break;
+		}
     return in;
 }
+
+std::istream& getline(std::istream& in, myString& str, char delim){
+		char ch;
+		str.clear();
+		while (in.get(ch)){
+			if (ch == delim)
+				break;
+			else
+				str+=ch;
+		}
+		return in;
+}
+
+std::istream& getline(std::istream& in, myString& str){
+		return getline(in, str, '\n');
+}
+
 
 inline char &myString::operator[](size_t pos)
 {
@@ -529,12 +551,8 @@ inline bool myString::empty() const
         return false;
 }
 
-char myString::front() const
+inline char& myString::front() 
 {
-    if (ssize == 0)
-        return '\0';
-    else
-    {
         if (ssize <= 15)
         {
             return _Bx._Buf[0];
@@ -543,15 +561,21 @@ char myString::front() const
         {
             return _Bx._ptr[0];
         }
-    }
 }
 
-char myString::back() const
+inline const char& myString::front() const
 {
-    if (ssize == 0)
-        return '\0';
-    else
-    {
+        if (ssize <= 15)
+        {
+            return _Bx._Buf[0];
+        }
+        else
+        {
+            return _Bx._ptr[0];
+        }
+}
+inline const char& myString::back() const 
+{
         if (ssize <= 15)
         {
             return _Bx._Buf[ssize - 1];
@@ -560,7 +584,6 @@ char myString::back() const
         {
             return _Bx._ptr[ssize - 1];
         }
-    }
 }
 
 myString &myString::append(const myString &str)

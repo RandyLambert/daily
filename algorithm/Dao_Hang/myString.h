@@ -46,7 +46,7 @@ public:
 
     char &at(size_t pos);
     const char &at(size_t pos) const;
-
+    
     int compare(const myString &str) const;
     int compare(const char *s) const;
     void swap(myString &str);

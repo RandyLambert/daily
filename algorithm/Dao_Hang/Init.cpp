@@ -290,6 +290,5 @@ bool my_MySql::Insert_User(info_user &login_data)
             return true;
         }
     }
-   
 }
  

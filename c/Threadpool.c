@@ -1,4 +1,7 @@
 #include "Threadpool.h"
+//主程序创建线程池
+//向线程池中添加任务，借助回调处理任务
+//销毁线程池
 int main(){
     //pool init
     threadpool_t *thp = threadpool_create(10,100,100);//创建线程池，池中最小5个最多100个，任务队列最大100个
@@ -13,7 +16,7 @@ int main(){
     }
     
     sleep(5);//模拟线程处理任务
-    threadpool_destory(thp);
+    threadpool_destroy(thp);
     return 0;
 }
 

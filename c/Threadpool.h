@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 
 #define false 0
 #define true 1
@@ -86,7 +87,7 @@ threadpool_t *threadpool_create(int min_thr_num, int max_thr_num, int queue_max_
         pool->busy_thr_num = 0;
         pool->live_thr_num = min_thr_num;       /*活着的线程数初值=最小线程数*/
         pool->wait_exit_thr_num = 0;
-        pool->queue_size= 0;                    /*有0个产品*/
+        pool->queue_size = 0;                    /*有0个产品*/
         pool->queue_max_size = queue_max_size;  /*最大任务队列数*/
         pool->queue_front = 0;
         pool->queue_rear = 0;
@@ -97,6 +98,15 @@ threadpool_t *threadpool_create(int min_thr_num, int max_thr_num, int queue_max_
         if (pool->threads == NULL) {
             printf("malloc threads fail");
             break; 
+        }
+
+        memset(pool->threads,0,sizeof(pthread_t)*max_thr_num);
+
+        //给 任务队列 开辟空间
+        pool->task_queue = (threadpool_task_t *)malloc(sizeof(threadpool_task_t)*queue_max_size);
+        if(pool->task_queue == NULL){
+            printf("malloc task_queue fail");
+            break;
         }
 
         //初始化互斥锁，条件变量
@@ -120,7 +130,9 @@ threadpool_t *threadpool_create(int min_thr_num, int max_thr_num, int queue_max_
         return pool;
 
     }while(0);   //相当于只进行一次的while循环，如果前面某一步出现问题，都会退出
+    
     threadpool_free(pool); //前面的代码调用失败，释放poll存储空间
+    
     return NULL;
 }
 
@@ -392,7 +404,17 @@ int threadpool_busy_threadnum(threadpool_t *pool){
 }
 
 int is_thread_alive(pthread_t tid){
-    bool bRet = false;
+    /*pthread_kill的返回值：成功（0） 线程不存在（ESRCH） 信号不合法（EINVAL）*/
+    
+    int pthread_kill_err;
+    pthread_kill_err = pthread_kill(tid,0);
+
+    if(pthread_kill_err == ESRCH || pthread_kill_err == EINVAL){
+        return 0;
+    }
+    else{
+        return 1;
+    }
 
 }
 

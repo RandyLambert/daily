@@ -25,7 +25,7 @@ typedef struct{
 
 
 /*线程池结构体*/
-struct threadpool_t{
+typedef struct{
     pthread_mutex_t lock;   /*用于锁住本结构体*/
     pthread_mutex_t thread_counter ;    /*记录忙状态线程个数de琐-- busy_thr_num*/
 
@@ -46,7 +46,7 @@ struct threadpool_t{
     int queue_max_size;    /* task_queue队列可容纳任务数上限*/
     int shutdown;        /*标志位,线程池使用状态, true或false */
 
-};
+} threadpool_t;
 
 void *threadpool_thread(void *threadpool);
 void *adjust_thread(void *threadpool);
@@ -389,6 +389,11 @@ int threadpool_busy_threadnum(threadpool_t *pool){
     pthread_mutex_unlock(&(pool->lock));
 
     return busy_threadnum;
+}
+
+int is_thread_alive(pthread_t tid){
+    bool bRet = false;
+
 }
 
 #endif

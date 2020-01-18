@@ -3,7 +3,7 @@
 using namespace std;
 int main(){
     std::pair<int, myString> ls{1, "aaa"} ;
-    std :: cout << ls.first << "    " << ls.second << std::endl ;
+    std:: cout << ls.first << "    " << ls.second << std::endl ;
     myString a("aaaaaaaaa");
     myString b = "aaaa";
     myString c(10,'c');
@@ -76,7 +76,44 @@ int main(){
     cout<<h.front()<<" "<<h.back()<<endl;
 
     cout<<b.compare("dads")<<endl;
+    myString *pptr = new myString("dasdsa");
+    iTerator<myString> it(pptr) ;
+    iTerator<myString> it1(pptr) ;
+
+    if(it == it1){
+        cout<<"it == it1 equal"<<endl;
+    }
+    cout<<*it<<endl;;
+    cout<<*(it++)<<endl;
+    cout<<*(it--)<<endl;
+
+    for(;it != pptr->end();it++)
+        cout<<*it<<" "<<endl;
+
+    if(it > it1){
+        cout<<"itda"<<endl;
+    }
+
+    if(it >= it1){
+        cout<<"itda"<<endl;
+    }
+
+
+    if(it1 < it){
+        cout<<"it1xiao"<<endl;
+    }
+
+    if(it1 <= it){
+        cout<<"it1xiao"<<endl;
+    }
+
+    cout<<*(it1+1)<<endl;
+    cout<<*(it1+2)<<endl;
+    cout<<*(it1+3)<<endl;
+    cout<<endl;
+    cout<<*(it-3)<<endl;
+    cout<<*(a.data()+3)<<endl;
+
 
     return 0;
 }
-

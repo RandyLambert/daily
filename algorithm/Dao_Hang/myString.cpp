@@ -57,9 +57,6 @@ std::istream& getline(std::istream& in, myString& str){
 		return getline(in, str, '\n');
 }
 
-inline void myString::push_back(char c){
-    *this+=c;
-}
 inline char &myString::operator[](size_t pos)
 {
     if (ssize <= 15)
@@ -531,15 +528,11 @@ inline  size_t myString::size() const noexcept
 
 inline void myString::clear() noexcept
 {
-    if (ssize <= 15)
-    {
-        _Bx._Buf[0] = '\0';
-    }
-    else
+    if (ssize >= 15)
     {
         delete[] _Bx._ptr;
-        _Bx._Buf[0] = '\0';
     }
+    memset(&_Bx,0,sizeof(_Bx));
     ssize = 0;
 }
 
@@ -551,41 +544,6 @@ inline bool myString::empty() const
     }
     else
         return false;
-}
-
-inline char& myString::front() 
-{
-        if (ssize <= 15)
-        {
-            return _Bx._Buf[0];
-        }
-        else
-        {
-            return _Bx._ptr[0];
-        }
-}
-
-inline const char& myString::front() const
-{
-        if (ssize <= 15)
-        {
-            return _Bx._Buf[0];
-        }
-        else
-        {
-            return _Bx._ptr[0];
-        }
-}
-inline const char& myString::back() const 
-{
-        if (ssize <= 15)
-        {
-            return _Bx._Buf[ssize - 1];
-        }
-        else
-        {
-            return _Bx._ptr[ssize - 1];
-        }
 }
 
 myString &myString::append(const myString &str)
@@ -610,7 +568,7 @@ inline myString &myString::assign(const char *s)
     return *this;
 }
 
-inline const char *myString::data() const
+const char *myString::data() const
 {
     if (ssize <= 15)
     {

@@ -21,7 +21,7 @@ public:
     ~myString();
     void clear() noexcept;
 
-    char& front() ;
+    char& front();
     const char& front() const;
     char& back();
     const char& back() const;
@@ -53,6 +53,7 @@ public:
     int compare(const myString &str) const;
     int compare(const char *s) const;
     void swap(myString &str);
+    void push_back(char c);
     const char *data() const;
     bool empty() const;
 

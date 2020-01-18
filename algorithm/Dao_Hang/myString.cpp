@@ -57,7 +57,9 @@ std::istream& getline(std::istream& in, myString& str){
 		return getline(in, str, '\n');
 }
 
-
+inline void myString::push_back(char c){
+    *this+=c;
+}
 inline char &myString::operator[](size_t pos)
 {
     if (ssize <= 15)

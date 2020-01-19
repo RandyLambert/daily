@@ -17,6 +17,7 @@ int main(){
     
     sleep(5);//模拟线程处理任务
     threadpool_destroy(thp);
+    printf("线程全部摧毁\n");
     return 0;
 }
 

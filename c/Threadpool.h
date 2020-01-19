@@ -188,7 +188,14 @@ void *threadpool_thread(void *threadpool)
                 }
             }
         }
-
+        
+        //如果指定了true，要关闭线程池里的每个线程，自动退出处理--销毁线程池
+        if(pool->shutdown){
+            pthread_mutex_unlock(&(pool->lock));
+            printf("thread 0x%x is exiting\n",(unsigned int)pthread_self());
+            pthread_detach(pthread_self());
+            pthread_exit(NULL); //线程自动结束
+        }
 
         /*从任务队列里获取任务,是一个出队操作*/
         task.function = pool->task_queue[pool->queue_front].function;

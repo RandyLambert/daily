@@ -19,8 +19,12 @@ int limit[4][5][2]={ 3,8, 4,9, 5,0, 1,6, 2,7,
 int main(){
     char a[] = "dasdsada";
     char b[100];
-
+    int aq,bq;
     memcpy(b,a,sizeof(a));
     printf("%s\n",b);
+
+    long c=(long)(aq*bq);
+    long c1 = (long)aq*bq;
+
     return 0;
 }

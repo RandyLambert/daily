@@ -1,53 +1,52 @@
+# Prerequisites
+*.d
 
-＃先决条件
-* .d
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
 
-＃目标文件
-* .o
-* .ko
-* .obj
-* .elf
+# Linker output
+*.ilk
+*.map
+*.exp
 
-＃链接器输出
-* .ilk
-* .map
-* .exp
+# Precompiled Headers
+*.gch
+*.pch
 
-＃预编译头
-* .gch
-* .pch
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
 
-＃图书馆
-* .lib
-* .a
-* .la
-* .lo
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
 
-＃共享对象（包括Windows DLL）
-* .dll
-* .so
-* .so。*
-* .dylib
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
 
-＃可执行文件
-* .exe
-* .out
-* .app
-* .i * 86
-* .x86_64
-* .hex
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
 
-＃调试文件
-* .dSYM /
-* .su
-* .idb
-* .pdb
-
-＃内核模块编译结果
-* .mod *
-* .cmd
-.tmp_versions /
-模块顺序
-模块符号
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
 Mkfile.old
 dkms.conf

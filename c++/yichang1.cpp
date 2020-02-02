@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-
+    //异常用引用来捕捉，由于异常的机制，他不会直接析构，所以可以用引用
 /*    double m, n;
     cin >> m >> n;
     try {
@@ -31,7 +31,7 @@ int main(){
                     printf("dsadsadasdas\n");
                 }
             }
-            catch(string tp){
+            catch(string &tp){
                 cerr << tp;
             }
 

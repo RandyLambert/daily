@@ -196,6 +196,18 @@ int main(){
     //不能拷贝unique_ptr的规则有一个例外：我们可以拷贝或赋值一个将要被销
     //毁的unique_ptr,最常见的例子是从函数返回一个unique_ptr
     //见函数
+    //
+    //
+    vector<shared_ptr<int>> v;//避免使用匿名的临时的shard_ptr
+    shared_ptr<int> sha(new int);
+    v.push_back(sha);//内部也要在构造一次
+    cout<<sha.use_count()<<endl;//所以use_count等于2
+
+    vector<unique_ptr<int>> v1;
+    unique_ptr<int> u(new int);
+
+    /* v1.push_back(u); *///unique_ptr不能放进去,vector是const的，但是unique重载的运算符=是非const的，是需要把之前的值释放的
+    /* cout<<u.get()<<endl; */
 
     return 0;
 }

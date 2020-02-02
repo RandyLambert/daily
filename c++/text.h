@@ -12,5 +12,6 @@ public:
 
 private:
 };
+extern const int x;
 #endif
 

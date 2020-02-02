@@ -20,7 +20,7 @@ public:
     }
     /* Chairman(const Chairman& a) = delete; */
     /* Chairman(const Chairman& a); */
-    
+
 private:
     //将构造函数私有化，不可创建多个对象
     static Chairman * singleMan;

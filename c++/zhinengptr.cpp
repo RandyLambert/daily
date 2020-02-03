@@ -206,7 +206,7 @@ int main(){
     vector<unique_ptr<int>> v1;
     unique_ptr<int> u(new int);
 
-    /* v1.push_back(u); *///unique_ptr不能放进去,vector是const的，但是unique重载的运算符=是非const的，是需要把之前的值释放的
+    /* v1.push_back(u); *///unique_ptr不能放进去,vector是const的，但是unique重载的运算符=是非const的，是需要把之前的值释放的,但是可以使用std::move使用
     /* cout<<u.get()<<endl; */
 
     return 0;

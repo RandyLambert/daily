@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <assert.h>
 using namespace std;
 class a{
 public:
@@ -41,6 +42,7 @@ int main(){
     int a = 10;
     int b = std::move(a);
     cout<<a<<b<<endl;
+    assert(1==1);
 
     return 0;
 }

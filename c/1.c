@@ -5,6 +5,7 @@ int main(){
     int x = 10;
     int xx[x];
     printf("%p %p %p\n",&ii,&i,&x);
+    printf("%d\n",-9%10);
     return 0;
 }
 

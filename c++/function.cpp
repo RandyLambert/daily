@@ -15,6 +15,11 @@ public:
     function<void()> t1;
 };
 
+void func(int a,int b)
+{
+    cout<<a<<b<<endl;
+}
+
 
 class Foo
 {
@@ -40,6 +45,10 @@ int main(){
     function<void(int a)> f1;
     f1 = bind(&Foo::memperfunc,&a2,placeholders::_1,2,3);
     f1(1);
+
+
+    function<void(int,int)> f2 = bind(&func,std::placeholders::_1,std::placeholders::_2);
+    f2(1,2);
     
 
     return 0;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 #include <vector>
 #include <numeric>
 using namespace std;
@@ -22,9 +23,10 @@ public:
 int main()
 {
     int x = 100;
-    vector<int> a(10,0);
+    vector<int> a(10);
     for(int i = 0;i < 10;i++)
         a[i] = i;
+    a = {0,1,2,3,4,5,6,7,8,9};
     myClass();
     cout<<"daaaassssssssssssssssssss"<<endl;
     myClassObj(1,2);
@@ -35,6 +37,21 @@ int main()
     test a1;
     cout<<sizeof(a1)<<endl;
     cout<<typeid(a1).name()<<endl;
+
+    list<int> foo,bar;
+    for(int i = 0;i <= 5;i++) 
+    {
+        foo.push_back(i);
+        bar.push_back(i*10);
+    }
+
+    list<int>::iterator it = foo.begin();
+    advance(it,3);
+
+    copy(bar.begin(),bar.end(),inserter(foo,it));
+
+    for(const auto&tp : foo)
+        cout<<tp<<endl;
 
     return 0;
 }

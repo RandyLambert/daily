@@ -36,6 +36,14 @@ private:
     int b_;
     int c_;
 };
+
+class myPair
+{
+public:
+    double a_;
+    double b_;
+    double mult(){ return a_*b_; }
+};
 int main(){
     test a1;
     a1.testfunc2();
@@ -49,6 +57,10 @@ int main(){
 
     function<void(int,int)> f2 = bind(&func,std::placeholders::_1,std::placeholders::_2);
     f2(1,2);
+
+    myPair test{1,2};
+    auto x = bind(&myPair::mult,placeholders::_1);
+    x(test);
     
 
     return 0;

@@ -1,8 +1,6 @@
-#ifndef ITERATOR_HPP_
-#define ITERATOR_HPP_
+#ifndef ITERATOR_HPP
+#define ITERATOR_HPP
 #include <iostream>
-#include <string>
-using std::string;
 
 template <typename T>
 class iTerator
@@ -34,7 +32,7 @@ public:
         {
             if (it == NULL)
             {
-                throw string("迭代器未初始化");
+                throw "迭代器未初始化";
             }
             else
             {
@@ -43,7 +41,7 @@ public:
                     it = NULL;
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -63,7 +61,7 @@ public:
         {
             if (it == NULL)
             {
-                throw string("迭代器未初始化");
+                throw "迭代器未初始化";
             }
             else
             {
@@ -72,7 +70,7 @@ public:
                     it = NULL;
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -85,14 +83,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，==无法比较");
+                throw "迭代器不同，==无法比较";
             }
             else
             {
                 return (it == rhs.it && index == rhs.index);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -104,14 +102,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，!=无法比较");
+                throw "迭代器不同，!=无法比较";
             }
             else
             {
                 return !(*this == rhs);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -123,14 +121,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，<无法比较");
+                throw "迭代器不同，<无法比较";
             }
             else
             {
                 return (index < rhs.index);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -142,14 +140,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，<=无法比较");
+                throw "迭代器不同，<=无法比较";
             }
             else
             {
                 return (index <= rhs.index);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -161,14 +159,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，>无法比较");
+                throw "迭代器不同，>无法比较";
             }
             else
             {
                 return (index > rhs.index);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -180,14 +178,14 @@ public:
         {
             if (it != rhs.it)
             {
-                throw string("迭代器不同，>=无法比较");
+                throw "迭代器不同，>=无法比较";
             }
             else
             {
                 return (index >= rhs.index);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -199,14 +197,14 @@ public:
         {
             if (it == NULL)
             {
-                throw string("迭代器未初始化");
+                throw "迭代器未初始化";
             }
             else
             {
                 return iTerator<value_type>(it, index + k);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }
@@ -218,14 +216,14 @@ public:
         {
             if (it == NULL)
             {
-                throw string("迭代器未初始化");
+                throw  "迭代器未初始化";
             }
             else
             {
                 return iTerator<value_type>(it, index - k);
             }
         }
-        catch (string tp)
+        catch (const char * tp)
         {
             std::cerr << tp << std::endl;
         }

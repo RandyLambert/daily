@@ -1,15 +1,38 @@
-#ifndef MYSTRING_H_
-#define MYSTRING_H_
+#ifndef MYSTRING_H
+#define MYSTRING_H
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-#include "../iTerator.hpp"
+#include "iTerator.hpp"
 class myString
 {
     friend std::ostream &operator<<(std::ostream &out, myString &str);
     friend std::istream &operator>>(std::istream &in, myString &str);
     friend std::istream &getline(std::istream &in, myString &str, char delim);
     friend std::istream &getline(std::istream &in, myString &str);
+    friend bool operator==(const myString &lhs, const myString &rhs);
+    friend bool operator==(const char *lhs, const myString &rhs);
+    friend bool operator==(const myString &lhs, const char *rhs);
+    friend bool operator!=(const myString &lhs, const myString &rhs);
+    friend bool operator!=(const char *lhs, const myString &rhs);
+    friend bool operator!=(const myString &lhs, const char *rhs);
+    friend bool operator<(const myString &lhs, const myString &rhs);
+    friend bool operator<(const char *lhs, const myString &rhs);
+    friend bool operator<(const myString &lhs, const char *rhs);
+    friend bool operator<=(const myString &lhs, const myString &rhs);
+    friend bool operator<=(const char *lhs, const myString &rhs);
+    friend bool operator<=(const myString &lhs, const char *rhs);
+    friend bool operator>(const myString &lhs, const myString &rhs);
+    friend bool operator>(const char *lhs, const myString &rhs);
+    friend bool operator>(const myString &lhs, const char *rhs);
+    friend bool operator>=(const myString &lhs, const myString &rhs);
+    friend bool operator>=(const char *lhs, const myString &rhs);
+    friend bool operator>=(const myString &lhs, const char *rhs);
+    friend myString operator+(const myString &lhs, const myString &rhs);
+    friend myString operator+(const myString &lhs, const char *rhs);
+    friend myString operator+(const char *lhs, const myString &rhs);
+    friend myString operator+(const myString &lhs, char rhs);
+    friend myString operator+(char lhs, const myString &rhs);
 
 public:
     myString();
@@ -82,28 +105,6 @@ private:
     const char *getnext(const char *w); //kmp
 };
 
-bool operator==(const myString &lhs, const myString &rhs);
-bool operator==(const char *lhs, const myString &rhs);
-bool operator==(const myString &lhs, const char *rhs);
-bool operator!=(const myString &lhs, const myString &rhs);
-bool operator!=(const char *lhs, const myString &rhs);
-bool operator!=(const myString &lhs, const char *rhs);
-bool operator<(const myString &lhs, const myString &rhs);
-bool operator<(const char *lhs, const myString &rhs);
-bool operator<(const myString &lhs, const char *rhs);
-bool operator<=(const myString &lhs, const myString &rhs);
-bool operator<=(const char *lhs, const myString &rhs);
-bool operator<=(const myString &lhs, const char *rhs);
-bool operator>(const myString &lhs, const myString &rhs);
-bool operator>(const char *lhs, const myString &rhs);
-bool operator>(const myString &lhs, const char *rhs);
-bool operator>=(const myString &lhs, const myString &rhs);
-bool operator>=(const char *lhs, const myString &rhs);
-bool operator>=(const myString &lhs, const char *rhs);
-myString operator+(const myString &lhs, const myString &rhs);
-myString operator+(const myString &lhs, const char *rhs);
-myString operator+(const char *lhs, const myString &rhs);
-myString operator+(const myString &lhs, char rhs);
-myString operator+(char lhs, const myString &rhs);
+
 
 #endif

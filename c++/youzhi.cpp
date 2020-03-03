@@ -29,6 +29,14 @@ void test01(string &&a){
 void test01(string &a){
     cout<<"&"<<endl;
 }
+
+class classb
+{
+public:
+    classb(string a):a_(a){}
+    classb() = default;
+    string a_;
+};
 int main(){
     A a(string("dasdsadsa"));
     string x = "dddsas";
@@ -37,6 +45,27 @@ int main(){
     test01(string("dsdas"));
     string d = "das";
     test01(d);
+
+
+    classb bs("ddsadsadsa");
+    classb by = std::move(bs);
+    cout<<bs.a_<<endl;
+    cout<<by.a_<<endl;
+
+
+    string s2("asdsadas");
+    string s3("sddsadas");
+    s2 + s3 = s2;  //可以通过编译，但是右值不能放到左值
+
+    string() = "dasdsd";
+
+    string &&xx = "dasdsada";
+    /* string &&zz = s2;//可以绑定一个右值，然后把这个右值已给别的左值 */
+
+    string yy = std::forward<string>(xx);
+    cout<<xx<<endl;
+    cout<<yy<<endl;
+
     return 0;
 }
 

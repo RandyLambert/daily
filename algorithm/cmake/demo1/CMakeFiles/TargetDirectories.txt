@@ -1,0 +1,3 @@
+/home/sunxiaochuan/sunshouxun/daily/algorithm/cmake/demo1/CMakeFiles/rebuild_cache.dir
+/home/sunxiaochuan/sunshouxun/daily/algorithm/cmake/demo1/CMakeFiles/Demo.dir
+/home/sunxiaochuan/sunshouxun/daily/algorithm/cmake/demo1/CMakeFiles/edit_cache.dir

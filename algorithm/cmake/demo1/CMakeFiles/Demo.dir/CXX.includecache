@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sunxiaochuan/sunshouxun/daily/algorithm/cmake/demo1/main.cc
+iostream
+-
+pthread.h
+-
+functional
+-
+boost/get_pointer.hpp
+/home/sunxiaochuan/sunshouxun/daily/algorithm/cmake/demo1/boost/get_pointer.hpp
+

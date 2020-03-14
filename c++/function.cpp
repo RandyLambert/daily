@@ -44,6 +44,7 @@ public:
     double b_;
     double mult(){ return a_*b_; }
 };
+
 int main(){
     test a1;
     a1.testfunc2();

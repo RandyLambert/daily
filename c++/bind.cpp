@@ -47,6 +47,11 @@ public:
         /* a_.setFunc(bind(test2,1)); */
     }
 
+    void run()
+    {
+        a_.run();
+    }
+
     B(A *ptra):ptra_(ptra)
     {
         /* ptra_->setFunc(bind(&B::bFunc,this)); */
@@ -66,6 +71,7 @@ private:
 int main(){
     A a;
     B b1;
+    b1.run();
     B b2(&a);
     a.run();
 

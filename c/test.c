@@ -16,6 +16,11 @@ int limit[4][5][2]={ 3,8, 4,9, 5,0, 1,6, 2,7,
     1,6, 2,7, 3,8, 4,9, 5,0,
     1,6, 2,7, 3,8, 4,9, 5,0 };
 
+struct node
+{
+    double b;
+    int a;
+}Node;
 int main(){
     char a[] = "dasdsada";
     char b[100];
@@ -25,6 +30,8 @@ int main(){
 
     long c=(long)(aq*bq);
     long c1 = (long)aq*bq;
+
+    printf("%zu\n",sizeof(Node));
 
     return 0;
 }

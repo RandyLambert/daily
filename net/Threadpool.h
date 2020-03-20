@@ -177,13 +177,13 @@ void *threadpool_thread(void *threadpool)
             //清除指定数目的空闲线程，如果要结束的线程个数大于0，结束线程
             if(pool->wait_exit_thr_num > 0){
                 pool->wait_exit_thr_num--;
+                printf("%d\n",pool->wait_exit_thr_num);
 
                 //如果线程池中的线程个数大于最小值的时候可以结束当前线程
                 if(pool->live_thr_num > pool->min_thr_num){
                     printf("thread 0x%x is exiting\n",(unsigned int)pthread_self());
                     pool->live_thr_num--;
                     pthread_mutex_unlock(&(pool->lock));
-
                     pthread_exit(NULL);
                 }
             }
@@ -193,7 +193,6 @@ void *threadpool_thread(void *threadpool)
         if(pool->shutdown){
             pthread_mutex_unlock(&(pool->lock));
             printf("thread 0x%x is exiting\n",(unsigned int)pthread_self());
-            pthread_detach(pthread_self());
             pthread_exit(NULL); //线程自动结束
         }
 

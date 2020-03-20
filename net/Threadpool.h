@@ -154,8 +154,6 @@ threadpool_t *threadpool_create(int min_thr_num, int max_thr_num, int queue_max_
  *加锁
  *改忙线程数--
  *解锁
- *
- *
  */
 
 //线程池中的各个工作线程,子线程的回调函数，参数对应刚创建的线程池

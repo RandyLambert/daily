@@ -8,7 +8,7 @@ int main(){
     
     int *num = (int *)malloc(sizeof(int)*2000);
 
-    for(int i = 0;i < 500;i++){
+    for(int i = 0;i < 30;i++){
         num[i] = i;
         printf("新加任务\n");
 

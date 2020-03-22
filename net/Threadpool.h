@@ -175,7 +175,6 @@ void *threadpool_thread(void *threadpool)
             //清除指定数目的空闲线程，如果要结束的线程个数大于0，结束线程
             if(pool->wait_exit_thr_num > 0){
                 pool->wait_exit_thr_num--;
-                printf("%d\n",pool->wait_exit_thr_num);
 
                 //如果线程池中的线程个数大于最小值的时候可以结束当前线程
                 if(pool->live_thr_num > pool->min_thr_num){

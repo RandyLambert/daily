@@ -39,7 +39,7 @@ int main(){
     pthread_create(&tid,NULL,th_fun,(void *)&n);
     pthread_detach(tid);
     printf("mainpid = %d\n",getpid());
-    /* printf("not main thread id= %x\n",tid); */
+    printf("not main thread id= %x\n",(unsigned int)tid);
     printf("main thread id= %x\n",(unsigned int)pthread_self());
     
     sleep(5);

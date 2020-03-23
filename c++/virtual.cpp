@@ -23,6 +23,22 @@ public:
     void f(); //覆盖了A中的虚函数f
     void f2(); //覆盖了B的虚函数f2
 };
+
+class virtual_test
+{
+public:
+    virtual_test() = default;
+    virtual int func(){return 1;}
+    virtual int func1() = 0;
+    virtual int func2(){return 1;};
+};
+
+class virtual_test_son : public virtual_test
+{
+public:
+    virtual int func1(){return 1;}
+    virtual int func2(){return 2;}
+};
 int main(){
 
     A a,b;
@@ -33,6 +49,9 @@ int main(){
     int *p = (int *)&a;
     int *q = (int *)&b; 
     cout<< *p << *q <<endl;
+
+    /* virtual_test test; */
+    virtual_test_son test_son;
 
     return 0;
 }

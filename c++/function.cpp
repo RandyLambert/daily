@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <functional>
 using namespace std;
 class test
@@ -15,9 +16,10 @@ public:
     function<void()> t1;
 };
 
-void func(int a,int b)
+int func(int a,int b)
 {
     cout<<a<<b<<endl;
+    return a+b;
 }
 
 
@@ -49,6 +51,19 @@ int main(){
     test a1;
     a1.testfunc2();
     a1.t1();
+    int (*add)(int x,int y) = func; 
+
+    auto mod = [=](int i,int j)->int{return i%j;};
+    map<string,function<int(int,int)>> han = {
+        {"+",add},//函数指针
+        {"-",std::minus<int>()},//标准库函数对象
+        {"/",func},//用户自定义函数
+        {"*",[](int i,int j)->int{ return i*j;}},//匿名的lambda表达式
+        {"%",mod}//具名的lambda表达式
+    }; 
+    han["+"](123,32);
+    han["-"](123,32);
+    han["%"](123,32);
 
     Foo a2;
     function<void(int a)> f1;

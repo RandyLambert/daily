@@ -39,6 +39,48 @@ public:
     virtual int func1(){return 1;}
     virtual int func2(){return 2;}
 };
+
+struct B1
+{
+    virtual void f1(int)
+    {
+        cout<<"B1"<<endl;
+    }
+    virtual void f2(int)
+    {
+        cout<<"f2"<<endl;
+    }
+    virtual void f3(int) final
+    {
+        cout<<"f3"<<endl;
+    }
+    virtual void f4(int) = 0;
+};
+
+class A1 final//a1类无法被继承了
+{
+};
+
+struct B2 : public B1
+{
+    void f1(int) override
+    {
+        cout<<"B2"<<endl;
+    }
+    /* void f2() override; //说明是继承，但是父类没有相应函数.所以使用错误 */
+    /* void f3(int);//只要虚函数可以加final修饰，修饰后就不能在被继承了 */
+    void f4(int) final
+    {
+        cout<<"f3"<<endl;
+    }
+};
+
+struct B3: B2
+{
+    /* void f4(int); 因为f4是final*/
+};
+
+
 int main(){
 
     A a,b;
@@ -52,6 +94,10 @@ int main(){
 
     /* virtual_test test; */
     virtual_test_son test_son;
+    B2 b2;
+    b2.B1::f1(1);//回避虚函数机制
+    b2.B2::f1(1);
+
 
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 void test01()
 {
@@ -67,12 +68,17 @@ void test07()
 {
     int i = 0;
     int j = 10;
-    int * const p1 = &i; //不能改变p1的值，这是一个顶层const
+    int* const p1 = &i; //不能改变p1的值，这是一个顶层const
     /* p1 = &j; */
     *p1 = 100;
-    const int b = i;//不能改变b的值，这是一个鼎城const（一般变量前const顶层const）
+    const int b = i;//不能改变b的值，这是一个顶层const（一般变量前const顶层const）
     const int* p2 = &b; //可以改变p2的值，这是一个底层const（对象是个const，所以可以底层执行顶层）
-    const int *const p3 = p2; //靠右边的是顶层const，靠左边的是底层const
+    p2 = &j; //可以改变地址
+    /* *p2 = 1000;//底层const不能改变值 */
+    int* const p4 = &j;
+    /* p4 = &i; //不能改变指针的指向 */
+    *p4 = 100; //可以改变指针指向的位置的值
+    const int* const p3 = p2; //靠右边的是顶层const，靠左边的是底层const
     const int& some = i; //用于声明引用的都是底层const
 }
 
@@ -84,7 +90,21 @@ void test08()
     int j = 10;
     e = &j;
 }
-int main(){
+void test09()
+{       
+    vector<int> vec;
+
+    const vector<int>::iterator iter = vec.begin(); //iter的作用像一个t× const
+    *iter = 10l; //可以改变值
+    /* ++iter; //错误，iter是const */
+
+    vector<int>::const_iterator cIter = vec.begin(); //cIter的作用像是个const T×
+    /* *cIter = 10l; //错误，×cIter是const */
+    ++cIter; //正确
+}
+
+int main()
+{
     test02();
     return 0;
 }

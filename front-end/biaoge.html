@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格属性</title>
+</head>
+
+<body>
+    <img src="wangye.png">
+    <strong>个人信息表</strong>
+    <ul 这些表格属性要写到表格table里面，平时用css -->
+        <table align="center" border="15" cellpadding="20" cellspacing="0" height="100" width="500">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>张三</td>
+                    <td>n</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>李四</td>
+                    <td>n</td>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <td>王五</td>
+                    <td>n</td>
+                    <td>23</td>
+                </tr>
+            </tbody>
+        </table>
+        <table align="left" border="10" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>首</th>
+                    <th colspan="2">合并代码</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">合并单元格</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>hhhh</td>
+                    <td>hhhh</td>
+                </tr>
+            </thead>
+        </table>
+        <br />
+        <h4>您喜欢的食物？（无序列表）</h4>
+        <ul>
+            <!--ul中只能嵌套li，直接在ul标签中输入其他标签或者文字的做法是不被允许的，li和/li之间相当于一个容器，可以容纳所有元素，无序列表还有属性-->
+            <li>榴莲</li>
+            <li>腐乳</li>
+            <li>老八秘制小汉堡</li>
+        </ul>
+
+        <h4>粉丝榜(有序列表)</h4>
+        <ol>
+            <li>ikun 10000000</li>
+            <li>梅格妮 10000000</li>
+            <li>hhh 10000000</li>
+        </ol>
+
+
+        <dl>
+            <!--不允许出现其他标签了，dl里面可以出现很多dt-->
+            <dt>关注我们</dt>
+            <dd>新浪微博</dd>
+            <dd>官方微信</dd>
+            <dd>联系我们</dd>
+            <dt>关注我们</dt>
+            <dd>新浪微博</dd>
+            <dd>官方微信</dd>
+            <dd>联系我们</dd>
+        </dl>
+</body>
+
+</html>

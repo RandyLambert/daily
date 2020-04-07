@@ -43,6 +43,7 @@ int main(){
     int b = std::move(a);
     cout<<a<<b<<endl;
     assert(1==1);
+    swap(a,b);
 
     return 0;
 }

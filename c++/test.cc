@@ -2,11 +2,12 @@
 #include <fstream>
 #include <assert.h>
 using namespace std;
-class a{
+class a
+{
 public:
     int x;
     int y;
-    void print(){cout<<x<<y<<endl;}
+    virtual void print(){cout<<x<<y<<endl;} 
 };
 
 

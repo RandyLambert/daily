@@ -29,6 +29,22 @@ Cstr::~Cstr()
     cout<<"hhhhhhhh"<<endl;
     delete[] a;
 }
+
+class cOpy
+{
+public:
+    cOpy(const cOpy&);
+    cOpy(); //申明了就要实现，不然就是未定义引用
+    int a;
+};
+void test01()
+{
+    cOpy a;
+    a.a = 10;
+    cOpy b = a;
+    cout<<b.a<<endl;
+
+}
 int main(){
     Cstr st;
     cout<<st.a[0]<<" "<<st.a[1]<<" "<<st.a[2]<<endl;

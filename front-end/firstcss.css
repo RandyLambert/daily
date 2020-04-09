@@ -1,0 +1,11 @@
+/* 这个css文件中只有样式没有标签 */
+div {
+    color: aquamarine;
+    text-shadow: azure;
+    text-indent: 2em;
+    width: 100px;
+    height: 100px;
+    text-decoration: none;
+    line-height: 100;
+    text-align: center;
+}

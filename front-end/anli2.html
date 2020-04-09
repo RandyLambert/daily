@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻页面</title>
+    <style>
+        body {
+            font: 16px/28px, '微软雅黑';
+        }
+
+        .gray {
+            color: #888888;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .search {
+            color: #666666;
+            width: 176px;
+        }
+
+        button {
+            font-weight: 700;
+        }
+
+        p {
+            text-decoration: 2em;
+        }
+
+        .jp {
+            /* 想要图片居中对齐，则是让他的父亲p标签添加水平居中的代码 */
+            text-align: center;
+        }
+
+        /* 1.未访问的连接 a:link */
+        a:link {
+            color: #666666;
+            text-decoration: none;
+        }
+
+        /* 2. 访问后的连接a:visited*/
+        a:visited {
+            color: orange;
+        }
+
+        /* 3. 鼠标到的位置 a:hover */
+        a:hover {
+            color: skyblue;
+        }
+
+        /* 4.选择的是我们鼠标正在安歇还没有弹起鼠标的那个链接 a:active*/
+        /* 实际开发不一定全都有 */
+        /* 顺序不能变，简单记忆lv，（hao）好 */
+        /* 和标题栏一样，直接给body改颜色是不能改超链接的 */
+        a:active {
+            color: green;
+        }
+
+        /* 把获取光标的input表单元素选取出来 */
+        input:focus {
+            background-color: yellow;
+        }
+
+        div {
+            /* width: 200px; */
+            /* 如果不给宽度，则和div的父亲一样宽，div的父亲是body，div比较霸道，占据整整一行 */
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-decoration: darkslategray; text-align: center; font-weight: 400;">五一连休五天上热搜！网友看完扎心了……</h1>
+    <hr>
+    <div class="gray">环球网
+        发布时间：04-09&nbsp;12:48&nbsp;环球网官方帐号
+        【来源：<a href="#">中国青年报</a>】
+        <input type="text" value="请输入查询条件" class="search"><button>搜索</button></div>
+
+    <h4>今天</h4>
+
+    <p> <a href="#">北京市人民政府办公厅</a>
+
+        公布了“五一”放假安排。
+
+        消息一出便冲上热搜！
+
+    </p>
+    <p class="jp">
+        <img src="wangye.png" alt="">
+    </p>
+    <h4>今年“五一”连休5天</h4>
+
+    <p>这是大小长假政策
+
+        实施多年来的首次！
+
+        ↓↓↓
+
+        关于2020年劳动节放假安排的通知
+
+        根据国务院办公厅通知精神，现将2020年劳动节放假安排通知如下：
+
+        5月1日（星期五）至5月5日（星期二）放假调休，共5天。4月26日（星期日）、5月9日（星期六）上班。
+
+        请广大市民提前安排好工作生活，节日期间注意安全，度过一个欢乐、祥和的节日假期。
+
+        <br>
+
+        <strong>北京市人民政府办公厅 2020年4月9日</strong>
+    </p>
+</body>
+
+</html>

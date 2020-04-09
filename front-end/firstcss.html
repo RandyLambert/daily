@@ -12,16 +12,131 @@
             color: red;
             /* 修改了文字大小为12像素，属性和属性之间是一对一对键值对  */
             font-size: 12px;
+            font-style: italic;
+            font-weight: 700;
+        }
 
+        table {
+            color: pink;
+            font-size: 15px;
+            /* 基础选择器，以标签名做选择器，优点是能快速的为页面中同类的标签设置统一样式 */
+            /* 缺点是不能践行差异化样式，只能选择全部的当前标签 */
+        }
+
+        .red {
+            /* 类选择器，样式点定义 结构类（class）调用 一个或多个  开发最常用 */
+            /* color: red; */
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .green {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+
+        .stler {
+            color: rgb(100, 10, 20);
+        }
+
+        #pink {
+            color: pink;
+            /* id选择器的口诀，样式#定义，结构id调用，只能调用一次，别人切勿使用，一次性的，不会被多次使用 */
+            /* 类选择器好比是人的名字，一个人有多个名字，同事一个名字也可以被多个人使用 */
+            /* id选择器在修改样式中用的最多，id选择器用于页面唯一性的元素上经常和javascript搭配使用 */
+        }
+
+        * {
+            color: #2299dd;
+            /* 统配符选择器 */
+        }
+
+        h2 {
+            font-family: 'Microsoft Yahei'，Arial;
+            font-weight: 400;
+            /* 400变细体 */
+            text-align: center;
+            /* 让每个文字在盒子里去某个地方 */
+            text-decoration: underline line-through overline;
+        }
+
+        p {
+            font-family: '宋体';
+            /* 文字字体，可以有多种字体 */
+            text-decoration: none;
+            /* 取消下划线 */
+            text-indent: 2em;
+            /* 文字缩进，可正可负，20px是数字大小，em是相对单位，就是当前元素1个文字的大小，如果当前元素 */
+            line-height: 26px;
+            /* line-height属性可定义文本的外观，比如文本的颜色，对齐文本，装饰文本，文本缩进，行间距等 */
+        }
+
+        body {
+            /* body里面除了标题之外权都改变了像素 ，标题需要特殊给*/
+            font-size: 16px;
+        }
+
+        .bold {
+            /* 700后面不用加单位，等价与bold都是变粗 */
+            /* font-weight: 700; */
+            /* 复合属性：简写的方式，节约代码,不可以换顺序，但是如果使用符合写法font-size和font-family必须写 */
+            /* font：font-style font-weight font-size/line-height font-family; */
+            font: italic 700 16px 'Microsoft yahei';
+        }
+
+        ul li {
+            color: darkorange;
+        }
+
+        ul li a {
+            color: rgb(100, 15, 20);
+        }
+
+        .bold ul li a {
+            /* 后代选择器 */
+            color: rgb(70, 75, 50);
+        }
+
+        ul>li {
+            /* 子选择器，只能选择最为某元素最近的一节子元素，简单理解就是选亲儿子元素，孙子什么的不管 */
+            color: deeppink;
+        }
+
+        p,
+        div,
+        .bold ul li a {
+            color: rgb(100, 15, 20);
+            /*并集选择器，约定的语法规范是竖着写，一定要注意，最后一个选择器不需要加逗号 */
         }
     </style>
 </head>
 
 <body>
-    <p>有意思<p>
+    <h2>大标题</h2>
+    <p style="color: darkolivegreen;">有意思<p>
             <p>有意思<p>
                     <p>有意思<p>
                             <p>有意思<p>
+                                    <div>hhhhh</div>
+                                    <ul>
+                                        <li class="stler">并与</li>
+                                        <li class="red stler">时时彩打</li>
+                                        <li class="stler">并啊啊</li>
+                                        <li><a href="#">并与dasd</a></li>
+                                        <li>并答与</li>
+                                    </ul><br>
+                                    <ul class="bold">
+                                        <li class="stler">并与</li>
+                                        <li class="red stler">时时彩打</li>
+                                        <li class="stler">并啊啊</li>
+                                        <li><a href="#">并与dasd</a></li>
+                                        <li>并答与</li>
+                                    </ul><br>
+                                    <div class="red bold">红色，是一个盒子</div>
+                                    <div class="green" id="pink">绿色，是一个盒子</div>
+                                    <div class="red">红色，是一个盒子</div>
 </body>
 
 </html>

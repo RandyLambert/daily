@@ -4,10 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>王者荣耀</title>
+    <style>
+        h3 {
+            width: 118px;
+            height: 40px;
+            /* background-color: #666; */
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 40px;
+            text-indent: 2em;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-size: 22px;
+            background-image: url(wangye.png);
+        }
+
+        body {
+            background: pink url(wangye.png) no-repeat fixed;
+            /* 复合属性,背景的符合属性孙旭是无关的,但是一般用的顺序是background:背景颜色 背景图片地址 背景平铺 背景图像滚动 背景图片位置 */
+            background: rgba(0, 0, 0, 0.1);
+            /* rgba是改盒子的透明度,最后一个是alpha透明度,取值范围在0-1之间 */
+            /* 我们习惯把0.3的0省略掉,写为background:rgba(0,0,0,.3) */
+            /* 注意:背景半透明是值盒子背景半透明,盒子里的内容不受影响 */
+            /* css3新增特性,是ie9+版本浏览器才支持的 */
+        }
+    </style>
 </head>
 
 <body>
+    <h3>王者平台</h3>
 
 </body>
 

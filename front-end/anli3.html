@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米侧边</title>
+</head>
+<style>
+    a {
+
+        height: 40px;
+        width: 200px;
+        display: block;
+        text-decoration: none;
+        color: white;
+        text-indent: 2em;
+        background-color: darkgrey;
+        line-height: 40px;
+        /* 文字垂直居中，css没有提供文字垂直居中的代码，让文字的行高等于盒子的高度，就可以让文字在当前盒子内垂直居中 */
+    }
+
+    a:hover {
+        background-color: orangered;
+    }
+
+    div {
+        height: 1000px;
+        width: 1000px;
+        background-image: url(wangye.png);
+        /* 背景图片默认平铺，background-repeat：no-repeat不平铺 */
+        background-repeat: no-repeat;
+        /* 背景图片不平铺 */
+        /* background-repeat: repeat; */
+        /* 背景图片平铺 */
+        /* background-repeat: repeat-x; */
+        /* 延x轴平铺 */
+        /* background-repeat: repeat-y; */
+        /* background-position: left center; */
+        /* bp 方位名词 ,两个值顺序无影响*/
+        background-position: right;
+        /* 另一个默认的是center */
+        background-color: rgb(179, 81, 81);
+        /* 延y轴平铺 */
+    }
+</style>
+
+<body>
+    <a href="#">手机电话卡</a>
+    <a href="#">电视 盒子</a>
+    <a href="#">笔记本 平板</a>
+    <a href="#">出行 穿戴</a>
+    <a href="#">智能 路由器</a>
+    <a href="#">健康 儿童</a>
+
+    <div>hhhh</div>
+</body>
+
+</html>

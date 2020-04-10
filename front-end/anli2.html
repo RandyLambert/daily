@@ -74,8 +74,10 @@
             /* 注意：文字类的元素内不能使用块级元素 */
             /* <p>标签主要存放文字，因此<p>标签里面不能放块级元素 */
             /* 同理，<h1>-<h6>等都是文字类块级标签，里面也不能放其他块级元素 */
-            height: 200px;
+            /* height: 200px; */
             background-color: pink;
+            display: inline;
+            /* 将div块级元素转换为行内元素，转换完之后就不能设置高度和宽度了 */
         }
 
         /* 常见的行内元素<a>,<strong>,<b>,<em>,<i>,<del>,<ins>,<u>,<span> */
@@ -93,6 +95,21 @@
         /* 和相邻行内的元素（行内快）在一行上，但是他们之间会有空白缝隙，一行可以显示多个(行内元素特点) */
         /* 默认宽度就是它本身内容的宽度（行内元素的特点） */
         /* 高度，行高，外边据以及内边距都可以控制（块级元素特点） */
+
+        .ajinx {
+            width: 150px;
+            height: 50px;
+            background-color: pink;
+            display: block;
+            /* 转换为块元素 */
+        }
+
+        span {
+            width: 200px;
+            height: 30px;
+            background-color: red;
+            display: inline-block;
+        }
     </style>
 </head>
 
@@ -107,7 +124,7 @@
 
     <h4>今天</h4>
 
-    <p> <a href="#">北京市人民政府办公厅</a>
+    <p> <a href="#" class="ajinx">北京市人民政府办公厅</a>
 
         公布了“五一”放假安排。
 
@@ -135,7 +152,9 @@
 
         <br>
 
-        <strong>北京市人民政府办公厅 2020年4月9日</strong>
+        <a href="#">北京市人民政府办公厅 2020年4月9日</a>
+        <span>行内元素转换为行内块元素</span>
+        <span>行内元素转换为行内块元素</span>
     </p>
 </body>
 

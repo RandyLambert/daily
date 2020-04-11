@@ -4,17 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小米侧边</title>
+    <title>小米侧边 + 新浪导航</title>
 </head>
 <style>
-    a {
+    * {
+        /* 清除内外边距 */
+        /* 因为网页元素很对都带有默认的内外边距,而且不同浏览器默认也不一致,因此我们在布局前,首要清楚下网页元素的内外边距 */
+        margin: 0;
+        /* 清内 */
+        padding: 0;
+        /* 清外 */
+    }
+
+    .aa {
 
         height: 40px;
         width: 200px;
         display: block;
         text-decoration: none;
         color: white;
-        text-indent: 2em;
+        text-indent: 30px;
         background-color: darkgrey;
         line-height: 40px;
         /* 文字垂直居中，css没有提供文字垂直居中的代码，让文字的行高等于盒子的高度，就可以让文字在当前盒子内垂直居中 */
@@ -24,9 +33,11 @@
         background-color: orangered;
     }
 
-    div {
-        height: 1000px;
-        width: 1000px;
+    /* 我们需要一个200*200的合资,但是这个盒子有10像素的红色边框 */
+    .divtest {
+        height: 180px;
+        width: 180px;
+        border: 10px solid red;
         background-image: url(wangye.png);
         /* 背景图片默认平铺，background-repeat：no-repeat不平铺 */
         background-repeat: no-repeat;
@@ -38,29 +49,114 @@
         /* background-repeat: repeat-y; */
         /* background-position: left center; */
         /* bp 方位名词 ,两个值顺序无影响*/
-        background-position: right;
+        background-position: top;
         /* 另一个默认的是center */
         /* background-position: 20px 50px; */
         /* 背景图片有精确坐标,第一个一定是x坐标,第二个一定是y坐标 */
-        background-position: 20px center;
+        /* background-position: 20px center; */
         /* 混合坐标,还是第一个是x,第二个是y */
         background-color: rgb(179, 81, 81);
         background-attachment: fixed;
-        /* background-attachment:fixed这个是把背景图片固定主,fixed */
+        /* background-attachment:fixed这个是把背景图片固定主,fixed定住,scroll背景滚动 */
 
         /* 延y轴平铺 */
+
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /* 上下左右都边距都为10px,下面是简写 */
+        /* padding: 10px; */
+        /* 上下左右都是10px */
+        /* padding:10px 5px; */
+        /* 上下是10px 左右是5px */
+        /* padding: 5px 10px 20px; */
+        /* 上是5,左右是10,下是20 */
+        /* padding: 5px 10px 20px 30px; */
+        /* 上是5右是10下是20左是30 */
+        /* padding(内边距)也会影响盒子的大小撑大盒子, 如果合资本身没有指定width/heigth属性,则此时的padding不会撑开盒子的大小*/
+        /* 孩子的如果默认没写宽度,则和父亲的宽度相同,但是如果孩子设定了宽度,则更改padding值可能会导致孩子比父亲宽 */
+
+    }
+
+    .one {
+        /* 盒子之间的间距 */
+        /* 使用方法和padding类似 */
+
+        /* 外边距的典型应用,外边距可以让块级盒子水平居中,但是必须满座两个条件 */
+        /* 1,盒子必须指定了宽度(width) */
+        /* 2.盒子的左右外边距都设置为了auto */
+        /* 常见的三种写法,第二种最常见 */
+        /* margin: auto; */
+        margin: 0 auto;
+        /* margin-right: auto; */
+        /* margin-left: auto; */
+        margin-bottom: 20px;
+        text-align: center;
+        /* 使子类的图片和文字也在中间 */
+    }
+
+    .nav {
+        height: 41px;
+        border-top: 3px solid #ff8500;
+        border-bottom: 1px solid #edeef0;
+        background-color: #fcfcfc;
+        line-height: 41px;
+    }
+
+    .nav a {
+        display: inline-block;
+        font-size: 12px;
+        color: #4c4c4c;
+        padding: 0px 20px;
+        text-decoration: none;
+        height: 41px;
+        /* 取消下划线  */
+    }
+
+    .father {
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+        /* 解决嵌套块元素处置外边界距的塌陷 */
+        /* 对于两个嵌套关系(父子关系)的块元素,父元素有上边界同时子元素也有上边距,此时父元素会塌陷较大的外边距值 */
+        /* 解决方案(不止这三种) */
+        /* 可以为父元素定义上边框 */
+        /* 可以为父元素定义内边据 */
+        /* 可以为父元素添加overflow:hidden */
+        padding: 50px;
+    }
+
+    .son {
+        width: 200px;
+        height: 200px;
+        background-color: purple;
     }
 </style>
 
 <body>
-    <a href="#">手机电话卡</a>
-    <a href="#">电视 盒子</a>
-    <a href="#">笔记本 平板</a>
-    <a href="#">出行 穿戴</a>
-    <a href="#">智能 路由器</a>
-    <a href="#">健康 儿童</a>
+    <a href="#" class="aa">手机电话卡</a>
+    <a href="#" class="aa">电视 盒子</a>
+    <a href="#" class="aa">笔记本 平板</a>
+    <a href="#" class="aa">出行 穿戴</a>
+    <a href="#" class="aa">智能 路由器</a>
+    <a href="#" class="aa">健康 儿童</a>
 
-    <div>hhhh</div>
+
+    <div class="divtest one">特尔特定客户的卡号开始的接撒谎健身卡很多事都开始的骄傲是的撒回单卡实践活动查查看小虫子科技创新这次开会</div>
+    <div class="one father">
+        <div class="son">
+            特尔特定客户的卡号开始的接撒谎健身卡很多事都开始的骄傲是的撒回单卡实践活动查查看小虫子科技创新这次开会
+        </div>
+    </div>
+    <br />
+    <div class="nav">
+        <a href="#" class=" xinliangdiv">新浪导航</a>
+        <a href="#" class=" xinliangdiv">手机新浪网</a>
+        <a href="#" class=" xinliangdiv">移动客户端</a>
+        <a href="#" class=" xinliangdiv">微博</a>
+        <a href="#" class=" xinliangdiv">三个字</a>
+    </div>
 </body>
 
 </html>

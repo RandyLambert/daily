@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品优购快报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 248px;
+            height: 163px;
+            border: 1px solid #cccccc;
+            margin: 100px auto;
+            border-radius: 5px;
+            /* 圆角,半径像素为5px的园 */
+
+        }
+
+        div:hover {
+            /* 就是鼠标经过div是的会出现的 */
+            box-shadow: 10px 10px 10px 10px, rgba(0, 0, 0, .3);
+            /*box阴影,第一个是水平阴影,第二个是垂直阴影,第三个是模糊距离(就是影子的虚实,数字越大月模糊),第四个是阴影的尺寸,第五个是阴影的颜色,第六个是内阴影还是外阴影,默认是外阴影,不写就是外阴影,写inset是内阴影 */
+        }
+
+        .yuan {
+            width: 100px;
+            height: 100px;
+            /* border-radius: 50%; */
+            border-radius: 100px;
+            background-color: pink;
+        }
+
+        .yuanju {
+            width: 500px;
+            height: 100px;
+            border-radius: 100px;
+            background-color: pink;
+            font-size: 50px;
+            color: orangered;
+            font-weight: 700;
+            text-shadow: 5px 5px 5px green;
+            /* 文字阴影,水平,垂直,模糊距离,阴影颜色 */
+        }
+
+        .redis {
+            width: 100px;
+            height: 100px;
+            /* border-radius: 50%; */
+            border-radius: 10px 20px 30px 40px;
+            /* 和之前的一样,从上面开始,顺时针旋转的角,这几个圆角也能都不一样 */
+            background-color: pink;
+        }
+
+        .biaoti {
+            font-weight: 400;
+            font-size: 14px;
+            border-bottom: 1px dotted #ccc;
+            line-height: 32px;
+            height: 32px;
+            padding-left: 15px;
+            /* 因为没写宽度,所以用padding无所谓,不会比大盒子宽 */
+        }
+
+        li {
+            list-style: none;
+            /* 所有的小li需要去掉小圆点 */
+
+        }
+
+        .box ul li a {
+            font-size: 12px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .box ul {
+            padding-top: 7px;
+        }
+
+        .box ul li {
+            /* 小li是盒子,有高度的 */
+            height: 23px;
+            line-height: 23px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3 class="biaoti">品优购快报</h3>
+        <ul>
+            <li><a href="#">hhhhhhh</a></li>
+            <li><a href="#">hhhhhhh</a></li>
+            <li><a href="#">hhhhhhh</a></li>
+            <li><a href="#">hhhhhhh</a></li>
+            <li><a href="#">hhhhhhh</a></li>
+        </ul>
+    </div>
+    <div class="yuan">
+
+    </div>
+    <div class="yuanju">
+        呵呵哈哈哈或或或或或
+    </div>
+
+    <div class="redis">
+
+    </div>
+</body>
+
+</html>

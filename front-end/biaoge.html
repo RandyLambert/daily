@@ -5,13 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>表格属性</title>
+    <style>
+        table {
+            width: 300px;
+            height: 50px;
+        }
+
+        table,
+        td {
+            border: 5px solid pink;
+            border-collapse: collapse;
+            /* 合并相邻的边框 */
+            font-size: 14px;
+            text-align: center;
+        }
+
+        th {
+            height: 30px;
+        }
+
+        .testdl {
+            width: 150px;
+            border: 1px solid red;
+            text-align: unset;
+            font-size: 16px;
+            background-color: aqua;
+        }
+
+        dl,
+        dd {
+            display: block;
+            color: violet;
+        }
+
+        dl,
+        dt {
+            display: block;
+            color: wheat;
+        }
+    </style>
 </head>
 
 <body>
     <img src="wangye.png">
-    <strong>个人信息表</strong>
+    <strong style="text-align: center; display: block;">个人信息表</strong>
     <ul 这些表格属性要写到表格table里面，平时用css -->
-        <table align="center" border="15" cellpadding="20" cellspacing="0" height="100" width="500">
+        <table align="center" border="15" cellpadding="15" cellspacing="0" height="100" width="500">
             <thead>
                 <tr>
                     <th>姓名</th>
@@ -55,6 +94,10 @@
             </thead>
         </table>
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <h4>您喜欢的食物？（无序列表）</h4>
         <ul>
             <!--ul中只能嵌套li，直接在ul标签中输入其他标签或者文字的做法是不被允许的，li和/li之间相当于一个容器，可以容纳所有元素，无序列表还有属性-->
@@ -71,7 +114,7 @@
         </ol>
 
 
-        <dl>
+        <dl class="testdl">
             <!--不允许出现其他标签了，dl里面可以出现很多dt-->
             <dt>关注我们</dt>
             <dd>新浪微博</dd>

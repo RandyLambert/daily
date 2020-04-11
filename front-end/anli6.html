@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米模块</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #b0b0b0;
+        }
+
+        .box {
+            height: 415px;
+            width: 298px;
+            background-color: white;
+            /* 让块状盒子居中对齐 */
+            margin: 100px auto;
+        }
+
+        .box img {
+            width: 100%;
+            /* 和父亲盒子一样宽 */
+        }
+
+        .review {
+            height: 70px;
+            font-style: 14px;
+            /* 因为这个短路没有width属性 所有的padding不会城开盒子的宽度 */
+            padding: 0 28px;
+            margin-top: 30px;
+        }
+
+        .appraise {
+            font-style: 12px;
+            color: #b0b0b0;
+            margin-top: 20px;
+            padding: 0 28px;
+        }
+
+        .info {
+            font-size: 14px;
+            margin-top: 15px;
+            padding: 0 28px;
+        }
+
+        .info h4 {
+            display: inline-block;
+            font-weight: 400px;
+        }
+
+        .info span {
+            color: orange;
+        }
+
+        .info em {
+            font-style: normal;
+            color: #ebe4e0;
+            margin: 0 6px 0 15px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="wangye.png" alt="none">
+        <p class="review">快递好,红米给力</p>
+        <div class="appraise">来自于 117384232 的评价</div>
+        <div class="info">
+            <h4><a href="#">redmi airdots真无限蓝牙...<a></h4>
+            <em>|</em>
+            <span>99元</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型</title>
+</head>
+<style>
+    /* 所谓盒子模型,就是把HTML页面中的布局元素看做是一个举行的盒子,也就是一个盛装内容的容器 */
+    /* css盒子模型的本质就是一个合资,封装周围的HTML元素,他包括:border边框,外边距margin,padding内边距和content实际内容 */
+    div {
+        width: 300px;
+        height: 200px;
+        /* border-width 边框的粗细 一般情况下都用px*/
+        /* border-width: 5px; */
+        /* border-style 边框的样式 solod 实现边框  dashed 虚线边框  dpyyed 点线边框 */
+        /* border-style solid; */
+        /* border-style doshed; */
+        /* border-style: dotted; */
+        /* border-color: pink; */
+        /* 边框的复合写法,边框也有层叠性 */
+        /* border: 5px dotted pink; */
+
+        /* border-top: 5px solid pink; */
+        /* border-bottom: 5px solid #000; */
+        /* border-left: 5px solid pink; */
+        /* border-right: 5px solid pink; */
+        /* 巧用层叠性 */
+        border: 1px solid red;
+        border-top: 1px solid blue;
+
+    }
+</style>
+
+<body>
+    <div></div>
+</body>
+
+</html>

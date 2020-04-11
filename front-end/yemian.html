@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传统网页布局的三种方式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .foaltdivr {
+            height: 100px;
+            width: 200px;
+            background-color: green;
+            float: right;
+            /* 浮动,有很多的布局效果,标准六没办法完成,此时就可以利用浮动完成布局,因为浮动而已改变元素变迁默认的排列顺序 */
+            /* 浮动的最典型应用:可以让对个块级元素在一行内排列显示 */
+            /* 网页布局的第一准则,对个块级元素纵向排列找标准流,多个块级元素横向排列找浮动 */
+        }
+
+        .foaltdivl {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+            float: left;
+            /* 浮动,有很多的布局效果,标准六没办法完成,此时就可以利用浮动完成布局,因为浮动而已改变元素变迁默认的排列顺序 */
+            /* 浮动的最典型应用:可以让对个块级元素在一行内排列显示 */
+            /* 网页布局的第一准则,对个块级元素纵向排列找标准流,多个块级元素横向排列找浮动 */
+            /* 设置了浮动的元素最重要的特性:; */
+            /* 1.脱离了标准普通刘的控制(浮)移动到指定的位置(动)(俗称投标) */
+            /* 浮动的盒子不在保留原来的位置 */
+            /* 浮动沿着上沿对齐,如果浮动的盒子装不下就会在下一行去 */
+
+        }
+
+        .foaltdiv {
+            height: 200px;
+            width: 200px;
+            background-color: black;
+            float: none;
+            /* 上面浮动的盒子会压住没有浮动的盒子,浮动相当于在半空中 */
+            /* 浮动,有很多的布局效果,标准六没办法完成,此时就可以利用浮动完成布局,因为浮动而已改变元素变迁默认的排列顺序 */
+            /* 浮动的最典型应用:可以让对个块级元素在一行内排列显示 */
+            /* 网页布局的第一准则,对个块级元素纵向排列找标准流,多个块级元素横向排列找浮动 */
+        }
+
+        /* 任何元素都可以浮动,不管原乡是什么模式的元素,添加浮动之后都具有行内款元素相似的特征 */
+        span,
+        div {
+            float: left;
+            width: 200px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        /* 如果行内元素有了浮动,则不需要转换宽级,行内块元素就可以直接给高度和宽度 */
+        p {
+            float: right;
+            height: 200px;
+            background-color: pink;
+        }
+
+        /* 一个盒子里面有多个自盒子,如果一个盒子浮动了,那么其他兄弟也应该浮动,以防止引起问题 */
+        /* 浮动只会影响后面的盒子的标准流,不会影响前面的标准流 */
+
+        .box {
+            height: 460px;
+            width: 1200px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+
+        .left {
+            float: left;
+            width: 230px;
+            height: 460px;
+            background-color: purple;
+        }
+
+        .right {
+            float: right;
+            width: 970px;
+            height: 460px;
+            background-color: skyblue;
+        }
+
+        .box1 {
+
+            height: 285px;
+            width: 1226px;
+            background-color: black;
+            margin: 0 auto;
+        }
+
+        .box1 li {
+            width: 296px;
+            height: 285px;
+            margin-right: 14px;
+            background-color: yellow;
+            float: left;
+        }
+
+        .box1 .last {
+            /* 使用.box提高权重 */
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="foaltdivl">盒子1</div>
+    <div class="foaltdivr">盒子3</div>
+    <div class="foaltdiv">盒子2</div>
+
+
+    <ul class="box1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class="last">4</li>
+    </ul>
+
+    <div class="box">
+        <div class="left">做盒子</div>
+        <div class="right">有盒子</div>
+    </div>
+
+    <span>1hao</span>
+    <span>1hao</span>
+    <p>pppppppppppppppp</p>
+</body>
+
+</html>

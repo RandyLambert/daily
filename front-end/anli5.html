@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五彩导航</title>
+</head>
+<style>
+    .nav a {
+        display: inline-block;
+        height: 58px;
+        width: 120px;
+        text-align: center;
+        color: #fff;
+        line-height: 58px;
+        text-decoration: none;
+
+    }
+
+    .nav .bg1 {
+        background: url(wangye.png) no-repeat;
+    }
+
+    .nav .bg1:hover {
+        background-image: url(wangye.png);
+        /* 其他同上 */
+    }
+
+    div {
+        color: red;
+        font-size: 12px;
+    }
+
+    .test {
+        color: red;
+    }
+
+    div {
+        color: pink !important;
+        /* 层叠性:如果两个相同,则覆盖掉了,但是只覆盖相同的地方 */
+
+        /* 继承性:孩子可以继承父亲的特性(text-,font-,line-这些元素开头继承,以及color属性)*/
+        /* 子元素可 */
+        /* 选择期的权重,继承或者*<元素选择器<类选择器<伪类选择器<id选择器<行内演示style=""<!important 重要的 */
+        /* 注意:继承的权重为0,权重可以叠加但是永远不会进位 */
+    }
+
+    #demo {
+        color: green;
+    }
+
+    /* 复合选择器有权重的叠加问题 */
+    /* ul li权重0,0,0,1 + 0,0,0,1 = 0,0,0,2 */
+    ul li {
+        color: green;
+    }
+
+    /* li的权重是0,0,0,1 */
+    li {
+        color: red;
+    }
+
+    /* 权重的叠加 0,0,1,0 + 0,0,0,1 = 0,0,1,1 11 */
+    .nav li {
+        color: pink;
+    }
+</style>
+
+<body>
+    <div class="nav">
+        <a href="#" class="bg1">五彩导航</a>
+        <a href="#" class="test" id="demo" style="color :indianred">五彩导航</a>
+        <a href="#" class="bg3">五彩导航</a>
+        <a href="#" class="bg4">五彩导航</a>
+        <a href="#" class="bg5">五彩导航</a>
+    </div>
+    <ul class="nav">
+        <li>主题</li>
+        <li>达到</li>
+        <li>设定</li>
+    </ul>
+</body>
+
+</html>

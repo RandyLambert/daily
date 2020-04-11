@@ -111,6 +111,36 @@
             /* 使用.box提高权重 */
             margin-right: 0;
         }
+
+        /* 父亲高度不定的时候,可以通过额外标签法,是最后一个浮动清除,是父亲高度由子类决定,实现闭合浮动 */
+        /* 方法2,通过给父元素添加overflow属性 */
+        .box2 {
+            overflow: hidden;
+            width: 800px;
+            border: 1px solid blue;
+            margin: 0 auto;
+        }
+
+        .damao {
+            float: left;
+            width: 300px;
+            height: 200px;
+            background-color: purple;
+        }
+
+        .ermao {
+            float: left;
+            width: 300px;
+            height: 200px;
+            background-color: purple;
+        }
+
+        .sanmao {
+            float: left;
+            width: 300px;
+            height: 200px;
+            background-color: purple;
+        }
     </style>
 </head>
 
@@ -135,6 +165,12 @@
     <span>1hao</span>
     <span>1hao</span>
     <p>pppppppppppppppp</p>
+
+    <div class="box2">
+        <div class="damao">damao</div>
+        <div class="ermao">ermao</div>
+        <div class="sanmao">sanmao</div>
+    </div>
 </body>
 
 </html>

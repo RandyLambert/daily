@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string</title>
+</head>
+
+<body>
+    <p id="demo">0</p>
+    <p id="demo1">1</p>
+    <p id="demo2">2</p>
+    <p> typeof 操作符返回变量或表达式的类型。</p>
+    <p id="demo3"></p>
+    <p> constructor 属性返回变量或对象的构造函数。</p>
+    <p id="demo4"></p>
+    <p> typeof 操作符返回变量、对象、函数、表达式的类型。</p>
+    <p id="demo5"></p>
+    <p>判断是否为数组。</p>
+    <p id="demo6"></p>
+
+    <p>替换 "microsoft" 为 "Runoob" :</p>
+    <button onclick="myFunction()">点我</button>
+    <p id="demo7">Visit Microsoft!</p>
+    <script>
+        /* 字符串可以是对象
+        通常， JavaScript 字符串是原始值，可以使用字符创建： var firstName = "John"
+        但我们也可以使用 new 关键字将字符串定义为一个对象： var firstName = new String("John")
+        不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用：
+        */
+        var x = "John";
+        var y = new String("John");
+        typeof x; // 返回 String
+        typeof y; // 返回 Object
+        //x.charAt(2);
+        //"john".charAt(2);
+        document.getElementById('demo').innerHTML = (x === y); // 结果为 false，因为 x 是字符串，y 是对象
+        document.getElementById('demo1').innerHTML = x.charAt(2);
+        document.getElementById('demo2').innerHTML = ("john".charAt(2));
+
+        /*label:
+        statements
+        JavaScript 标签
+        正如您在 switch 语句那一章中看到的，可以对 JavaScript 语句进行标记。
+        如需标记 JavaScript 语句，请在语句之前加上冒号： */
+        /*         break labelname; 
+        continue labelname;
+        continue 语句（带有或不带标签引用）只能用在循环中。
+        break 语句（不带标签引用），只能用在循环或 switch 中。
+        通过标签引用，break 语句可用于跳出任何 JavaScript 代码块：
+         */
+        cars = ["BMW", "Volvo", "Saab", "Ford"];
+        list: {
+            document.write(cars[0] + "<br>");
+            document.write(cars[1] + "<br>");
+            document.write(cars[2] + "<br>");
+            break list;
+            document.write(cars[3] + "<br>");
+            document.write(cars[4] + "<br>");
+            document.write(cars[5] + "<br>");
+        }
+
+        // 在JavaScript中，数组是一种特殊的对象类型。 因此 typeof [1,2,3,4] 返回 object。
+        document.getElementById("demo3").innerHTML =
+            typeof "john" + "<br>" +
+            typeof 3.14 + "<br>" +
+            typeof false + "<br>" +
+            typeof [1, 2, 3, 4] + "<br>" +
+            typeof {
+                name: 'john',
+                age: 34
+            };
+        // null 和 undefined 的值相等，但类型不等：
+        typeof undefined // undefined
+        typeof null // object
+        null === undefined // false
+        null == undefined // true
+
+
+
+        document.getElementById("demo5").innerHTML =
+            typeof "john" + "<br>" +
+            typeof 3.14 + "<br>" +
+            typeof NaN + "<br>" +
+            typeof false + "<br>" +
+            typeof [1, 2, 3, 4] + "<br>" +
+            typeof {
+                name: 'john',
+                age: 34
+            } + "<br>" +
+            typeof new Date() + "<br>" +
+            typeof
+
+        function () {} + "<br>" +
+        typeof myCar + "<br>" +
+            typeof null;
+
+        document.getElementById("demo4").innerHTML =
+            "john".constructor + "<br>" +
+            (3.14).constructor + "<br>" +
+            false.constructor + "<br>" + [1, 2, 3, 4].constructor + "<br>" + {
+                name: 'john',
+                age: 34
+            }.constructor + "<br>" +
+            new Date().constructor + "<br>" +
+            function () {}.constructor;
+
+
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        document.getElementById("demo6").innerHTML = isArray(fruits);
+
+        function isArray(myArray) {
+            return myArray.constructor.toString().indexOf("Array") > -1;
+        }
+
+        var str = "visit Runoob!";
+        var n1 = str.search(/runoob/i);
+        // 使用正则表达式搜索 "Runoob" 字符串，且不区分大小写：n=6
+        var n2 = str.search("Runoob");
+        // search 方法可使用字符串作为参数。字符串参数会转换为正则表达式
+
+        function myFunction() {
+            var str = document.getElementById('demo7').innerHTML;
+            var txt = str.replace(/microsoft/i, "Runoob");
+            document.getElementById('demo7').innerHTML = txt;
+        }
+    </script>
+    <!-- <button type="button" onclick="document.getElementById('demo').innerHTML(x === y)">按钮1</button>
+    <button type="button" onclick="document.getElementById('demo1').innerHTML(x.charAt(2))">按钮2</button>
+    <button type="button" onclick="document.getElementById('demo2').innerHTML('john'.charAt(2))">按钮3</button> -->
+</body>
+
+</html>

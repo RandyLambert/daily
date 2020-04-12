@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js对象</title>
+</head>
+
+<body>
+    <p>创建 js 对象</p>
+    <P id="demo"></P>
+    <P id="demo1"></P>
+    <P id="demo2"></P>
+    <script>
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColoe: "blue",
+            fullName: function () {
+                return this.firstName + " " +
+                    this['lastName'];
+            }
+            // 创建和使用对象方法。
+            // 对象方法作为一个函数定义储存在对象属性中
+        };
+        document.getElementById("demo").innerHTML = person.firstName + " now " + person['age'] + "岁了";
+        document.getElementById("demo1").innerHTML = "全名是" + person.fullName;
+        document.getElementById("demo2").innerHTML = "全名是" + person.fullName();
+        // 对象方法是一个函数定义,并作为一个属性值存储
+        // 不加括号输出函数表达式：function() { return this.firstName + " " + this.lastName; }
+        // 加括号输出函数执行结果：John Doe 
+
+        var var1 = 1; // 不可配置全局属性
+        var2 = 2; // 没有使用 var 声明，可配置全局属性
+
+        console.log(this.var1); // 1
+        console.log(window.var1); // 1
+
+        delete var1; // false 无法删除
+        console.log(var1); //1
+
+        delete var2;
+        console.log(delete var2); // true
+        console.log(var2); // 已经删除 报错变量未定义
+
+        var carName = " Volvo";
+
+        // 此处可调用 carName 变量
+        function myFunction() {
+            // 函数内可调用 carName 变量
+        }
+
+        // 此处不能调用 carName 变量
+        function myFunction() {
+            var carName = "Volvo";
+            // 函数内可调用 carName 变量
+        }
+
+        // 如果变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。
+        // 以下实例中 carName 在函数内，但是为全局变量。
+        // 此处可调用 carName 变量
+
+        function myFunction() {
+            carName = "Volvo";
+            // 此处可调用 carName 变量
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js事件</title>
+</head>
+
+<body>
+    <p id="demo">出现时间</p>
+    <p id="demo1">出现时间1</p>
+    <button onclick="getElementById('demo').innerHTML=Date()">现在的时间是?</button>
+    <!-- 以上实例中，JavaScript 代码将修改 id="demo" 元素的内容。
+在下一个实例中，代码将修改自身元素的内容 (使用 this.innerHTML): -->
+    <button onclick="this.innerHTML=Date()">现在的时间是?</button>
+    <p>点击按钮执行 <em>displayDate()</em> 函数.</p>
+    <button onclick="displayDate()">点这里</button>
+    <!-- JavaScript代码通常是几行代码。比较常见的是通过事件属性来调用： -->
+    <script>
+        function displayDate() {
+            document.getElementById("demo1").innerHTML = Date();
+        }
+    </script>
+</body>
+
+</html>

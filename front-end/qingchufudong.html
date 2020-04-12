@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除浮动</title>
+</head>
+<style>
+    .clearfix::after {
+        /* after伪元素法 */
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        /* 额外标签法的升级版,相当于在符合自最后在加了一个新盒子 */
+    }
+
+
+    .clearfixdouble::after {
+        /* 双伪元素清除浮动 */
+        /* 代码更简洁 */
+        content: "";
+        display: table;
+    }
+
+    .clearfixdouble::after {
+        clear: both;
+    }
+
+    .clearfix {
+        *zoom: 1;
+        /* 兼容低版本 */
+    }
+
+    .box {
+        width: 800px;
+        border: 1pxsolid blue;
+        margin: 0 auto;
+    }
+
+    .son {
+        float: left;
+        height: 100px;
+    }
+</style>
+
+<body>
+
+    <div class="box clearfix">
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>

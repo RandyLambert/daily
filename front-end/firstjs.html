@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识javascript</title>
+    <script>
+        // 内嵌式的js
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+
+        prompt("请输入你的年龄");
+        // 浏览器弹出输入狂,用户可以输入
+        window.alert("计算的结果是");
+        // 浏览器弹出警示框
+        console.log("ddda");
+        // 浏览器控制台打印输出信息
+
+        document.write('<h1>我的第一个javascript程序</h1>');
+        document.write('这是一\
+        个段落'); //折行
+    </script>
+</head>
+
+<body>
+    <!-- 行内的js -->
+    <p id="demo">这是一个段落,行内是的js,直接写到元素的内部</p>
+    <input type="button" value="哈哈哈哈" onclick="window.alert('hhhh')">
+    <button type="button" onclick="displayDate()">显示日期</button>
+
+    <!-- 外部js写法,双标签,html推荐双引号,js推荐单引号,script中间不能写字 -->
+    <script src="my.js"></script>
+</body>
+
+</html>

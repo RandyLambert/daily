@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trycatch</title>
+</head>
+<script>
+    var txt = "";
+
+    function message() {
+        try {
+            addlert("welcone guest!");
+        } catch (err) {
+            txt = "本页有一个问题\n\n";
+            txt += "错误描述" + err.message + "\n\n";
+            txt += "点击确认继续.\n\n";
+            alert(txt);
+        }
+    }
+
+    function myFunction() {
+        var message, x;
+        message = document.getElementById("p01");
+        message.innerHTML = "";
+        x = document.getElementById("demo").value;
+        try {
+            if (x == "") throw "值是空的";
+            if (isNaN(x)) throw "值不是一个数字";
+            x = Number(x);
+            if (x > 10) throw "太大";
+            if (x < 5) throw "太小";
+        } catch (err) {
+            message.innerHTML = "错误: " + err + ".";
+        } finally {
+            document.getElementById("demo").value = "";
+        }
+    }
+</script>
+
+<body>
+    <p>无论输入是否正确都会在输入结束后清空文本框</p>
+    <p>请输入5-10之间的数字</p>
+    <p id="p01"></p>
+    <input type="text" id="demo"></input>
+    <button type="button" onclick="myFunction()">输入</button><br>
+    <input type="button" value="查看消息" onclick="message()" />
+</body>
+
+</html>

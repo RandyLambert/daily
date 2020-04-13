@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+</head>
+<script>
+    // 严格模式下的要求
+    // 1.在严格模式下的全局作用域中的函数中的this是undefined的,非严格模式指向的是window
+    // 2.我们不能随便删除已经声明好的变量
+    // 3.严格模式下的全局作用域中函数中的this是underfined.
+    // 4.严格模式下,如果构造函数不加new调用,this会报错
+    // 5.new实例化的构造函数指向创建的对象实例
+    // 6.定时器this还是指向window
+    // 7.事件,对象还是指向调用者
+    // 8.严格模式下不能两个参数是一个名字
+    //函数的2中声明方式
+    //1.利用函数的关键字自定义函数(命名函数)
+    // 'use strict'
+
+    function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+        this.sex1 = 'nan';
+    }
+
+    fn(1, 2);
+    console.log(window.sex1);
+    var o = {
+        name: 'aaa'
+    };
+    var fnx = fn.bind(o, 1, 2);
+    fnx();
+    //1. 不会调用原来的函数  可以改变原来函数内部的this 指向
+    //2. 返回的是原函数改变this之后产生的新函数
+    //3. 如果有的函数我们不需要立即调用,邮箱改变这个函数内部的this指向,此时使用bind
+    //4. 我们有一个按钮,当我们点击了之后,就禁用这个按钮,3秒钟之后开启这个按钮
+    //5. new实例化的构造函数指向创建的对象实例
+
+    //fn.call(this, 1, 2); 第一个参数肯定要传this
+    /*var btn = document.querySelector('button');
+        btn.onclick = function () {
+            this.disabled = true; //这个this指向的是btn这个按钮
+            setTimeout(function () {
+                this.disabled = false; //定时器函数里面的this 指向的是window
+            }.bind(this), 3000); //这个this指向的的是btn函数
+        } */
+
+    //2.函数表达式(匿名函数)
+    //var 变量名 = function(){}
+    var fun = function () {
+        console.log("我是函数表达式");
+        console.log(this);
+    }
+    fun();
+    fun.call();
+    //(1) fun是变量名 不是函数名
+    //(2) 函数表达是什么的方式声明的变量差不多,只不过变量里存的是值,而函数表达式里存到是函数
+    //(3) 函数表达式是也可以传递参数
+
+    //3.利用new function('参数1','参数2','函数体')和构造函数
+    var f1 = new Function('console.log(this)'); //没有参数
+    f1();
+    //这种定义函数的方法不常用,f1,f2是对象
+    var f2 = new Function('a', 'b', 'console.log(a+b)'); //两个参数
+    f2(1, 2);
+
+    function star() {};
+    var temp = new star(); //这里的this是该函数对象的this,打印是undefined
+    console.log(temp.this);
+
+    function Father(uname, age, sex) {
+        this.uname = uname;
+        this.age = age;
+        this.sex = sex;
+    }
+    //call第一个功能可以实现调用函数,第二个功能是可以改变函数内的this指向
+    //call的主要作用是可以实现继承
+    //apply是传递数组进去
+    //apply的主要应用,比如可以利用apply借助于数学的内置对象求最大值
+    // Math.max();
+    var arr = [1, 2, 345, 2, 23];
+    var max = Math.max.apply(Math, arr);
+    console.log(max);
+
+    function Son(uname, age, sex) {
+        Father.call(this, uname, age, sex);
+    }
+
+    var son = new Son('ss', 1, 'w');
+    console.log(son);
+
+
+
+    //4. 所有的函数都是 Function 的实例(对象)
+    console.log(f1 instanceof Object);
+    console.log(fn instanceof Object);
+    console.log(fun instanceof Object);
+
+
+    //高阶函数,是对其他函数进行操作的函数,他接受函数作为参数获奖函数作为返回值输出
+    function fnn(a, b, callback) {
+        console.log(a + b);
+        callback && callback();
+    }
+    fnn(1, 2, function () {
+        console.log('最后调用的')
+    });
+
+    //闭包(closure) 值有权方位另一个函数作用与中的变量的函数
+    //闭包:我们funn这个函数作用域  访问了另一个函数fn里面的局部变量num
+    //闭包的主要作用:延伸了变量的作用范围
+    function fnnn() {
+        var num = 10;
+
+        function funn() { //称为闭包函数
+            console.log(num);
+        }
+        funn();
+    }
+    fnnn();
+
+    function fnnnn() {
+        var num = 10;
+        return function () {
+            console.log(num);
+        }
+    }
+
+    var xx = fnnnn(); //闭包
+</script>
+
+<body>
+    <button>点击</button>
+    <p>立即执行函数,函数可以自动调用:</p>
+    <p id="demo"></p>
+    <script>
+        (function () {
+            console.log('ddd');
+        })();
+        // 自调用函数
+        // 函数表达式可以 "自调用"。
+        // 自调用表达式会自动调用。
+        // 如果表达式后面紧跟 () ，则会自动调用。
+        // 不能自调用声明的函数。
+        // 通过添加括号，来说明它是一个函数表达式： 
+        (function () {
+            document.getElementById("demo").innerHTML = "hello!我自己调用我自己";
+        })();
+    </script>
+    <p>查找最大的数。</p>
+    <p id="demo1"></p>
+    <script>
+        x = findMax(1, 123, 500, 115, 44, 88);
+
+        function findMax() {
+            var i, max = arguments[0];
+
+            if (arguments.length < 2) return max;
+
+            for (i = 0; i < arguments.length; i++) {
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        document.getElementById("demo1").innerHTML = x;
+    </script>
+
+
+
+    <p id="demo2"></p>
+
+    <script>
+        var myObject;
+
+        function myFunction(a, b) {
+            return a * b;
+        }
+        myObject = myFunction.call(myObject, 10, 2); // 返回 20
+        document.getElementById("demo2").innerHTML = myObject;
+    </script>
+
+
+    <p id="demo3"></p>
+
+    <script>
+        var myObject, myArray;
+
+        function myFunction(a, b) {
+            return a * b;
+        }
+        myArray = [10, 2]
+        myObject = myFunction.apply(myObject, myArray); // 返回 20
+        document.getElementById("demo3").innerHTML = myObject;
+    </script>
+
+    <p>局部变量计数。</p>
+    <button type="button" onclick="myFunction()">计数!</button>
+    <p id="demo">0</p>
+    <script>
+        var add = (function () {
+            var counter = 0;
+            return function () {
+                return counter += 1;
+            }
+        })();
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = add();
+        }
+    </script>
+    <!-- javascript闭包 变量 add 指定了函数自我调用的返回字值。
+    自我调用函数只执行一次。设置计数器为 0。并返回函数表达式。
+    add变量可以作为一个函数使用。非常棒的部分是它可以访问函数上一层作用域的计数器。
+    这个叫作 JavaScript 闭包。它使得函数拥有私有变量变成可能。
+    计数器受匿名函数的作用域保护，只能通过 add 方法修改。 -->
+
+
+</body>
+
+</html>

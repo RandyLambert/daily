@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js表单,关键字写法</title>
+</head>
+<script>
+    function validateForm() {
+        var x = document.forms["myForm"]["fname"].value;
+        if (x == null || x == "") {
+            alert("需要输入名字.");
+            return false;
+        }
+    }
+</script>
+
+<body>
+    <form name="myForm" action="demo_form.php" onsubmit="return validateForm()" method="post">
+        名字:<input type="text" name="fname">
+        <input type="submit" value="提交">
+    </form>
+
+    <form action="demo_form.php" method="post">
+        <input type="text" name="fname" required="required">
+        <input type="submit" value="提交">
+        <p>点击提交按钮,如果输入框是空的,浏览器会提示错误信息</p>
+        <!-- HTML 表单验证也可以通过浏览器来自动完成。
+        如果表单字段 (fname) 的值为空, required 属性会阻止表单提交： -->
+        <h2>javascript<b>this</b>关键字</h2>
+        <button onclick="this.style.display='none'">点我消失</button>
+    </form>
+</body>
+
+</html>

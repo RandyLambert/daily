@@ -72,8 +72,8 @@
                 age: 34
             };
         // null 和 undefined 的值相等，但类型不等：
-        typeof undefined // undefined
-        typeof null // object
+        typeof undefined // undefined,是一个类
+        typeof null // object,是一个对象
         null === undefined // false
         null == undefined // true
 
@@ -125,6 +125,18 @@
             var txt = str.replace(/microsoft/i, "Runoob");
             document.getElementById('demo7').innerHTML = txt;
         }
+
+        function f1() {
+            return !this;
+        }
+        // 返回false，因为"this"指向全局对象，"!this"就是false
+
+        function f2() {
+            // "use strict" 指令只允许出现在脚本或函数的开头。
+            "use strict";
+            return !this;
+        }
+        // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。
     </script>
     <!-- <button type="button" onclick="document.getElementById('demo').innerHTML(x === y)">按钮1</button>
     <button type="button" onclick="document.getElementById('demo1').innerHTML(x.charAt(2))">按钮2</button>

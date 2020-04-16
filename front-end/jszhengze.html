@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通配符</title>
+</head>
+
+<body>
+    <script>
+        //边界符 ^ $
+        var rg = /abc/; //这则表达式里面不需要加引号  不管是数字行的还是字符串型
+        // /abc/ 只要保健有abc之歌字符串返回的都是true
+        console.log(rg.test('abc'));
+        console.log(rg.test('abcd'));
+        console.log(rg.test('aabcd'));
+        console.log('--------------------------')
+        var reg = /^abc/; //以abc开头的
+        console.log(reg.test('abc'));
+        console.log(reg.test('abcd'));
+        console.log(reg.test('aabcd'));
+        console.log('--------------------------')
+        var reg1 = /^abc$/; //精确匹配,要求必须是abc字符传才符合规范
+        console.log(reg1.test('abc'));
+        console.log(reg1.test('abcd'));
+        console.log(reg1.test('aabcd'));
+        console.log('--------------------------')
+
+
+        //字符类:[]表示有一系列字符可供选择,只要符合其中的一个就可以了
+        var reg2 = /[abc]/; //只要包含有a或者b或者c都返回为true
+        console.log(reg2.test('abdd'));
+        var reg3 = /[a-z]/;
+        var reg4 = /[A-Z]/;
+        var reg5 = /[a-zA-Z1-9]/;
+        var reg6 = /[A-Za-z0-9_-]/; //暂时限定只能一个字符
+        var reg6 = /[A-Za-z0-9_-]{6,16}/; //前面的符合可以出现6-16次
+        console.log(reg6.test('a'));
+        console.log(reg6.test('A'));
+        console.log(reg6.test('-'));
+        console.log('--------------------------')
+
+        var reg6 = /^[^A-Za-z0-9_-]/; //第一个^表示的是开始符,第二个^是说不能包含[]里的内容,表示取反.
+        // *相当于>=0可以出现0次或者很多次
+        //var reg /^a*$/;
+        //console.log(reg.test(''));
+        //console.log(reg.test('a'));
+        //console.log(reg.test('aaaa'));
+
+        // +相当于>=1可以出现0次或者很多次
+        //var reg /^a+$/;
+        //console.log(reg.test('a'));
+        //console.log(reg.test('aaaa'));
+
+        // ?相当于可以出现0次或者1次
+        //var reg /^a?$/;
+        //console.log(reg.test(''));
+        //console.log(reg.test('a'));
+
+        // {3}相当于只能出现3次
+        //var reg /^a{3}$/;
+        //console.log(reg.test('aaa'));
+
+        // {3,}相当于大于等于3次
+        //var reg /^a{3,}$/;
+        //console.log(reg.test('aaaa'));
+
+        // {3,16}相当于可以出现大于等于3次,小于等于16次
+        //var reg /^a{3}$/;
+        //console.log(reg.test('aaa'));
+        //console.log(reg.test('aaaaaaaaaaaaaaaa'));
+
+        //小括号 表示优先级
+        var reg8 = /^abc{3}$/; //他是让c重复三次
+        var reg9 = /^(abc){3}$/; //他是让abc重复三次
+
+        //预定义类,常见的简写模板
+        //var reg10 = /^\d$/;   //匹配0-9之间的任意数字[0-9]
+        //var reg10 = /^\D$/;   //匹配0-9之外的字符[^0-9]
+        //var reg10 = /^\dw$/;  //匹配任意的字母数字下滑线[a-za-z0-9_]
+        //var reg10 = /^\W$/;   //上面区非
+        //var reg10 = /^\s$/;   //匹配空格[\t\r\n\v\f]
+        //var reg10 = /^\S$/;   //上面取反
+    </script>
+
+</body>
+
+</html>

@@ -13,6 +13,54 @@
     <P id="demo1"></P>
     <P id="demo2"></P>
     <script>
+        //javascript中的对象分为3种:自定义对象,内置对象,浏览器对象
+        //前面两种对象是js基础内容,属于ECMAScript;第三个是浏览器对象属于我们js独有的,我们js api主要使用
+        //内置对象就是值js语言自带的一些对象,这些对象供开发者使用,并提供了一些常用的或是最基本而必要的功能(属性和方法)
+        //内置对象最呆的优点是帮助开发
+        //js提供了math,date,array,string等
+
+        // Math数学对象  不是一个构造函数,所以不需要new来调用 而是直接使用里面的属性和方法即可
+        console.log(Math.PI);
+        console.log(Math.max(1, 2, 3, 4, 56, 67, 77, 8, 89, 9, 9, 944, 0));
+        console.log(Math.max()); //-Infinity
+        console.log(Math.max(1, "d")); //naN
+
+        //Date() 日期对象 是一个构造函数 必须使用new 来调用创建我们的日期对象
+        //var arr = new Array(); //创建一个数组对象
+        //var obj = new Object(); //创建了一个对象实例
+        //1. 使用Date 如果没有参数返回当前系统的时间
+        var date = new Date();
+
+        var arr = [1, 2, 3];
+        var arr1 = new Array(); //创建了一个新数组
+        var arr2 = new Array(2); //创建了一个新数组,有两个空元素
+        var arr3 = new Array(1, 2, 3); //和字面量一样
+        //检测是否为数组
+        //(1) instanceof 运算符 他可以用来检测是否为数组
+        //arr instanceof Array;
+        //或者使用Array.isArray();
+        //天剑删除数组元素的方法push(1,2,4),一次可多个,返回值是数组的大小
+        //往数组前面添加元素unshift(1,2,3),同上
+
+        //pop() 他可以删除最后一个元素
+        //arr.pop();一次只能删除一个元素,返回值是删除的元素
+        //arr.shift();同上,删除第一个
+        arr.indexOf(1); //返回1的数组索引号,只返回第一个能找到的索引号,找不到返回-1,可以封装一个去重的函数
+        //sort需要自己写比较函数
+        //arr.tostring()转换为字符串,以逗号分割
+        //arr.join('-')还能加分割符
+
+        var muMath = {
+            PI: 3.1415926,
+            max: function () {
+                var max = arguments[0];
+                for (let i = 0; arguments.length; i++) {
+                    if (max < arguments[i])
+                        max = key;
+                }
+                return max;
+            }
+        }
         var person = {
             firstName: "John",
             lastName: "Doe",

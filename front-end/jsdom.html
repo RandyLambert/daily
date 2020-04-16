@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="time">2019-9-9</div>
+    <ul>
+        <li>hhhhhhhhhhh</li>
+        <li>hhhhhhhhhhh</li>
+        <li>hhhhhhhhhhh</li>
+        <li>hhhhhhhhhhh</li>
+        <li>hhhhhhhhhhh</li>
+    </ul>
+    <ul id="nav">
+        <li>ddddd</li>
+        <li>ddddd</li>
+        <li>ddddd</li>
+        <li>ddddd</li>
+        <li>ddddd</li>
+    </ul>
+
+    <div class="box">盒子1</div>
+    <script>
+        //1.因为我们文档页面从上往下加载,所以得现有标签,所以我们script写到标签的下面
+        //2.get获得 element 元素 by 通过驼峰法命名
+        //3.参数 id是大小写敏感的字符串
+        //4.返回一个匹配到id的dom element对象,若在当前的document下没有找到,则返回null
+        var timer = document.getElementById('time');
+        console.log(timer);
+        console.log(typeof timer);
+        //5.打印我们的返回对象 更好的查看里面的属性和方法
+        console.dir(timer);
+        var lis = document.getElementsByTagName('li');
+        //1.返回的是获取过来元素对象的集合 以伪数组的形式存储的
+        //2.我们想要依次打印里面的元素对象可以通过遍历的方式,而且相当于得到的是引用,元素改变后都会改变
+        for (let i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        }
+
+        //3.element.getelementsbytagname()可以得到这个元素里面的某些标签
+        var nav = document.getElementById('nav'); //获得nav元素
+        var navLis = nav.getElementsByTagName('li');
+        console.log(navLis);
+
+        //1.getELEMENTSbyclassname 根据类名获得一些元素的集合
+        var boxs = document.getElementsByClassName('box');
+        console.log(boxs);
+        //2.queryselector 返回指定选择器的第一个元素对象  切记  里面的选择器需要加符号  .box#nav
+        var firstbox = document.querySelector('.box');
+        console.log(firstbox);
+
+        var nav1 = document.querySelector('#nav');
+        console.log(nav);
+
+        var li = document.querySelector('li');
+        console.log(li);
+
+        //3.queryselectorall()返回指定选择器的所有元素对象集合
+        var allBox = document.querySelectorAll('.box');
+        console.log(allBox);
+
+        //获取body元素
+        var bodyEle = document.body;
+        console.log(bodyEle);
+        console.dir(bodyEle);
+        //2.获取html
+        var htmEle = document.documentElement;
+        console.log(htmEle);
+    </script>
+
+</body>
+
+</html>

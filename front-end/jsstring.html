@@ -24,6 +24,24 @@
     <button onclick="myFunction()">点我</button>
     <p id="demo7">Visit Microsoft!</p>
     <script>
+        var strx = 'andy';
+        console.log(str.length);
+        // 对象 才有 属性 和方法 复杂数据类型才有 属性和方法
+        // 简单数据类型为什么会有length属性呢?
+        // 基本包装类型: 就是把简单数据类型包装成为了 复杂数据类型
+        //(1) 把简单数据类型包装为复杂数据类型
+        var temp = new String('andy'); //加了new变成了复杂数据类型
+        //(2) 把临时变量的值 给 str
+        str = temp;
+        //(3) 销毁了这个临时变量
+        temp = null;
+        //(4) 字符串是不可改变的,重新赋值,之前的值没有删去依旧存在,所以不要进行大量的拼接字符串
+        str.indexOf('a'); //返回位置
+        str.indexOf('a', 2); //从2以后进行查找
+        str.charAt(1); //根据位置返回字符
+        str[2] = 'b';
+        str.charCodeAt(index); //返回相应索引好的ascall码值
+
         /* 字符串可以是对象
         通常， JavaScript 字符串是原始值，可以使用字符创建： var firstName = "John"
         但我们也可以使用 new 关键字将字符串定义为一个对象： var firstName = new String("John")
@@ -137,6 +155,23 @@
             return !this;
         }
         // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。
+
+        //字符串操作方法
+        //1.concat连接字符串
+        var str = 'andy';
+        console.log(str.concat('red', "dd"));
+
+        //2.substr截取字符串,substr('截取的起始位置','截取几个字符');
+        var str1 = '改革春风吹满地';
+        console.log(str1.substr(2, 2)); //第一个是索引号的2,第二个时间取几个字符
+
+        //3.替换字符 replace('被替换的字符','替换为的字符') 他只会替换对一个字符
+        var stry = 'andyandy';
+        console.log(stry.replace('a', 'b'));
+
+        //4. 字符串转换为数组split('分割符') 前面学过join把数组转换为了字符串
+        var strz = 'aaa,sss,ffff,sda,asfa,faf';
+        console.log(strz.split(',')); //返回值是以,分割的数组
     </script>
     <!-- <button type="button" onclick="document.getElementById('demo').innerHTML(x === y)">按钮1</button>
     <button type="button" onclick="document.getElementById('demo1').innerHTML(x.charAt(2))">按钮2</button>

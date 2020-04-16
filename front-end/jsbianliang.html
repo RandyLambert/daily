@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let const var</title>
+</head>
+
+<body>
+    <script>
+        console.log(a); // ais no defined
+        let a = 20; //不存在变量提升
+        var b = 20;
+        // 暂时性死区
+        // (function () {
+        //     console.log(b); //未定义,因为在这里绑定了b
+        //     let b = 20;
+        // })();
+
+        //使用const关键字有块级作用域
+        if (true) {
+            const c = 1;
+            while (true) {
+                const c = 2;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

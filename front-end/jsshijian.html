@@ -18,8 +18,22 @@
     <button onclick="displayDate()">点这里</button>
     <!-- JavaScript代码通常是几行代码。比较常见的是通过事件属性来调用： -->
     <script>
+        //点击一个按钮,弹出对话框
+        //1.时间有三部分组成   事件源 事件类型 事件处理程序  事件三要素
+        //(1) 事件源 时间被触发的对象   谁 按钮
+        var btn = document.getElementById('btn');
+        //(2) 事件类型 如何触发 什么事件 比如鼠标点击(onclick) 还是鼠标经过,还是键盘按下
+        //(3) 事件处理程序 通过函数赋值的方式完成
+        btn.onclick = function () {
+            alert('sss');
+        }
+
         function displayDate() {
+            // innerText 和innerHTML的区别
+            //1. innerText 不识别html标签,直接把标签打印了,还会去掉空格和换行
+            //2. innerHTML 识别html标签,保留空格话换行,常用
             document.getElementById("demo1").innerHTML = Date();
+            // document.getElementById("demo1").innerText = Date();
         }
     </script>
 </body>

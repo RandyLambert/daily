@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+    <script>
+        var str = new String('ssss');
+        var num = new Number(10); //简单数据类型,即使使用了new,传参依旧以值传递
+        fu = function (x, y) {
+            x = 'ddddddd';
+            y = 1000;
+            console.log(x);
+            console.log(y);
+        }
+        fu(str, num);
+        console.log(str);
+        console.log(num);
+    </script>
+
+</body>
+
+</html>

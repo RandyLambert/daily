@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码框</title>
+</head>
+<style>
+    .box {
+        position: relative;
+        width: 400px;
+        border-bottom: 1px solid #cccccc;
+        margin: 100px auto;
+    }
+
+    .box input {
+        width: 370px;
+        height: 30px;
+        border: 0;
+        outline: none;
+    }
+
+    .box img {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        width: 24px;
+    }
+</style>
+
+<body>
+    <button id="but">点我</button>
+    <div class="box">
+        <label for="">
+            <input type="password" name="" id="pwd">
+        </label>
+    </div>
+
+    <script>
+        //1.获取元素
+        var pwd = document.getElementById('pwd');
+        var but = document.getElementById('but');
+        //2.注册事件 处理程序
+        var flag = 0;
+        but.onclick = function () {
+            if (flag == 0) {
+                flag = 1;
+                pwd.type = 'text';
+            } else {
+                flag = 0;
+                pwd.type = 'password';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

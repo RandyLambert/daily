@@ -11,15 +11,28 @@
     <script>
         var str = new String('ssss');
         var num = new Number(10); //简单数据类型,即使使用了new,传参依旧以值传递
-        fu = function (x, y) {
+        console.log(typeof str);
+        console.log(typeof num);
+        var str1 = "dddd";
+        console.log(typeof str1);
+        console.log(str1);
+        var arr = new Array(4);
+        arr[0] = 10;
+        arr[1] = 1000;
+        fu = function (x, y, z) {
             x = 'ddddddd';
             y = 1000;
+            z[0] = 100;
             console.log(x);
             console.log(y);
+            console.log(z);
+            console.log(typeof x);
+            console.log(typeof z);
         }
-        fu(str, num);
+        fu(str, num, arr);
         console.log(str);
         console.log(num);
+        console.log(arr);
     </script>
 
 </body>

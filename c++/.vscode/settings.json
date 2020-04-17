@@ -2,6 +2,7 @@
     "files.associations": {
         "*.tcc": "cpp",
         "memory_resource": "cpp",
-        "scoped_allocator": "cpp"
+        "scoped_allocator": "cpp",
+        "ostream": "cpp"
     }
 }

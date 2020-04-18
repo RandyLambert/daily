@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学成在线首页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 页面的整体布局思路
+    为了提高网页的制作效率,布局时通常有以下的整体思路:
+    1.必须确定页面的版心(可视区),我们测量可知
+    2.分析页面的行模快,以及每个行模块中的列模块,其实页面布局第一准则
+    3.一行中的列模块经常浮动布局,先确定每个列的大小,之后确定列的位置,页面布局第二准则
+    4.制作HTML结构,我们还是樽雪,现有结构,后又样式的原则,结构永远最重要 
+    5.所以,先理清页面布局,在写代码尤为重要,这需要没我们多写多积累
+    -->
+    <div class="w header">
+        <div class="logo">
+            <img src="image/java.png" alt="无" class="logoimg">
+            <!-- 实际开发中,我们不会直接用链接a 而是用li 包括连接(li+a)的做法
+            1.li+a语义更清晰,一看就是有条理的列表型内容
+            2.如果直接用a,搜索引擎容易辨别为有堆砌关键字现已(故意堆砌关键字容易被搜索引擎有降权的风险),从而影响网站的排名 -->
+            <!-- 导航栏 -->
+        </div>
+        <div class="nav">
+            <ul>
+                <!-- li是块级元素,所以个li加浮动 -->
+                <li><a href="#" class="aclour">首页</a></li>
+                <li><a href="#" class="aclour">课程</a></li>
+                <li><a href="#" class="aclour">职业规划</a></li>
+            </ul>
+        </div>
+        <!-- 搜索模块 -->
+        <div class="search">
+            <input type="text" value="输入关键词">
+            <button></button>
+        </div>
+        <!-- 用户模块 -->
+        <div class="user">
+            <img src="image/wangye.png" alt="">
+            qq-lll
+        </div>
+    </div>
+    <!-- 头部区域结束了 -->
+    <!-- banner部分start -->
+    <div class="banner">
+        <!-- 版心 -->
+        <div class="w">
+            <div class="subnav">
+                <ul>
+                    <li><a href="#">前端开发<span>&gt;</span></a></li>
+                    <li><a href="#">后端开发<span>&gt;</span></a></li>
+                    <li><a href="#">移动开发<span>&gt;</span></a></li>
+                    <li><a href="#">人工智能<span>&gt;</span></a></li>
+                    <li><a href="#">商业预测<span>&gt;</span></a></li>
+                    <li><a href="#">云计算&大数据<span>&gt;</span></a></li>
+                    <li><a href="#">运维&测试<span>&gt;</span></a></li>
+                    <li><a href="#">UI设计<span>&gt;</span></a></li>
+                    <li><a href="#">产品<span>&gt;</span></a></li>
+
+                </ul>
+            </div>
+            <div class="course">
+                <h2>我的课程表</h2>
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <h4>
+                                继续学习 程序语言设计
+                            </h4>
+                            <p>
+                                正在学习-使用对象
+                            </p>
+                        </li>
+                        <li>
+                            <h4>
+                                继续学习 程序语言设计
+                            </h4>
+                            <p>
+                                正在学习-使用对象
+                            </p>
+                        </li>
+                        <li>
+                            <h4>
+                                继续学习 程序语言设计
+                            </h4>
+                            <p>
+                                正在学习-使用对象
+                            </p>
+                        </li>
+                    </ul>
+                    <a href="#" class="more">全部课程</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner结束 -->
+    <!-- goods开始 -->
+    <div class="goods">
+        <h3 class="">精品推荐</h3>
+        <ul>
+            <li><a href="#">jQuery</a></li>
+            <li><a href="#">javaweb</a></li>
+            <li><a href="#">mysql</a></li>
+            <li><a href="#">c++</a></li>
+            <li><a href="#">c</a></li>
+            <li><a href="#">javasplace</a></li>
+        </ul>
+        <a href="#" class="mod">修改兴趣</a>
+    </div>
+    <!-- 精品推荐模块结束 -->
+</body>
+
+</html>

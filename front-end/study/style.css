@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.w {
+    width: 1200px;
+    margin: auto;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    background-color: #f3f5f7;
+}
+
+.header {
+    height: 42px;
+    /* 注意此地方会层叠 w 里面的margin*/
+    margin-top: 30px auto;
+}
+
+.logo {
+    float: left;
+    width: 198px;
+    height: 42px;
+}
+
+.logoimg {
+    width: 138px;
+    height: 42px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    float: left;
+    margin-left: 60px;
+}
+
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    display: block;
+    height: 42px;
+    padding: 0 10px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+
+}
+
+.aclour {
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+
+}
+
+/* search搜索模块 */
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    margin-left: 70px;
+}
+
+.search input {
+    float: left;
+    width: 345px;
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: 0;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.search button {
+    float: left;
+    width: 50px;
+    height: 42px;
+    /* 按钮button默认有一个下边框需要我们手动去掉 */
+    border: 0;
+    background: url(image/java.png);
+
+}
+
+.user {
+    float: right;
+    line-height: 42px;
+    margin-right: 30px;
+    font-size: 16px;
+    line-height: 42px;
+}
+
+/* banner区域 */
+.banner {
+    margin-top: 15px;
+    height: 421px;
+    background-color: #1c036c;
+}
+
+.banner .w {
+    height: 421px;
+    background: url(image/wangye.png) no-repeat top center;
+}
+
+.subnav {
+    float: left;
+    width: 190px;
+    height: 421px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.subnav ul li {
+    height: 45px;
+    line-height: 45px;
+    padding: 0 20px;
+}
+
+.subnav ul li a {
+    color: white;
+    font-size: 16px;
+
+}
+
+.subnav ul li a span {
+    float: right;
+}
+
+.subnav ul li a:hover {
+    color: #00a4ff;
+}
+
+.course {
+    float: right;
+    width: 230px;
+    height: 315px;
+    /* 浮动的盒子不会有外边距合并的问题 */
+    margin-top: 50px;
+    background-color: #fff;
+
+}
+
+.course h2 {
+    height: 48px;
+    background-color: #9bceea;
+    text-align: center;
+    line-height: 48px;
+    font-size: 18px;
+    color: white;
+}
+
+.bd {
+    padding: 0 20px;
+}
+
+.bd ul li {
+    padding: 14px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.bd ul li h4 {
+    font-size: 16px;
+    color: #4e4e4e;
+}
+
+.bd ul li p {
+    font-size: 12px;
+    color: #a5a5a5;
+}
+
+.bd .more {
+    margin-top: 5px;
+    display: block;
+    height: 38px;
+    border: 1px solid #00a4ff;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.goods {
+    margin-top: 10px;
+    height: 60px;
+    line-height: 60px;
+    /* 不用给下面每一个都给line-height,只用给最上面,就给下面三个孩子继承了 */
+    background-color: #fff;
+    box-shadow: 0 4px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.goods h3 {
+    margin-left: 30px;
+    float: left;
+    font-size: 16px;
+    color: #00a4ff;
+}
+
+.goods ul {
+    float: left;
+    margin-left: 30px;
+}
+
+.goods ul li {
+    float: left;
+}
+
+.goods ul li a {
+    border-left: 1px solid #ccc;
+    padding: 0 30px;
+    font-size: 16px;
+    color: black;
+}
+
+.mod {
+    margin-right: 30px;
+    float: right;
+    color: #00a4ff;
+}

@@ -70,7 +70,7 @@ public:
     }
     ~Mediator()
     {
-        //for_each(vBuilding.begin(), vBuilding.end(), &Mediator::shifang);
+        for_each(vBuilding.begin(), vBuilding.end(), &Mediator::shifang);
     }
 
     //需要对外提供接口

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证登录</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .w {
+        width: 1200px;
+        height: 500px;
+        margin: auto;
+    }
+
+    .head {
+        margin: auto;
+    }
+
+    .head img {
+        width: 1200px;
+        height: 50px;
+    }
+
+    .ce ul {
+        float: left;
+        margin-top: 10px;
+    }
+
+    .ce ul li {
+        height: 40px;
+        width: 200px;
+        color: black;
+        font-weight: 700;
+        font-size: 20px;
+        border: 1px solid #ccc;
+    }
+
+    .ce ul .inp {
+        float: left;
+    }
+
+    .tishi {
+        margin: 10px 5px;
+        color: red;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <div class="head">
+        <img src="../java.png" alt="">
+    </div>
+
+    <div class="by">
+        <div class="ce">
+            <ul>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+                <li>
+                    用户登录
+                </li>
+            </ul>
+        </div>
+        <div class="inp">
+            用户名
+            <input type="text" id="s">
+            <br />旧密码
+            <input type="password" id="s1">
+            <br />新密码
+            <input type="password" id="s2">
+            <br />新密码确认
+            <input type="password" id="s3">
+            <p class="tishi" id="tishi">提示:密码密码规则：长度至少6位，必须包括数字和字母。</p>
+            <button id="queren">确认</button>
+        </div>
+    </div>
+    <p><strong>孙首勋软件1804</strong></p>
+
+    <script>
+        function panduanyonghu(str1, str2, str3) {
+            var flag = true;
+            if (str1.length < 0 || str2.length < 0 || str3.length < 0) {
+                alert("请将空填写完整");
+                return false;
+            }
+            if (str1 == "test1234") {
+                alert("检查旧密码是否输入正确");
+                flag = false;
+            }
+            if (str2 != str3) {
+                alert("请确认,新密码和确认新密码是否相同");
+                flag = false;
+            }
+            return flag;
+        }
+
+        var temp = document.getElementById('queren');
+        temp.onclick = function () {
+
+
+            var st1 = document.getElementById('s1').value;
+            var st2 = document.getElementById('s2').value;
+            var st3 = document.getElementById('s3').value;
+            console.log(st1.length);
+            console.log(st2.length);
+            console.log(st3.length);
+
+            let x = panduanyonghu(st1, st2, st3);
+            if (x == true) {
+                let rg1 = /[a-zA-Z1-9]{6,16}/;
+                let rg2 = /[a-z]/i;
+                let rg3 = /[1-9]/;
+                console.log(rg1.test(st2));
+                console.log(rg2.test(st2));
+                console.log(rg3.test(st2));
+                if (rg2.test(st2) && rg1.test(st2) && rg3.test(st2))
+                    alert("登录成功!");
+                else
+                    alert("密码规则：长度至少6位，必须包括数字和字母。");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

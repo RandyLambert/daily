@@ -3,7 +3,8 @@
 using namespace std;
 //一般用继承实现类的功能拓展
 //装饰模式  可以动态的给一个类增加功能
-
+//动态作何的给一个对象增加一些额外的之职责.就增加功能而言decorator模式比生成子类(继承)更为灵活
+//(消除重复代码 & 减少子类个数).
 //抽象英雄
 class abstractHero
 {
@@ -46,7 +47,7 @@ public:
     {
     }
 
-    virtual void ShowStatus() {}
+    virtual void showStatus() override {}
 
 protected:
     abstractHero *pHero_;
@@ -66,7 +67,7 @@ public:
         this->mAt_ = this->pHero_->mAt_;
         this->mDf_ = this->pHero_->mDf_ + 1000;
 
-        delete this->pHero_;
+        delete this->pHero_; //删除赋值的指针
     }
     virtual void showStatus() override
     {

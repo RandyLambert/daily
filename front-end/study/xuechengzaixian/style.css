@@ -116,6 +116,12 @@ a {
     line-height: 42px;
 }
 
+.user img {
+    vertical-align: middle;
+    /* 让图片和文字垂直居中对齐 */
+    /* 文本域也可以实现垂直居中 */
+}
+
 /* banner区域 */
 .banner {
     margin-top: 15px;
@@ -283,6 +289,14 @@ a {
     margin-bottom: 15px;
 }
 
+.box-bd ul li:hover {
+    /* 改成相对定位,会压住其他的标准流,不会占位置 */
+    /* position: relative; */
+    /* 2.如果已经有了相对定位,则改变优先级 */
+    /* z-index: 1; */
+    border: 1 solid pink;
+}
+
 .box-bd ul li>img {
     /* 使只有li的亲子标签有用 */
     width: 100%;
@@ -337,6 +351,17 @@ a {
     font-size: 12px;
     color: #666666;
     margin: 10px 0px;
+    height: 50px;
+    width: 400px;
+    /* 这个单词的意思是如果文字显示不开启自动换行 */
+    /* word-spacing: normal; */
+    /* 这个单词的意思是如果文字显示不开启自动换行也必须在一行内显示 */
+    white-space: nowrap;
+    /* 溢出部分隐藏 */
+    overflow: hidden;
+    /* 超出部分用省略号 */
+    text-overflow: ellipsis;
+
 }
 
 .copyright .app {

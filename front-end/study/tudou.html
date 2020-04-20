@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿土豆网显示隐藏遮罩案例</title>
+</head>
+<style>
+    .tudou {
+        position: relative;
+        width: 444px;
+        height: 320px;
+        background-color: pink;
+        margin: 30px auto;
+    }
+
+    .tudou img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mask {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3) url(../wangye.png) no-repeat center;
+        /* 添加播放按钮,并使图片不重复 */
+    }
+
+    /* 当鼠标经过了土豆这个盒子,就让里面遮罩层显示 */
+    .tudou:hover .mask {
+        /* 而是显示元素,js也能做?? */
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="tudou">
+        <div class="mask">
+            <!-- 遮罩 -->
+        </div>
+        <img src="../java.png" alt="">
+    </div>
+</body>
+
+</html>

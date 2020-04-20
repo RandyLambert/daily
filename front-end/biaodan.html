@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>biaodan</title>
 </head>
+<style>
+    textarea {
+        /* 取消表单蓝色轮廓 */
+        outline: none;
+        /* 取消可以随便调整大小 */
+        resize: none;
+        vertical-align: middle;
+        /* 让图片和文字垂直居中对齐 */
+        /* 文本域也可以实现垂直居中 */
+    }
+</style>
 
 <body>
     <form>
@@ -31,6 +42,8 @@
         <!-- 单选按钮和复选框都可以shell值2的checked属行，当页面打开的时候就可以默认选中这个按钮 -->
         <!-- 点击了提交按牛，可以包表单域的form里面的表单元素里面的值提交给后台服务器 -->
         自我介绍：
+        <!-- 1.取消表单轮廓 -->
+        <!-- 2.防止拖拽文本域 -->
         <textarea rows="4" cols="40">谈谈你自己8
         </textarea><br />
         <input type="submit" value="免费注册">

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的显示与隐藏</title>
+</head>
+<style>
+    .peppa {
+        display: none;
+        /* 隐藏元素,位置也没有了 */
+        /* display: block; */
+        /* 显示元素 */
+        width: 100px;
+        height: 100px;
+        background-color: #444;
+    }
+
+
+    .qq {
+        /* display: none; */
+        /* 隐藏元素,位置也没有了 */
+        /* display: block; */
+        /* 显示元素 */
+        width: 100px;
+        height: 100px;
+        background-color: #666;
+    }
+
+    .mm {
+        visibility: hidden;
+        /* 隐藏元素,位置有 */
+        /* visibility: visible; */
+        /* 显示元素 */
+        width: 100px;
+        height: 100px;
+        background-color: #444;
+    }
+
+
+    .pp {
+        width: 100px;
+        height: 100px;
+        background-color: #666;
+    }
+
+    .over {
+        /* overflow: hidden; */
+        /* 隐藏溢出元素,位置有 */
+        /* overflow: visible; */
+        /* 显示元素 */
+        /* overflow: scroll; */
+        /* 超不超出都显示滚动条 */
+        overflow: auto;
+        /* 在需要的时候才会添加滚动条显示滚动条 */
+        /* 如果有定位的盒子就不要隐藏溢出 */
+        width: 150px;
+        height: 50px;
+        background-color: #444;
+    }
+</style>
+
+<body>
+    <div class="peppa">b</div>
+    <div class="qq">a</div>
+
+    <div class="mm">b</div>
+    <div class="pp">a</div>
+
+
+    <div class="over">hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhb</div>
+</body>
+
+</html>

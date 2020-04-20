@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css三角</title>
+</head>
+
+<style>
+    .box1 {
+
+        height: 0;
+        width: 0;
+        border-top: 10px solid pink;
+        border-right: 10px solid red;
+        border-bottom: 10px solid blue;
+        border-left: 10px solid green;
+    }
+
+    .box2 {
+        height: 0;
+        width: 0;
+        /* 宽高为0 */
+        border: 50px solid transparent;
+        /* 顺序重要 */
+        border-right-color: pink;
+        margin: 100px auto;
+    }
+
+    .jd {
+        position: relative;
+        background-color: #888888;
+        width: 120px;
+        height: 249px;
+    }
+
+    .jd span {
+        position: absolute;
+        width: 0;
+        height: 0;
+        /* 为了照顾兼容性 */
+        line-height: 0;
+        font-size: 0;
+        border: 5px solid transparent;
+        border-bottom-color: #888888;
+        top: -10px;
+        right: 15px;
+
+
+    }
+</style>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="jd">
+        <span>1111111</span>
+    </div>
+
+</body>
+
+</html>

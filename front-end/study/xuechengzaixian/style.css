@@ -273,6 +273,8 @@ a {
 }
 
 .box-bd ul li {
+    /* 子绝父相 */
+    position: relative;
     float: left;
     width: 230px;
     height: 270px;
@@ -281,7 +283,8 @@ a {
     margin-bottom: 15px;
 }
 
-.box-bd ul li img {
+.box-bd ul li>img {
+    /* 使只有li的亲子标签有用 */
     width: 100%;
 }
 
@@ -290,6 +293,16 @@ a {
     font-size: 14px;
     color: #050505;
     font-weight: 400;
+}
+
+.box-bd ul li em {
+    position: absolute;
+    top: 20px;
+    right: -4px;
+}
+
+.box-bd ul li em img {
+    width: 40px;
 }
 
 .box-bd .info {

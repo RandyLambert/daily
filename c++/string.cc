@@ -37,6 +37,11 @@ int main(){
     cout<<x<<endl;
 
 
+    string a;
+    a.push_back('1');
+    cout<<a<<endl;
+
+
     return 0;
 }
 

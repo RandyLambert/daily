@@ -7,7 +7,7 @@ using namespace std;
 void *th_fun(void *arg)
 {
     shared_ptr<ssxerver::net::MySQLop> q(new ssxerver::net::MySQLop()); 
-    string p = "select * from user";
+    string p = "INSERT INTO studio VALUES(NULL,'IMAX大厅',5,7,'IMAX影厅,3D电影');";
     q->mysqlInit();
     cout<< q->queryHasResult(p) <<endl;
     return NULL;

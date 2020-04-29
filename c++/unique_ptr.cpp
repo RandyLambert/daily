@@ -14,6 +14,8 @@ int main(){
         cout<<*q[i]<<endl;
     }
     /* q.push_back(new std::unique_ptr<int>(x)); */
+    int *t = new int(1);
+    q.push_back(unique_ptr<int>(t));
     
 
     return 0;

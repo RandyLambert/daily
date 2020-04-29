@@ -1,21 +1,23 @@
-#include "MySQLop.h"
+#include "MySQL.h"
+#include "MySQLsOps.h"
 #include <iostream>
-using namespace ssxerver;
-using namespace ssxerver::net;
+using namespace ssxrver;
+using namespace ssxrver::net;
 using namespace std;
+using namespace std::placeholders;
 
-MySQLop::MySQLop():res_(NULL),sqlrow_(0)
+MySQL::MySQL():res_(NULL),sqlrow_(0)
 {
 }
 
-MySQLop::~MySQLop()
+MySQL::~MySQL()
 {
     mysql_close(&mysql_);
     mysql_library_end();
     cout<<"mysql close"<<endl;
 }
 
-int MySQLop::queryNoResult(const string& s)
+int MySQL::queryNoResult(const string& s)
 {
     if(mysql_query(&mysql_,s.c_str()) != 0){
         cout <<"queryNoResult "<< mysql_error(&mysql_)<<endl;
@@ -28,17 +30,16 @@ int MySQLop::queryNoResult(const string& s)
     }
 }
 
-string MySQLop::queryHasResult(const string& s)
+int MySQL::queryHasResult(const string& s,string& result)
 {
-    string result;
     if(mysql_query(&mysql_,s.c_str()) != 0){
         cout <<"queryHasResult "<< mysql_error(&mysql_)<<endl;
-        return result;
+        return -1;
     }
 
     if(!(res_ = mysql_use_result(&mysql_)))
     {
-        return result;
+        return -1;
     }
 
     int count = mysql_num_fields(res_);
@@ -53,10 +54,10 @@ string MySQLop::queryHasResult(const string& s)
     }
     mysql_free_result(res_);
     cout <<"queryHasResult success"<<endl;
-    return result;
+    return 1;
 }
 
-bool MySQLop::mysqlInit(const string& addr,const string& user,const string& password,const string& dataBaseName,unsigned int port,const char* unixSocket,unsigned long clientFlag)
+bool MySQL::mysqlInit(const string& addr,const string& user,const string& password,const string& dataBaseName,unsigned int port,const char* unixSocket,unsigned long clientFlag)
 {
     res_ = nullptr;
     sqlrow_ = 0;
@@ -88,6 +89,14 @@ bool MySQLop::mysqlInit(const string& addr,const string& user,const string& pass
         cout<< mysql_error(&mysql_)<< endl;
         return false;
     }
+    /* int x = 10; */
+    /* if(x <= this->returnMin() || x >= this->returnMid()) */
+    /*     return useNoResultMap(x,"query"); */
+    /* if(x <= this->returnMid() || x >= this->returnMax()) */
+    /*     return useHasResultMap(x,"query","reback"); */
+
+    noResultMap[REGISTER] = bind(&sqlRegister,_1);
+    noResultMap[LOGIN] = bind(&sqlLogin,_1);
 
     return true;
 }

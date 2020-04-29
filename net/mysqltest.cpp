@@ -2,14 +2,14 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <memory>
-#include "MySQLop.h"
+#include "MySQL.h"
 using namespace std;
 void *th_fun(void *arg)
 {
-    shared_ptr<ssxerver::net::MySQLop> q(new ssxerver::net::MySQLop()); 
+    shared_ptr<ssxerver::net::MySQL> q(new ssxerver::net::MySQL()); 
     string p = "INSERT INTO studio VALUES(NULL,'IMAX大厅',5,7,'IMAX影厅,3D电影');";
     q->mysqlInit();
-    cout<< q->queryHasResult(p) <<endl;
+    /* cout<< q->queryHasResult(p) <<endl; */
     return NULL;
 
 }

@@ -9,6 +9,7 @@ void *th_fun(void *arg)
     /* shared_ptr<ssxrver::net::MySQL> mysqltest(new ssxrver::net::MySQL()); */ 
     ssxrver::net::MySQL mysqltest; 
     mysqltest.mysqlInit();
+    /* ssxrver::net::MySQL *mysqlptr = &mysqltest; */
     string p = "INSERT INTO studio VALUES(NULL,'IMAX大厅',5,7,'IMAX影厅,3D电影');";
     int x = 1;
     if(x > mysqltest.returnMin() && x < mysqltest.returnMid())

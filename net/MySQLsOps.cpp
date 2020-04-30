@@ -1,13 +1,18 @@
 #include <string>
+#include <iostream>
 #include "MySQLsOps.h"
 #include "MySQL.h"
 using namespace ssxrver;
 using namespace ssxrver::net;
-int sqlRegister(const string& str)
+string SQLs::sqlRegister(const string& str)
 {
-    return 1;
+    std::cout<<"sqlRegister"<<std::endl;
+    string query = str;
+    return query;
 }
-int sqlLogin(const string& str)
+string SQLs::sqlLogin(const string& str)
 {
-    return 1;
+    std::cout<<"sqlLogin"<<std::endl;
+    string query = str;
+    return query;
 }

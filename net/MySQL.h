@@ -13,8 +13,7 @@ namespace net
 using std::string;
 class MySQL : noncopyable
 {
-    typedef std::function<int (const string&)> noResultFunc;
-    typedef std::function<int (const string&,string& )> hasResultFunc;
+    typedef std::function<string (const string&)> sqlCallBack;
 public:
     MySQL();
     ~MySQL();
@@ -34,12 +33,12 @@ public:
 
     int useNoResultMap(int x,const string& query)
     {
-        return noResultMap[x](query);
+        return queryNoResult(sqlMap[x](query));
     }
 
     int useHasResultMap(int x,const string& query,string& reback)
     {
-        return hasResultMap[x](query,reback);
+        return queryHasResult(sqlMap[x](query),reback);
     }
 
 private:
@@ -54,8 +53,7 @@ private:
     };
     int queryNoResult(const string& s);
     int queryHasResult(const string& s,string &result);
-    std::map<int,noResultFunc> noResultMap;
-    std::map<int,hasResultFunc> hasResultMap;
+    std::map<int,sqlCallBack> sqlMap;
     MYSQL mysql_;
     MYSQL_RES *res_;
     MYSQL_ROW sqlrow_;

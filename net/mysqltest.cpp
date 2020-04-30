@@ -6,10 +6,20 @@
 using namespace std;
 void *th_fun(void *arg)
 {
-    shared_ptr<ssxerver::net::MySQL> q(new ssxerver::net::MySQL()); 
+    /* shared_ptr<ssxrver::net::MySQL> mysqltest(new ssxrver::net::MySQL()); */ 
+    ssxrver::net::MySQL mysqltest; 
+    mysqltest.mysqlInit();
     string p = "INSERT INTO studio VALUES(NULL,'IMAX大厅',5,7,'IMAX影厅,3D电影');";
-    q->mysqlInit();
-    /* cout<< q->queryHasResult(p) <<endl; */
+    int x = 1;
+    if(x > mysqltest.returnMin() && x < mysqltest.returnMid())
+    {
+        mysqltest.useNoResultMap(x,p);
+    }
+    else if(x > mysqltest.returnMid() && x < mysqltest.returnMax())
+    {
+        string reback;
+        mysqltest.useHasResultMap(x,"query",reback);
+    }
     return NULL;
 
 }

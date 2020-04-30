@@ -5,10 +5,13 @@ namespace ssxrver
 {
 namespace net
 {
+namespace SQLs
+{
 using std::string;
-int sqlRegister(const string& str);
-int sqlLogin(const string& str);
+string sqlRegister(const string& str);
+string sqlLogin(const string& str);
 
+}
 }
 }
 

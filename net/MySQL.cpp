@@ -89,14 +89,16 @@ bool MySQL::mysqlInit(const string& addr,const string& user,const string& passwo
         cout<< mysql_error(&mysql_)<< endl;
         return false;
     }
-    /* int x = 10; */
-    /* if(x <= this->returnMin() || x >= this->returnMid()) */
-    /*     return useNoResultMap(x,"query"); */
-    /* if(x <= this->returnMid() || x >= this->returnMax()) */
-    /*     return useHasResultMap(x,"query","reback"); */
 
-    noResultMap[REGISTER] = bind(&sqlRegister,_1);
-    noResultMap[LOGIN] = bind(&sqlLogin,_1);
+    /* int x = 1; */
+    /* if(x > mysqltest.returnMin() || x < mysqltest.returnMid()) */
+    /*    mysqltest.useNoResultMap(x,p); */
+    /* else if(x > mysqltest.returnMid() || x < mysqltest.returnMax()) */
+    /* { */
+    /*     string reback; */
+    /*     mysqltest.useHasResultMap(x,"query",reback); */
+    sqlMap[REGISTER] = bind(SQLs::sqlRegister,_1);
+    sqlMap[LOGIN] = bind(SQLs::sqlLogin,_1);
 
     return true;
 }

@@ -32,6 +32,7 @@ int main(){
     long c1 = (long)aq*bq;
 
     printf("%zu\n",sizeof(Node));
+    printf("%d",c==0?0:1);
 
     return 0;
 }

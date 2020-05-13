@@ -3,9 +3,14 @@
 using namespace std;
 int main()
 {
-    string a("dsdas");
-    string b = std::move(a);
-    cout<<a<<" "<<b<<endl;
+    char a[1024];
+    sprintf(a,"dasdsada");
+    string b(a);
+    cout<<" "<<b<<endl;
+    sprintf(a,"xxxxxxdasdsada");
+    b = a;
+    cout<<" "<<b<<endl;
+    
     return 0;
 }
 

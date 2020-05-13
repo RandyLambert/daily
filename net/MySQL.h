@@ -3,6 +3,7 @@
 #include "noncopyable.h"
 #include <string>
 #include <map>
+#include <vector>
 #include <functional>
 #include <mysql/mysql.h>
 namespace ssxrver
@@ -11,9 +12,10 @@ namespace net
 {
 
 using std::string;
+class CJsonObject;
 class MySQL : noncopyable
 {
-    typedef std::function<string (const string&)> sqlCallBack;
+    typedef std::function<std::vector<string> (const CJsonObject&)> sqlCallBack;
 public:
     MySQL();
     ~MySQL();
@@ -31,13 +33,14 @@ public:
         return MAX;
     }
 
-    int useNoResultMap(int x,const string& query)
+    int useNoResultMap(int x,const CJsonObject& query)
     {
         return queryNoResult(sqlMap[x](query));
     }
 
-    int useHasResultMap(int x,const string& query,string& reback)
+    int useHasResultMap(int x,const CJsonObject& query,CJsonObject& reback)
     {
+        
         return queryHasResult(sqlMap[x](query),reback);
     }
 
@@ -46,13 +49,15 @@ private:
     enum
     {
         MIN,
-        REGISTER,
         LOGIN,
+        INSERTALL,
         MID,
+        SELECTALL,
+        QUERYSEAT,
         MAX
     };
-    int queryNoResult(const string& s);
-    int queryHasResult(const string& s,string &result);
+    int queryNoResult(const std::vector<string>& s);
+    int queryHasResult(const std::vector<string>& s,CJsonObject &result);
     std::map<int,sqlCallBack> sqlMap;
     MYSQL mysql_;
     MYSQL_RES *res_;

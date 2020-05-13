@@ -1,5 +1,6 @@
 #include "MySQL.h"
 #include "MySQLsOps.h"
+#include "CJsonObject.hpp"
 #include <iostream>
 using namespace ssxrver;
 using namespace ssxrver::net;
@@ -17,43 +18,66 @@ MySQL::~MySQL()
     cout<<"mysql close"<<endl;
 }
 
-int MySQL::queryNoResult(const string& s)
+int MySQL::queryNoResult(const std::vector<string>& s)
 {
-    if(mysql_query(&mysql_,s.c_str()) != 0){
-        cout <<"queryNoResult "<< mysql_error(&mysql_)<<endl;
-        return -1;
-    }
-    else
+    /* int flag = 1; */
+    for(const string& key : s )
     {
-        cout <<"queryNoResult success"<<endl;
-        return static_cast<int>(mysql_affected_rows(&mysql_));
+        if(mysql_query(&mysql_,key.c_str()) != 0){
+            cout <<"queryNoResult "<< mysql_error(&mysql_)<<endl;
+            /* flag = -1; */
+            return -1;
+        }
+        else
+        {
+            cout <<"queryNoResult success"<<endl;
+            /* return static_cast<int>(mysql_affected_rows(&mysql_)); */
+        }
     }
+    return 1;
 }
 
-int MySQL::queryHasResult(const string& s,string& result)
+int MySQL::queryHasResult(const std::vector<string>& s,CJsonObject& result)
 {
-    if(mysql_query(&mysql_,s.c_str()) != 0){
-        cout <<"queryHasResult "<< mysql_error(&mysql_)<<endl;
-        return -1;
-    }
-
-    if(!(res_ = mysql_use_result(&mysql_)))
+    bool flag = false;
+    vector<string> columName;
+    for(const string& key : s)
     {
-        return -1;
-    }
-
-    int count = mysql_num_fields(res_);
-    while((sqlrow_ = mysql_fetch_row(res_)))
-    {
-        for(int j = 0;j < count;j++)
-        {
-            result+=sqlrow_[j];
-            result+="\r\t";
+        if(mysql_query(&mysql_,key.c_str()) != 0){
+            cout <<"queryHasResult "<< mysql_error(&mysql_)<<endl;
+            /* flag1 = -1; */
+            return -1;
         }
-        result+="\r\t";
+
+        if(!(res_ = mysql_use_result(&mysql_)))
+        {
+            /* flag1 = -1; */
+            return -1;
+        }
+
+        int count = mysql_num_fields(res_);
+        while((sqlrow_ = mysql_fetch_row(res_)))
+        {
+            for(int j = 0;j < count;j++)
+            {
+                if(flag == false)
+                {
+                    flag = true;
+                    columName.push_back(sqlrow_[j]);
+                }
+                else
+                {
+
+                }
+
+                /* result+=sqlrow_[j]; */
+                /* result+="\r\t"; */
+            }
+            /* result+="\r\t"; */
+        }
+        mysql_free_result(res_);
+        cout <<"queryHasResult success"<<endl;
     }
-    mysql_free_result(res_);
-    cout <<"queryHasResult success"<<endl;
     return 1;
 }
 

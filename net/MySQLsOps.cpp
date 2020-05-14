@@ -4,7 +4,6 @@
 #include <cstring>
 #include "CJsonObject.hpp"
 #include "MySQLsOps.h"
-#include "MySQL.h"
 using namespace ssxrver;
 using namespace ssxrver::net;
 using std::bind;

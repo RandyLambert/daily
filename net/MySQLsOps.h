@@ -5,6 +5,7 @@
 #include <map>
 #include <functional>
 #include <memory>
+#include "MySQL.h"
 #include "noncopyable.h"
 namespace ssxrver
 {
@@ -13,9 +14,8 @@ namespace net
 
 using std::string;
 using std::vector;
-class MySQL;
 class CJsonObject;
-class MySQLsOps : noncopyable
+class MySQLsOps : noncopyable 
 {
     typedef std::function<int (const std::unique_ptr<MySQL>&,const CJsonObject&)> sqlNoResultCallBack;
     typedef std::function<int (const std::unique_ptr<MySQL>&,const CJsonObject&,CJsonObject &)> sqlHasResultCallBack;

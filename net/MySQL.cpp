@@ -6,6 +6,42 @@ using namespace ssxrver;
 using namespace ssxrver::net;
 using namespace std;
 
+MySQL::MySQL(const string& addr,const string& user,const string& password,const string& dataBaseName,unsigned int port,const char* unixSocket,unsigned long clientFlag)
+    : res_(NULL),
+      sqlrow_(0)
+{
+    res_ = nullptr;
+    sqlrow_ = 0;
+    res_ = 0;
+    if(NULL == mysql_init(&mysql_))
+    {
+        cout << mysql_error(&mysql_)<<endl;
+        /* LOG_FATAT<<; */
+    }
+
+    //初始化一个句柄;
+    //初始化数据库
+    if(mysql_library_init(0,NULL,NULL) != 0)
+    {
+        cout << mysql_error(&mysql_) << endl;
+        /* LOG_FATAT<<; */
+    }
+
+    if(mysql_real_connect(&mysql_,addr.c_str(),user.c_str(),password.c_str(),dataBaseName.c_str(),port,unixSocket,clientFlag)==NULL)
+    {
+        cout<< mysql_error(&mysql_)<< endl;
+        /* LOG_FATAT<<; */
+    }
+
+    //连接数据库重要的一步:
+    //设置中文字符集
+    if(mysql_set_character_set(&mysql_,"utf8") < 0)
+    {
+        cout<< mysql_error(&mysql_)<< endl;
+        /* LOG_FATAT<<; */
+    }
+        /* LOG_DEBUE<<; */
+}
 
 MySQL::~MySQL()
 {
@@ -86,42 +122,6 @@ int MySQL::queryHasResult(const std::pair<string,string>&s,CJsonObject& result)
     return 1;
 }
 
-MySQL::MySQL(const string& addr,const string& user,const string& password,const string& dataBaseName,unsigned int port,const char* unixSocket,unsigned long clientFlag)
-    : res_(NULL),
-      sqlrow_(0)
-{
-    res_ = nullptr;
-    sqlrow_ = 0;
-    res_ = 0;
-    if(NULL == mysql_init(&mysql_))
-    {
-        cout << mysql_error(&mysql_)<<endl;
-        /* LOG_FATAT<<; */
-    }
-
-    //初始化一个句柄;
-    //初始化数据库
-    if(mysql_library_init(0,NULL,NULL) != 0)
-    {
-        cout << mysql_error(&mysql_) << endl;
-        /* LOG_FATAT<<; */
-    }
-
-    if(mysql_real_connect(&mysql_,addr.c_str(),user.c_str(),password.c_str(),dataBaseName.c_str(),port,unixSocket,clientFlag)==NULL)
-    {
-        cout<< mysql_error(&mysql_)<< endl;
-        /* LOG_FATAT<<; */
-    }
-
-    //连接数据库重要的一步:
-    //设置中文字符集
-    if(mysql_set_character_set(&mysql_,"utf8") < 0)
-    {
-        cout<< mysql_error(&mysql_)<< endl;
-        /* LOG_FATAT<<; */
-    }
-        /* LOG_DEBUE<<; */
-}
 
 
 int MySQL::sqlInsert(const CJsonObject& cjson)
@@ -183,15 +183,16 @@ int MySQL::sqlSelectWhere(const CJsonObject& cjson,CJsonObject &result)
     int i = 0;
     while(cjsonRef["data"].GetKey(keyStr))
     {
-        queryStr+=keyStr+cjsonRef["op"](i);
         if(i == 0)
         {
+            queryStr+=keyStr+cjsonRef["op"](i);
             queryStr+=cjsonRef["data"](keyStr);
             i++;
         }
         else
         {
-            queryStr+= " AND " + cjsonRef["data"](keyStr);
+            queryStr+=" AND " + keyStr+cjsonRef["op"](i);
+            queryStr+= cjsonRef["data"](keyStr);
             i++;
         }
     }
@@ -211,15 +212,16 @@ int MySQL::sqlDeleteWhere(const CJsonObject& cjson)
     int i = 0;
     while(cjsonRef["data"].GetKey(keyStr))
     {
-        queryStr+=keyStr+cjsonRef["op"](i);
         if(i == 0)
         {
+            queryStr+=keyStr+cjsonRef["op"](i);
             queryStr+=cjsonRef["data"](keyStr);
             i++;
         }
         else
         {
-            queryStr+= " AND " + cjsonRef["data"](keyStr);
+            queryStr+="AND" + keyStr+cjsonRef["op"](i);
+            queryStr+= cjsonRef["data"](keyStr);
             i++;
         }
     }

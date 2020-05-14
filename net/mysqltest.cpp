@@ -11,17 +11,29 @@ void *th_fun(void *arg)
     /* shared_ptr<ssxrver::net::MySQL> mysqltest(new ssxrver::net::MySQL()); */
     ssxrver::net::MySQLsOps mysqltest;
     /* ssxrver::net::MySQL *mysqlptr = &mysqltest; */
-    CJsonObject p;
-    /* p.Add("") */
+     CJsonObject obj1;
+     obj1.AddEmptySubArray("what");
+     obj1["what"].Add("*");
+     obj1.AddEmptySubArray("op");
+     obj1["op"].Add("=");
+     obj1["op"].Add("=");
+     obj1.Add("tableName","user");
+     obj1.AddEmptySubObject("data");
+     obj1["data"].Add("userName","'管理员'");
+     obj1["data"].Add("passWord","'123456'");
+     cout<<obj1.ToFormattedString()<<endl;
+
     int x = MySQLsOps::QUERYUSER;
     if (x > MySQLsOps::MIN && x < MySQLsOps::MID)
     {
-        mysqltest.queryNoResult(x, p);
+        mysqltest.queryNoResult(x, obj1);
     }
     else if (x > MySQLsOps::MID && x < MySQLsOps::MAX)
     {
         CJsonObject reback;
-        mysqltest.queryHasResult(x, p, reback);
+        mysqltest.queryHasResult(x, obj1, reback);
+        reback.Add("state",200);
+        reback.Add("message","传递信息");
         cout<<reback.ToFormattedString()<<endl;
     }
     return NULL;

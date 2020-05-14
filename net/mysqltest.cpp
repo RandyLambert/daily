@@ -2,27 +2,26 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <memory>
-#include "MySQL.h"
+#include "MySQLsOps.h"
 #include "CJsonObject.hpp"
 using namespace std;
 using namespace ssxrver::net;
 void *th_fun(void *arg)
 {
     /* shared_ptr<ssxrver::net::MySQL> mysqltest(new ssxrver::net::MySQL()); */
-    ssxrver::net::MySQL mysqltest;
-    mysqltest.mysqlInit();
+    ssxrver::net::MySQLsOps mysqltest;
     /* ssxrver::net::MySQL *mysqlptr = &mysqltest; */
     CJsonObject p;
     /* p.Add("") */
-    int x = 1;
-    if (x > mysqltest.returnMin() && x < mysqltest.returnMid())
+    int x = MySQLsOps::QUERYUSER;
+    if (x > MySQLsOps::MIN && x < MySQLsOps::MID)
     {
-        mysqltest.useNoResultMap(x, p);
+        mysqltest.queryNoResult(x, p);
     }
-    else if (x > mysqltest.returnMid() && x < mysqltest.returnMax())
+    else if (x > MySQLsOps::MID && x < MySQLsOps::MAX)
     {
         CJsonObject reback;
-        mysqltest.useHasResultMap(x, p, reback);
+        mysqltest.queryHasResult(x, p, reback);
         cout<<reback.ToFormattedString()<<endl;
     }
     return NULL;

@@ -2,21 +2,70 @@
 #define SSXERVER_NET_MYSQLSOPS_H
 #include <string>
 #include <vector>
-#include "CJsonObject.hpp"
+#include <map>
+#include <functional>
+#include <memory>
+#include "noncopyable.h"
 namespace ssxrver
 {
 namespace net
 {
-namespace SQLs
-{
+
 using std::string;
 using std::vector;
-vector<string> sqlRegister(const CJsonObject& cjson);
-vector<string> sqlLogin(const CJsonObject& cjson);
-vector<string> sqlSelectAll(const CJsonObject& cjson);
-vector<string> sqlInsertAll(const CJsonObject& cjson);
+class MySQL;
+class CJsonObject;
+class MySQLsOps : noncopyable
+{
+    typedef std::function<int (const std::unique_ptr<MySQL>&,const CJsonObject&)> sqlNoResultCallBack;
+    typedef std::function<int (const std::unique_ptr<MySQL>&,const CJsonObject&,CJsonObject &)> sqlHasResultCallBack;
+public:
+    MySQLsOps(const string& addr="127.0.0.1",const string& user="root",const string& password="123456",const string& dataBaseName="ttms",unsigned int port = 0,const char* unixSocket=NULL,unsigned long clientFlag = 0);
+    enum 
+    {
+        MIN,
+        INSERTUSER,
+        INSERTMOVIE,
+        INSERTSEAT,
+        INSERTSCHEDULE,
+        INSERTSTUDIO,
+        UPDATEUSER,
+        UPDATEMOVIE,
+        UPDATESEAT,
+        UPDATESCHEDULE,
+        UPDATESTUDIO,
+        DELETEUSER,
+        DELETEMOVIE,
+        DELETESEAT,
+        DELETESCHEDULE,
+        DELETESTUDIO,
+        MID,
+        QUERYUSER,
+        QUERYMOVIE,
+        QUERYSEAT,
+        QUERYSCHEDULE,
+        QUERYSTUDIO,
+        MAX
+    };
 
-}
+    int queryNoResult(int x,const CJsonObject& query)
+    {
+        return sqlNoResultlMap[x](mysql_,query);
+    }
+
+    int queryHasResult(int x,const CJsonObject& query,CJsonObject& reback)
+    {
+        return sqlHasResultlMap[x](mysql_,query,reback);
+    }
+
+private:
+    std::unique_ptr<MySQL> mysql_;
+    std::map<int,sqlNoResultCallBack> sqlNoResultlMap;
+    std::map<int,sqlHasResultCallBack> sqlHasResultlMap;
+
+};
+
+
 }
 }
 

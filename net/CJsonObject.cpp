@@ -10,7 +10,11 @@
 
 #include "CJsonObject.hpp"
 
-using namespace ssxrver::net;
+namespace ssxrver
+{
+namespace net
+{
+
 CJsonObject::CJsonObject()
     : m_pJsonData(NULL), m_pExternJsonDataRef(NULL), m_pKeyTravers(NULL)
 {
@@ -3510,5 +3514,7 @@ bool CJsonObject::ReplaceWithNull(int iWhich)
 CJsonObject::CJsonObject(cJSON* pJsonData)
     : m_pJsonData(NULL), m_pExternJsonDataRef(pJsonData), m_pKeyTravers(pJsonData)
 {
+}
+}
 }
 

@@ -2,63 +2,127 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
+#include "CJsonObject.hpp"
 #include "MySQLsOps.h"
 #include "MySQL.h"
 using namespace ssxrver;
 using namespace ssxrver::net;
-using std::vector;
-vector<string> SQLs::sqlRegister(const CJsonObject& cjson)
+using std::bind;
+using namespace std::placeholders;
+namespace 
 {
-    vector<string> query;
-    char tmp[1024];
-    memset(tmp,0,sizeof tmp);
-    sprintf(tmp,"INSERT INTO user VALUES(NULL,%s,%s,%s,%s,%s,%s)",cjson("userName").c_str(),cjson("passWord").c_str(),cjson("sex").c_str(),cjson("phoneNumber").c_str(),cjson("mibao").c_str(),cjson("power").c_str());
-    query.push_back(tmp);
-    std::cout<<"sqlRegister";
-    return query;
+using std::unique_ptr;
+int sqlInsertUser(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlInsert(cjson);
+}
+int sqlInsertMovie(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlInsert(cjson);
+}
+int sqlInsertSeat(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlInsert(cjson);
+}
+int sqlInsertSchedule(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlInsert(cjson);
+}
+int sqlInsertStudio(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlInsert(cjson);
+}
+/******************************************/
+int sqlUpdateUser(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlUpdateWhere(cjson);
+}
+int sqlUpdateMovie(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlUpdateWhere(cjson);
+}
+int sqlUpdateSeat(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlUpdateWhere(cjson);
+}
+int sqlUpdateSchedule(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlUpdateWhere(cjson);
+}
+int sqlUpdateStudio(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlUpdateWhere(cjson);
+}
+/******************************************/
+int sqlDeleteUser(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlDeleteWhere(cjson);
+}
+int sqlDeleteMovie(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlDeleteWhere(cjson);
+}
+int sqlDeleteSeat(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlDeleteWhere(cjson);
+}
+int sqlDeleteSchedule(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
+{
+    return mysql->sqlDeleteWhere(cjson);
 }
 
-
-vector<string> SQLs::sqlInsertAll(const CJsonObject& cjson)
+int sqlDeleteStudio(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson)
 {
-    vector<string> query;
-    string tmp("INSERT INTO "+cjson("insertObj"));
-    tmp+=" VALUES(NULL,";
-    cjson.AddemptySubArray("indd");
-    for(int i = 0;i < cjson["insert"].GetArraySize();i++)
-    {
-
-    }
-
-    sprintf(tmp,"INSERT INTO Studio VALUES(NULL,%s,%s,%s,%s,%s,%s)",cjson("userName").c_str(),cjson("passWord").c_str(),cjson("sex").c_str(),cjson("phoneNumber").c_str(),cjson("mibao").c_str(),cjson("power").c_str());
-    query.push_back(tmp);
-    std::cout<<"sqlRegister";
-    return query;
-    
+    return mysql->sqlDeleteWhere(cjson);
+}
+/*********************************************/
+int sqlQueryUser(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson,CJsonObject& result)
+{
+    return mysql->sqlSelectWhere(cjson,result);
+}
+int sqlQueryMovie(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson,CJsonObject& result)
+{
+    return mysql->sqlSelectWhere(cjson,result);
+}
+int sqlQuerySeat(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson,CJsonObject& result)
+{
+    return mysql->sqlSelectWhere(cjson,result);
+}
+int sqlQuerySchedule(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson,CJsonObject& result)
+{
+    return mysql->sqlSelectWhere(cjson,result);
+}
+int sqlQueryStudio(const unique_ptr<MySQL>& mysql,const CJsonObject& cjson,CJsonObject& result)
+{
+    return mysql->sqlSelectWhere(cjson,result);
 }
 
-vector<string> SQLs::sqlLogin(const CJsonObject& cjson)
-{
-    vector<string> query;
-    char tmp[1024];
-    memset(tmp,0,sizeof tmp);
-    sprintf(tmp,"SELECT * FROM user WHERE uid = %s AND passWord = %s",cjson("uid").c_str(),cjson("passWord").c_str());
-    query.push_back(tmp);
-    std::cout<<"sqlLogin";
-    return query;
 }
-
-vector<string> SQLs::sqlSelectAll(const CJsonObject& cjson)
+MySQLsOps::MySQLsOps(const string& addr,const string& user,const string& password,const string& dataBaseName,unsigned int port,const char* unixSocket,unsigned long clientFlag)
+    : mysql_(new MySQL(addr,user,password,dataBaseName,port,unixSocket,clientFlag))
 {
-    vector<string> query;
-    char tmp[1024];
-    memset(tmp,0,sizeof tmp);
-    sprintf(tmp,"SELECT column_name FROM information_schema.columns WHERE table_schema='ttms' AND table_name='%s'",cjson("data").c_str());
-    query.push_back(tmp);
-    sprintf(tmp,"SELECT * FROM %s",cjson("data").c_str());
-    query.push_back(tmp);
-    std::cout<<"sqlselectall";
-    return query;
+    sqlNoResultlMap[INSERTUSER] = bind(sqlInsertUser,_1,_2);
+    sqlNoResultlMap[INSERTMOVIE] = bind(sqlInsertMovie,_1,_2);
+    sqlNoResultlMap[INSERTSEAT] = bind(sqlInsertSeat,_1,_2);
+    sqlNoResultlMap[INSERTSCHEDULE] = bind(sqlInsertSchedule,_1,_2);
+    sqlNoResultlMap[INSERTSTUDIO] = bind(sqlInsertStudio,_1,_2);
+    /*********************************************************/
+    sqlNoResultlMap[UPDATEUSER] = bind(sqlUpdateUser,_1,_2);
+    sqlNoResultlMap[UPDATEMOVIE] = bind(sqlUpdateMovie,_1,_2);
+    sqlNoResultlMap[UPDATESEAT] = bind(sqlUpdateSeat,_1,_2);
+    sqlNoResultlMap[UPDATESCHEDULE] = bind(sqlUpdateSchedule,_1,_2);
+    sqlNoResultlMap[UPDATESTUDIO] = bind(sqlUpdateStudio,_1,_2);
+    /*********************************************************/
+    sqlNoResultlMap[DELETEUSER] = bind(sqlDeleteUser,_1,_2);
+    sqlNoResultlMap[DELETEMOVIE] = bind(sqlDeleteMovie,_1,_2);
+    sqlNoResultlMap[DELETESEAT] = bind(sqlDeleteSeat,_1,_2);
+    sqlNoResultlMap[DELETESCHEDULE] = bind(sqlDeleteSchedule,_1,_2);
+    sqlNoResultlMap[DELETESTUDIO] = bind(sqlDeleteStudio,_1,_2);
+    /*********************************************************/
+    sqlHasResultlMap[QUERYUSER] = bind(sqlQueryUser,_1,_2,_3);
+    sqlHasResultlMap[QUERYMOVIE] = bind(sqlQueryMovie,_1,_2,_3);
+    sqlHasResultlMap[QUERYSEAT] = bind(sqlQuerySeat,_1,_2,_3);
+    sqlHasResultlMap[QUERYSCHEDULE] = bind(sqlQuerySchedule,_1,_2,_3);
+    sqlHasResultlMap[QUERYSTUDIO] = bind(sqlQueryStudio,_1,_2,_3);
 }
-
 

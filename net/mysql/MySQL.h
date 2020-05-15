@@ -1,6 +1,6 @@
 #ifndef SSXERVER_NET_MYSQL_H
 #define SSXERVER_NET_MYSQL_H
-#include "noncopyable.h"
+#include "../noncopyable.h"
 #include <string>
 #include <map>
 #include <vector>
@@ -23,7 +23,7 @@ public:
     int sqlUpdateWhere(const CJsonObject& cjson);
     int sqlInsert(const CJsonObject& cjson);
     int queryNoResult(const string& s);
-    int queryHasResult(const std::pair<string,string>& s,CJsonObject &result);
+    int queryHasResult(const CJsonObject& s,CJsonObject &result);
 private:
     int queryTableColName(const string& s,CJsonObject& result);
 

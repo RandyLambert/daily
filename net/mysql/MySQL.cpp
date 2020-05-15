@@ -53,7 +53,7 @@ MySQL::~MySQL()
 int MySQL::queryTableColName(const string& tableName,CJsonObject &result)
 {
     string s = "SELECT column_name FROM information_schema.columns WHERE table_schema='ttms' AND table_name='" + tableName +"';";
-    result.AddEmptySubArray("tableColName");
+    result.AddEmptySubArray("what");
     if(mysql_query(&mysql_,s.c_str()) != 0){
         cout <<"queryTableColName "<< mysql_error(&mysql_)<<endl;
         return -1;
@@ -69,7 +69,7 @@ int MySQL::queryTableColName(const string& tableName,CJsonObject &result)
     {
         for(int j = 0;j < count;j++)
         {
-            result["tableColName"].Add(sqlrow_[j]);
+            result["what"].Add(sqlrow_[j]);
         }
     }
     mysql_free_result(res_);
@@ -90,13 +90,10 @@ int MySQL::queryNoResult(const string& s)
     }
 }
 
-int MySQL::queryHasResult(const std::pair<string,string>&s,CJsonObject& result)
+int MySQL::queryHasResult(const CJsonObject& s,CJsonObject& result)
 {
-    CJsonObject columName;
     result.AddEmptySubArray("data");
-    queryTableColName(s.first,columName);
-
-    if(mysql_query(&mysql_,s.second.c_str()) != 0){
+    if(mysql_query(&mysql_,s("queryStr").c_str()) != 0){
         cout <<"queryHasResult "<< mysql_error(&mysql_)<<endl;
         return -1;
     }
@@ -108,12 +105,13 @@ int MySQL::queryHasResult(const std::pair<string,string>&s,CJsonObject& result)
 
     int count = mysql_num_fields(res_);
     CJsonObject temp;
+    CJsonObject sRef = const_cast<CJsonObject &>(s);
     while((sqlrow_ = mysql_fetch_row(res_)))
     {
         temp.Clear();
         for(int j = 0;j < count;j++)
         {
-            temp.Add(columName["tableColName"](j),sqlrow_[j]);
+            temp.Add(sRef["what"](j),sqlrow_[j]);
         }
         result["data"].Add(temp);
     }
@@ -140,7 +138,7 @@ int MySQL::sqlInsert(const CJsonObject& cjson)
             while(cjsonRef["data"][i].GetKey(keyStr))
             {
                 queryStr+=keyStr+",";
-                valueStrs+=cjsonRef["data"](keyStr)+",";
+                valueStrs+=cjsonRef["data"][i](keyStr)+",";
             }
             queryStr.back() = ')';
             valueStrs.back() = ')';
@@ -152,7 +150,7 @@ int MySQL::sqlInsert(const CJsonObject& cjson)
             valueStrs+="(";
             while(cjsonRef["data"][i].GetKey(keyStr))
             {
-                valueStrs+=cjsonRef["data"](keyStr)+",";
+                valueStrs+=cjsonRef["data"][i](keyStr)+",";
             }
             valueStrs.back() = ')';
             queryStr+=valueStrs+",";
@@ -160,14 +158,12 @@ int MySQL::sqlInsert(const CJsonObject& cjson)
 
     }
     queryStr.back() = ';';
-    std::cout<<"sqlInsert"<<std::endl;
+    cout<<queryStr<<endl;
     return queryNoResult(queryStr);
 }
 
 int MySQL::sqlSelectWhere(const CJsonObject& cjson,CJsonObject &result)
 {
-    std::pair<string,string> query;
-    query.first = cjson("tableName");
 
     string queryStr("SELECT ");
     string keyStr;
@@ -197,9 +193,20 @@ int MySQL::sqlSelectWhere(const CJsonObject& cjson,CJsonObject &result)
         }
     }
     queryStr += ';';
-    query.second = queryStr;
 
-    std::cout<<"sqlSelectWhere"<<std::endl;
+    CJsonObject query;
+    if(cjsonRef["what"](0) == "*")
+    {
+        queryTableColName(cjson("tableName"),query);
+    }
+    else
+    {
+        query.AddEmptySubArray("what");
+        query.Replace("what",cjsonRef["what"]);
+    }
+    query.Add("queryStr",queryStr);
+
+    cout<<"query"<<query.ToFormattedString()<<endl;
     return queryHasResult(query,result);
 }
 
@@ -220,14 +227,13 @@ int MySQL::sqlDeleteWhere(const CJsonObject& cjson)
         }
         else
         {
-            queryStr+="AND" + keyStr+cjsonRef["op"](i);
+            queryStr+=" AND " + keyStr+cjsonRef["op"](i);
             queryStr+= cjsonRef["data"](keyStr);
             i++;
         }
     }
     queryStr += ';';
-
-    std::cout<<"sqlDeleteWhere"<<std::endl;
+    cout<<queryStr<<endl;
     return queryNoResult(queryStr);
 
 }
@@ -243,24 +249,27 @@ int MySQL::sqlUpdateWhere(const CJsonObject& cjson)
         queryStr+=cjsonRef["set"](keyStr)+",";
     }
     queryStr.back() = ' ';
+    queryStr+="WHERE ";
+
     int i = 0;
     while(cjsonRef["data"].GetKey(keyStr))
     {
-        queryStr+=keyStr+cjsonRef["op"](i);
         if(i == 0)
         {
+            queryStr+=keyStr+cjsonRef["op"](i);
             queryStr+=cjsonRef["data"](keyStr);
             i++;
         }
         else
         {
-            queryStr+= " AND " + cjsonRef["data"](keyStr);
+            queryStr+=" AND " + keyStr+cjsonRef["op"](i);
+            queryStr+= cjsonRef["data"](keyStr);
             i++;
         }
     }
     queryStr += ';';
 
-    std::cout<<"sqlUpdateWhere"<<std::endl;
+    cout<<queryStr<<endl;
     return queryNoResult(queryStr);
 
 }

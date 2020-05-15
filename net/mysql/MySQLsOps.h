@@ -6,7 +6,7 @@
 #include <functional>
 #include <memory>
 #include "MySQL.h"
-#include "noncopyable.h"
+#include "../noncopyable.h"
 namespace ssxrver
 {
 namespace net

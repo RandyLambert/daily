@@ -51,5 +51,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-./go/bin
+/go/bin
 a.out

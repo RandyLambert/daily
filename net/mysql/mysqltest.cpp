@@ -8,9 +8,8 @@ using namespace std;
 using namespace ssxrver::net;
 void *th_fun(void *arg)
 {
-    /* shared_ptr<ssxrver::net::MySQL> mysqltest(new ssxrver::net::MySQL()); */
     ssxrver::net::MySQLsOps mysqltest;
-    /* ssxrver::net::MySQL *mysqlptr = &mysqltest; */
+
     CJsonObject obj1;
     /****************************登录*/
     obj1.AddEmptySubArray("what");
@@ -108,11 +107,9 @@ void initPthread(pthread_t *tid)
 }
 int main()
 {
-    pthread_t tid1, tid2;
+    pthread_t tid1;
     initPthread(&tid1);
-    initPthread(&tid2);
     pthread_join(tid1, NULL);
-    pthread_join(tid2, NULL);
 
     return 0;
 }

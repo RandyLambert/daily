@@ -83,11 +83,11 @@ func main(){
     fmt.Println("Hello world!")
     fmt.Println(da)
     fmt.Println(a)
-    fmt.Println(xa)
+	fmt.Println(xa)
     //局部变量 可以使用类型推断
     var a int  //变量的声明
-    a = 123    //变量的赋值
-
+	a = 123    //变量的赋值
+	
     //变量声明的同时赋值
     var b int = 321
     //上行的格式可省略变量类型,有系统推断

@@ -29,6 +29,19 @@ int main(){
     const string y = x;
     const string z = x;
     string g = x;
+    g = "a";
+    cout << g.compare(x) <<endl;
+    string k("ssssssssssssss");
+    const char* str1 = "dadsadsadasd";
+    const char *p1 = str1;
+    const char *p2 = str1+5;
+    k.append(p1,p2);
+    k.append(p1,p2);
+    cout<<k<<endl;
+    cout<<k<<endl;
+    cout<<k<<endl;
+
+
 
 
     cout<<x<<endl;

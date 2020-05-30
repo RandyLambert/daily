@@ -12,18 +12,18 @@ void *th_fun(void *arg)
 
     CJsonObject obj1;
     /****************************登录*/
-    obj1.AddEmptySubArray("what");
-    obj1["what"].Add("*");
+    /* obj1.AddEmptySubArray("what"); */
+    /* obj1["what"].Add("*"); */
     /* obj1["what"].Add("userName"); */
     /* obj1["what"].Add("PassWord"); */
     /* obj1["what"].Add("sex"); */
-    obj1.AddEmptySubArray("op");
-    obj1["op"].Add("=");
-    obj1["op"].Add("=");
-    obj1.Add("tableName","user");
-    obj1.AddEmptySubObject("data");
-    obj1["data"].Add("userName","'管理员'");
-    obj1["data"].Add("passWord","'123456'");
+    /* obj1.AddEmptySubArray("op"); */
+    /* obj1["op"].Add("="); */
+    /* obj1["op"].Add("="); */
+    /* obj1.Add("tableName","user"); */
+    /* obj1.AddEmptySubObject("data"); */
+    /* obj1["data"].Add("userName","'管理员'"); */
+    /* obj1["data"].Add("passWord","'123456'"); */
     /*****************************用户注册*/
     /* obj1.Add("tableName","user"); */
     /* obj1.AddEmptySubArray("data"); */
@@ -65,6 +65,10 @@ void *th_fun(void *arg)
     /* obj1.AddEmptySubObject("data"); */
     /* obj1["data"].Add("uid","5"); */
     /* obj1["data"].Add("userName","'sky'"); */
+    obj1.Add("tableName","seat");
+    obj1.AddEmptySubArray("what");
+    obj1["what"].Add("COUNT(*)");
+    /* obj1.Add("limit","1,10"); */
     
     cout<<obj1.ToFormattedString()<<endl;
 

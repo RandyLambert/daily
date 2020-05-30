@@ -174,23 +174,31 @@ int MySQL::sqlSelectWhere(const CJsonObject& cjson,CJsonObject &result)
     }
     
     queryStr.back() = ' ';
-    queryStr+="FROM " + cjson("tableName") + " WHERE ";
-    
-    int i = 0;
-    while(cjsonRef["data"].GetKey(keyStr))
+    queryStr+="FROM " + cjson("tableName");
+    if(!cjson("op").empty())
     {
-        if(i == 0)
+        queryStr+=" WHERE ";
+        int i = 0;
+        while(cjsonRef["data"].GetKey(keyStr))
         {
-            queryStr+=keyStr+cjsonRef["op"](i);
-            queryStr+=cjsonRef["data"](keyStr);
-            i++;
+            if(i == 0)
+            {
+                queryStr+=keyStr+cjsonRef["op"](i);
+                queryStr+=cjsonRef["data"](keyStr);
+                i++;
+            }
+            else
+            {
+                queryStr+=" AND " + keyStr+cjsonRef["op"](i);
+                queryStr+= cjsonRef["data"](keyStr);
+                i++;
+            }
         }
-        else
-        {
-            queryStr+=" AND " + keyStr+cjsonRef["op"](i);
-            queryStr+= cjsonRef["data"](keyStr);
-            i++;
-        }
+    }
+    
+    if(!cjsonRef("limit").empty())
+    {
+        queryStr += " LIMIT " + cjsonRef("limit");
     }
     queryStr += ';';
 

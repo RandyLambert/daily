@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-
+import "reflect"
 //接口
 //接口是一个或者多个方法签名的集合
 //只要某类型拥有了该接口的所有方法签名,即算实现了该接口,无需显示声明实现了那个接口
@@ -54,6 +54,16 @@ func main(){
     var p *int = nil
     x = p
     fmt.Println(x == nil)
+
+    var c float64 = 12.44
+    var d string = "12.44"
+
+    value := reflect.ValueOf(c)
+    value1 := reflect.ValueOf(d)
+    fmt.Println(value)
+    fmt.Println(value.Interface().(float64))
+    fmt.Println(value1)
+    fmt.Println(value1.Interface())
 
 }
 

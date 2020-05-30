@@ -42,6 +42,29 @@ func main(){
     mv.Call(args)
 
     Info(u)
+
+    var vv float64 = 1.2
+    tt(vv)
+    set(&vv)
+}
+
+func tt(o interface{}){
+    x := reflect.ValueOf(o)
+    fmt.Println(x)
+    fmt.Println(x.Kind())
+    fmt.Println(x.Type())
+    y := x.Interface()
+    fmt.Println(y)
+    z := y.(float64)
+    fmt.Println(z)
+
+}
+
+func set(o interface{}){
+    x := reflect.ValueOf(o)
+    x.Elem().SetFloat(12312.1)
+    fmt.Printf("Value = %v Type = %v\n",x,x.Type())
+    fmt.Println(x.Elem(),x.Type(),x.Kind())
 }
 
 func (u User) Hello(name string) {//有参数
@@ -63,12 +86,19 @@ func Info(o interface{}){
     for i := 0;i < t.NumField(); i++{
         f := t.Field(i) //反射出方法和对象内容
         val := v.Field(i).Interface()
+        fmt.Println("dsaadsadasdasdasdasdas",f)
         fmt.Printf("%6s: %v = %v\n",f.Name,f.Type, val)
     }
 
     for i:=0;i<t.NumMethod();i++{
         m:=t.Method(i)
-        fmt.Printf("%6s : %v\n",m.Name,m.Type)
+        v1:=v.Method(i)
+        var a []reflect.Value
+        a = append(a,reflect.ValueOf("dasdsad"))
+        v.Method(i).Call(a)
+        fmt.Printf("dsadasdsadas%6s : %v\n",m.Name,m.Type)
+        fmt.Println("DSADASDSADAS : ",v1.Type())
+
     }
 }
 
@@ -91,4 +121,6 @@ func Set(o interface{}) {
     if f.Kind() ==reflect.String {
         f.SetString("BYEBYE")
     }
+
+
 }

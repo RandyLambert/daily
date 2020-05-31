@@ -27,6 +27,7 @@ int main(){
     int aq,bq;
     memcpy(b,a,sizeof(a));
     printf("%s\n",b);
+    printf("%d\n",(int*)(strlen(a)));
 
     long c=(long)(aq*bq);
     long c1 = (long)aq*bq;

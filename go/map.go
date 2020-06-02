@@ -20,8 +20,12 @@ func main(){
     }
 
     m2[2][1] = "good"
-    a=m2[2][1]
+    a,ok=m2[2][1]
     fmt.Println(a,ok)
+
+    var arr []int = []int{1,2,34,55324,24}
+    sort.Ints(arr)
+    fmt.Println(arr)
 
     for i,j := range m2 {
         fmt.Println(m2[i],j)

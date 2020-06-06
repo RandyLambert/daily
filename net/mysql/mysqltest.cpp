@@ -69,10 +69,12 @@ void *th_fun(void *arg)
     obj1.AddEmptySubArray("what");
     obj1["what"].Add("COUNT(*)");
     /* obj1.Add("limit","1,10"); */
-    
+    /* obj1 = string("{\"data\":{\"passWord\":\"'123456'\",\"uid\":\"3\"},\"op\":[\"=\",\"=\"],\"tableName\":\"user\",\"what\":[\"*\"]}"); */
     cout<<obj1.ToFormattedString()<<endl;
+    cout<<obj1["op"].IsEmpty()<<endl;
 
     int x = MySQLsOps::QUERYUSER;
+    cout<<x<<endl;
     CJsonObject reback;
     if (x > MySQLsOps::MIN && x < MySQLsOps::MID)
     {

@@ -1,0 +1,52 @@
+@font12:12px;
+@font14:14px;
+@font16:16px;
+@font18:18px;
+@font20:20px;
+@font22:22px;
+
+// 清浮动
+.clearfix {
+  *zoom: 1;             // for IE 6/7 
+  &::before,
+  &::after {
+    display: table;
+    content: "";
+    line-height: 0;     // for Opera 
+  }
+  &::after {
+    clear: both;
+  }
+}
+// 浮动
+.fl(@value:left){
+	float: @value;
+}
+.fr(@value:right){
+	float: @value;
+}
+// 定位
+.rel(@value:relative){
+	position: @value;
+}
+.abs(@value:absolute){
+	position: @value;
+}
+.fix(@value:fixed){
+	position: @value;
+}
+// 文字对齐
+.txt-align(@value:left){
+	text-align: @value;
+}
+// 隐藏文字
+.txt-hidden(){
+	text-indent: -9999px;  //只适用于块级元素，行内元素没有效
+}
+
+//去除a的默认样式
+.a-delstyle(@color:#333){
+	text-decoration: none;
+	color: @color;
+}
+

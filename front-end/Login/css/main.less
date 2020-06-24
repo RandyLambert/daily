@@ -1,0 +1,885 @@
+// 定义宽度为百分百
+/*设置body背景图*/
+@charset "utf-8";
+@import "ku";
+@w100: 100%;
+@mcolor: rgba(64, 144, 255, 1) ;
+body{
+  font-family: "Microsoft YaHei";
+}
+#header{  
+  @h:60px;
+	height: @h;
+  min-width: 768px;
+	background-color: rgba(24, 34, 61, 1);
+  .logo{  // logo
+    h1{
+      width: @h*2;
+      height: @h;
+      color: #fff;
+      margin: 9px 0;
+      a{
+        .a-delstyle(#fff);
+        transition:all 0.5s ease;
+        &:hover{
+          color: @mcolor;
+        }
+        strong{
+          font-size: @font14;
+          font-family:'lixukexingshu9de0fa404189f6';
+        }
+      } 
+    }
+  }
+  .login-res{  // 注册登录按钮
+    @cHover:#fff;
+    line-height: @h;
+      a{
+        padding: 4px 16px 6px;
+        border: 1px solid #fff;
+        border-radius: 20px;
+        font-size: @font12+1;
+        .a-delstyle(#ccc);
+        box-shadow: 2px 0 4px rgba(255, 255, 255, 0.5),0 0 4px rgba(255, 255, 255, 0.6) inset;
+        transition:all 0.5s ease;
+        &:hover{
+          box-shadow: 0 1px 6px @mcolor;
+           border: 1px solid @mcolor;
+          background-color: @mcolor;
+          color: @cHover;
+        }
+      }
+      span{
+        padding: 0 4px;
+        color: #fff;
+        font-size: @font20;
+      }
+  }
+}
+.body{
+  height: 590px;
+  width: 100%;
+  background: #ccc url(../img/bg.jpg) no-repeat center top fixed;
+  background-size: cover;
+  .home-view{
+    .demo2{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      transform:translate(-94%,178%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .demo2-x{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background: radial-gradient(transparent 10%, rgba(33, 150, 243, 0.9) 100%);
+      animation: demo2 1s ease 0s infinite;
+    }
+    .demo2-y{
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 46px;
+      height: 46px;
+      border-radius: 100%;
+      background: radial-gradient(transparent 10%, rgba(33, 150, 243, 0.8) 100%);
+      animation: demo2 1s ease 0.2s infinite;
+    }
+    .demo2-z{
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      background: radial-gradient(transparent 10%, rgba(33, 150, 243, 0.7) 100%);
+      animation: demo2 1s ease 0.3s infinite;
+    }
+    .demo2-m{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background: radial-gradient(transparent 10%, rgba(33, 150, 243, 0.6) 100%);
+      animation: demo2 1s ease 0.4s infinite;
+    }
+  }
+}
+ // 登录时的遮罩层
+.mask{  
+  display: none;
+  .fix();
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 1002;
+}
+// 登录框弹出部分
+.login-wapper{
+  display: none;
+  width: 480px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.2);
+  .abs();
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);  // 居中
+  z-index: 1003;
+  box-shadow: 8px 8px 8px rgba(255,255,255,0.3) inset, -9px -9px 8px rgba(255,255,255,0.3) inset;
+  border-radius: 10px;
+  .login-box{
+    padding:40px 50px;
+    .login-title{  // 文字"登录创业邦"
+      .txt-align(center);
+      margin-bottom: 28px;
+      font-size: @font20;
+      color: @mcolor;
+      line-height: @font20 + 10;
+      .rel();
+      .rot1,.rot2{  //登录框的logo动画
+        .abs();
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        box-shadow: 0 0 4px @mcolor;
+      }
+      .rot1{
+        @wh: 65px;
+        width: @wh;
+        height: @wh;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        margin-top: -54px;
+        margin-left: -@wh / 2;
+        animation: rot 1.5s ease 0s infinite;
+      }
+      .rot2{
+        @wh: 50px;
+        width: @wh;
+        height: @wh;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        margin-top: -46px;
+        margin-left: -@wh / 2;
+        animation: rot 1.5s ease 1.5s infinite;
+      }
+      i{
+        font-size: @font20 + 18;
+        display: block;
+        padding-bottom: 10px;
+      }
+      span{
+        font-family:'lixukexingshu9de0fa404189f6';
+        font-size:@font20 + 4;
+      }
+    }
+    .in-box{
+      @h:40px;
+      @w:380px;
+      width: @w;
+      height: @h;
+      line-height: @h;
+      margin-bottom: 28px;
+      .rel();
+      input{
+        width: @w;
+        height: @h;
+        line-height: @h;
+        padding: 0 10px;
+        background-color: transparent;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        outline: none;
+        color: #fff;
+        font-size: @font14;
+        text-align: center;
+        cursor: pointer;
+        transition:all 1.5s ease;
+        font-weight: normal;
+        &:focus{
+          background-color: #fff;
+          color: @mcolor;
+        }
+      }
+      button{
+        width: @w;
+        height: @h;
+        line-height: @h;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        background-color: @mcolor;
+        border-color: @mcolor;
+        color: #fff;
+        transition: all 0.5s ease;
+        outline: none;
+        &:hover{
+          box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+      }
+      span{
+        .abs();
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        color: #fff;
+        font-weight: normal;
+        cursor: pointer;
+
+      }
+    }
+    .oth-box{
+      @h:20px;
+      @w:400px;
+      width: @w - 40;
+      height: @h;
+      line-height: @h;
+      margin: 0 auto;
+      em{
+        .fl();
+        a{
+          color: #fff;
+          &:hover{
+            color: @mcolor;
+          }
+        }
+      }
+      span{
+        .fr();
+        color: #fff;
+        a{
+          color: @mcolor;
+        }
+      }
+    }
+  }
+}
+.mask2{  
+  display: none;
+  .fix();
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1004;
+}
+// 注册整体
+.register-wapper{
+  display: none;
+  @w:660px;
+  @h:360px;
+  width: @w;
+  height: @h;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, .5),
+              0 0 8px rgba(0, 0, 0, 0.3) inset;
+  background: url(../img/reg_bg.png) no-repeat;
+  background-size: cover;
+  z-index: 1003;
+
+  .abs();
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-40%);
+  // 点击关闭注册框按钮
+  #close_reg{  
+    display: block;
+    .abs();
+    top: 0;
+    right: 4px;
+    text-align: center;
+    font-size: @font20 + 4;
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    &:hover{
+      transform: rotate(180deg);
+      transform-origin: center center;
+      color: @mcolor;
+    }
+  }
+
+  // 注册框
+  .register-box{
+    @w: 280px;
+    @h: 390px;
+    width: @w;
+    height: @h;
+    padding: 10px 30px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .5),
+                0 0 10px rgba(0, 0, 0, .4) inset;
+    // border: 1px solid #fff;
+    background-color: hsla(0, 0%, 100%, 1);
+    overflow: hidden;
+    z-index: 1006;
+
+    .abs();
+    top: -16px;
+    right: 26px;
+    &::before{
+      content: "";
+      .abs();
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      // background-color: rgba(255, 0, 0, .5);
+      z-index: -1;
+      filter: blur(20px);
+      margin: -30px;
+    }
+
+    // 注册框的头部，即“登录创业邦”
+    .register-title{
+      .txt-align(center);
+      font-size: @font20 + 2;
+      margin: 15px 0;
+    }
+    // input输入框的公共样式
+    .in-box{
+      @h:32px;  // in-box盒子的高度
+      @w:220px; // in-box盒子的宽度
+      width: @w;
+      height: @h;
+      line-height: @h;
+      margin-bottom: 20px;
+      .rel();
+      input{
+        line-height: @h;
+        padding: 0 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+        background-color: transparent;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        color: #666;
+        font-size: @font12;
+        cursor: pointer;
+        transition:all 1.5s ease;
+        font-weight: normal;
+        position: relative;
+      }
+      input[type="button"]{ 
+        height: @h + 8;
+        background-color: @mcolor;
+        border-color: @mcolor;
+        color: #fff;
+        transition: all 0.5s ease;
+        &:hover{
+          box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+      }
+    }
+    // 较长的输入框
+    .in-long{
+      @h:32px;  // in-box盒子的高度
+      @w:220px; // in-box盒子的宽度
+      input{
+        width: @w;
+        height: @h;
+      }
+      input[type="password"]{
+        margin: 0;
+      }
+    }
+    // 较短的输入框
+    .in-short{
+      @h:32px;  // in-box盒子的高度
+      @w:220px; // in-box盒子的宽度
+      input{
+        .fl();
+        width: @w - 80;
+        height: @h;
+      }
+      .img-verify{
+        .fr();
+         position: relative;
+
+        line-height: @h;
+        span{
+          .fl();
+          width: @w - 150;
+          height: @h;
+          border-radius: 6px;
+          padding-left: 6px;
+        }
+        // background-color: #ff;
+      }
+      .phone-verify{
+          .fr();
+          width: @w - 150;
+          height: @h;
+          margin-left: 8px;
+          .txt-align(center);
+          background-color: transparent;
+          border-radius: 6px;
+          border: 1px solid @mcolor;
+          font-size: @font12;
+          color: @mcolor;
+          cursor: pointer;
+          transition: all 1s ease;
+          &:hover{
+            background-color: @mcolor;
+            color: #fff;
+          }
+          em{
+            color: #f40;
+            font-style: normal;
+          }
+        }
+      } 
+    }
+    // 密码强度
+    .password-strength{
+      // display: none;
+      width: 100%;
+      height: 18px;
+      margin-top: -14px;
+      margin-bottom: 3px;
+      font-size: @font12;
+      position: relative;
+      div[class^="pw-"]{
+        .fl();
+        margin-left: 5px;
+        text-align: center;
+      }
+      .pw-weak{
+        width: 30%;
+        height: 5px;
+        background-color: red;
+        span{
+          display: inline-block;
+          padding-top: 4px;
+        }
+      }
+      .pw-medium{
+        width: 30%;
+        height: 5px;
+        background-color: @mcolor;
+        span{
+          display: inline-block;
+          padding-top: 4px;
+        }
+      }
+      .pw-strong{
+        width: 30%;
+        height: 5px;
+        background-color: green;
+        span{
+          display: inline-block;
+          padding-top: 4px;
+        }
+      }
+      .cover{
+        .abs();
+        top: 0;
+        left:0;
+        height: 20px;
+        width: 100%;
+        background-color: #fff;
+      }
+    }
+    // 已有账号，立即登录
+    .footer{
+      .txt-align(center);
+      a{
+        .a-delstyle(@mcolor);
+        padding-left: 6px;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+    
+    .input-tip{
+      .abs();
+      top: 8px;
+      right: -20px;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      font-size: @font18;
+    }
+    .wrong{
+      color: red;
+    }
+    .right{
+      color: green;
+    }
+  }
+
+// 注册错误信息提示
+.reg-tip-box{
+  display: none;
+  width: 220px;
+  height: 160px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: url(../img/reg_tip.png) no-repeat center center;
+  background-size: cover;
+  z-index: 1010;
+
+  .abs();
+  top: 40%;
+  left: 50%;
+  margin-left: -110px;
+  a{
+    .abs();
+    top:-12px;
+    right: 5px;
+    font-size: @font20 + 20;
+    color: #ccc;
+    text-decoration: none;
+    transition: all .5s ease;     
+    tranform-origin: center center;
+    &:hover{
+      transform: rotate(-360deg);
+      color: @mcolor; 
+    }
+  }
+  .reg-tip{
+    width: 100%;
+    .txt-align(center);
+    strong{
+      display: block;
+      padding-top: 40px;
+      line-height: 70px;
+      font-size: 70px;
+      color: #f40;
+    }
+    span{
+      line-height: 30px;
+      font-size: @font14;
+      color: #fff;
+    }
+  }
+}
+
+// 登录框边框动画
+@keyframes colors {
+    0% {box-shadow:0 0 20px #39f,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    15% {box-shadow:0 0 20px #F246C9,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    30% {box-shadow:0 0 20px #4453F2,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    45% {box-shadow:0 0 20px #44F262,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    60% {box-shadow:0 0 20px #F257D4,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    75% {box-shadow:0 0 20px #EDF255,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    90% {box-shadow:0 0 20px skyblue,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+    100% {box-shadow:0 0 20px #39f,
+      8px 8px 8px rgba(255,255,255,0.3) inset, 
+      -9px -9px 8px rgba(255,255,255,0.3) inset;
+    }
+}
+// loading动画
+@keyframes demo2{
+  0%{
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  100%{
+    transform: scale(1.2);
+    opacity: 0.2;
+  }
+}
+// 登录是logo动画
+@keyframes rot{
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(180deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+// web字体图标
+// 一定要注意路径问题，现在的路径是css文件，而不是首页，所以引入字体的时候一定记得返回上一级../
+@font-face {
+  font-family: 'gsh';
+  src:  url('../fonts/gsh.eot');// IE9兼容模式
+  src:  url('../fonts/gsh.eot?#iefix') format('embedded-opentype'), 
+    url('../fonts/gsh.ttf') format('truetype'),
+    url('../fonts/gsh.woff') format('woff'),
+    url('../fonts/gsh.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  // '../fonts/gsh.eot?#iefix' :IE6~IE8
+  // '../fonts/gsh.woff' :现代浏览器
+  // '../fonts/gsh.ttf' :Safari,Android,IOS
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  // use !important to prevent issues with browser extensions that change fonts 
+  font-family: 'gsh' !important;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.icon-happy:before {
+  content: "\e900";
+}
+.icon-sad:before {
+  content: "\e901";
+}
+.icon-dark:before {
+  content: "\e956";
+}
+
+// bootstrap 扩展
+.bgc-tran(){
+  background-color: transparent;
+}
+.navbar-itcast{
+  @cText:#777;
+  .bd-act(){ // hover active 底边框的样式
+    border-bottom: 4px solid @mcolor;
+  }
+  top: 0;
+  width: 100%;
+  font:500 @font16/56px "Microsoft YaHei";
+  .navbar-brand{
+    color:  @cText;
+    height: 60px;
+    &:hover,&:focus{
+      color: #e5e5e5;
+      .bgc-tran();
+    }
+  }
+
+  .navbar-text{
+    color:  @cText;
+    > li{
+      > a{
+        color:  @cText;
+      }
+    }
+  }
+
+  .navbar-nav{      // 导航栏
+    @cLink:#ccc;    // 普通的a的颜色
+    @cActive:#fff;  // 激活的a的颜色
+    @cDisabled:#ccc;// 不可用a的颜色
+    @cOpen:#555;
+    @bgcOpen:#e7e7e7;
+    > li{
+      padding: 0 8px;
+      > a{
+        color: @cLink;
+        transition:all 0.2s ease;
+        &:hover,&:focus{
+          color: @cActive;
+          .bgc-tran();
+          .bd-act();
+        }
+      }
+    }
+    > li:first-child{
+      &::before{
+        @wh:12px;
+        content: "";
+        display: block;
+        width: @wh;
+        height: @wh;
+        background-color: @mcolor;
+
+        .abs();
+        top: 50%;
+        left: -6px;
+        margin-top: -6px;
+      }
+    }
+    > .active{
+      > a{
+        color: @cActive;
+        .bgc-tran();
+        .bd-act();
+        &:hover,&:focus{
+          color: @cActive;
+          .bgc-tran();
+          .bd-act();
+        }
+      }
+    }
+    > .disabled{
+      > a{
+        color: @cDisabled;
+        .bgc-tran();
+        &:hover,&:focus{
+          color: @cDisabled;
+          .bgc-tran();
+        }
+      }
+    }
+     > .open{
+      > a{
+        color: @cOpen;
+        background-color: @bgcOpen;
+        &:hover,&:focus{
+          color: @cOpen;
+          background-color: @bgcOpen;
+        }
+      }
+    }
+  }
+  .navbar-toggle{
+    @cNormal:#ddd;
+    @cIcon:#888;
+    @mrt:23px;
+    @mrb:23px;
+    color: @cNormal;
+    margin-top: @mrt;
+    margin-bottom: @mrb;
+
+    &:hover,&:focus{
+      background-color: @cNormal;
+    }
+    .icon-bar{
+      color:  @cIcon;
+    }
+  }
+  .navbar-collapse,.navbar-form{
+    border-color: #e7e7e7;
+  }
+  .navbar-link{
+    color: #777;
+    &:hover{
+      color: #333;
+    }
+  }
+  .btn-link{
+    color: #777;
+    &:hover,&:focus{
+      color: #333;
+    }
+  }
+}
+@media (max-width: 767px) {
+    .navbar-itcast {
+      @cActive:#fff;
+      @cDisabled:#ccc;
+      @cHover:#333;
+      @cLink:#777;
+      .navbar-nav{
+        > li{
+            padding: 0;
+          }
+        .open{
+          .dropdown-menu{
+            > li{
+              > a{
+                color:  @cLink;
+                &:hover,&:focus{
+                  color: @cHover;
+                  .bgc-tran();
+                }
+              }
+            }
+            > .active{
+              a{
+                color: @cActive;
+                background-color: #e7e7e7;
+                &:hover,&:focus{
+                  color: @cActive;
+                  background-color: #e7e7e7;
+                }
+              }
+            }
+             > .disabled{
+              a{
+                color: @cDisabled;
+                .bgc-tran();
+                &:hover,&:focus{
+                  color: @cDisabled;                
+                  .bgc-tran();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #header{
+      .container{
+        .col-lg-2,.col-md-3,.col-sm-2{
+          padding: 0;
+        }
+      }
+    }
+}
+@media (max-width:990px) {
+  #header{  
+    .login-res{  // 注册登录按钮
+      a{
+        padding: 3px 8px 4px;
+        border: 1px solid #fff;
+      }
+      span{
+        padding: 0 1px;
+        color: #fff;
+        font-size: @font14;
+      }
+  }
+  }
+  .navbar-itcast {
+    .navbar-nav{
+      padding-left: 20px;
+      > li{
+          padding: 1px;
+          a{
+            font-size: @font14;
+          }
+        }
+    }
+    #header{
+      .container{
+        .col-lg-2,.col-md-3,.col-sm-2{
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+.navbar-itcast .btn-link[disabled]:hover, fieldset[disabled] .navbar-itcast .btn-link:hover, .navbar-itcast .btn-link[disabled]:focus, fieldset[disabled] .navbar-itcast .btn-link:focus {
+    color: #ccc;
+}

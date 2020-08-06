@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string_view>
 using namespace std;
 class A
 {
@@ -37,7 +38,32 @@ public:
     classb() = default;
     string a_;
 };
+
+/* void stringtest(const string& a){ */
+/*     cout<<"stringbyref"<<endl; */
+/* } */
+/* void stringtest(const string&& a){ */
+/*     cout<<"stringrightbyref"<<endl; */
+/* } */
+/* void stringtest(const char * a){ */
+/*     cout<<"stringbystr"<<endl; */
+/* } */
+void stringtest(string_view a){
+    cout<<"string_view"<<endl;
+}
+
 int main(){
+
+
+    string text = "312232";
+    stringtest(text);
+    const char *y = "dasdsa";
+    stringtest(y);
+    stringtest("dasdsdasd");
+    stringtest(string("dasdsa"));
+
+
+    /****************************/
     A a(string("dasdsadsa"));
     string x = "dddsas";
     A b(x);
@@ -63,6 +89,7 @@ int main(){
     /* string &&zz = s2;//可以绑定一个右值，然后把这个右值已给别的左值 */
 
     string yy = std::forward<string>(xx);
+    /* string yy = xx; */
     cout<<xx<<endl;
     cout<<yy<<endl;
 

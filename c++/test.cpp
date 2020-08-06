@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <any>
 using namespace std;
 class a /*final*/{
 public:
@@ -47,6 +48,7 @@ int main(){
     //浮点数的存储
     printf("%lf\n",(3.14+1e20)-1e20);
     printf("%lf",3.14+(1e20-1e20));
+    std::any z = 42;
     b x;
     x.hhh();
     x.c();

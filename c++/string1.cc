@@ -64,6 +64,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 using namespace std;
 const string &shorterString(const string &s1, const string &s2)
 {
@@ -80,6 +81,12 @@ string &shorterString(string &s1, string &s2)
 }
 int main()
 {
+    string ax;
+    int z = 1000;
+    char buf[100];
+    memset(buf,0,sizeof(buf));
+    sprintf(buf,"%5d ",z);
+    cout<<buf<<"**"<<ax<<"**"<<ax<<endl;
     string a = shorterString("aaa","bbb");
     cout<<a;
 }

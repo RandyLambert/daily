@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string_view>
+#include <string>
 using namespace std;
 class A
 {
@@ -61,6 +62,11 @@ int main(){
     stringtest(y);
     stringtest("dasdsdasd");
     stringtest(string("dasdsa"));
+
+    string_view xxx = y;
+    string yyy;
+    yyy = xxx;
+    cout<<yyy.back()<<endl;
 
 
     /****************************/

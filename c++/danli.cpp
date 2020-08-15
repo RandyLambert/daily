@@ -1,5 +1,4 @@
 #include <iostream>
-
 class Singleton {
 public:
   static Singleton& GetInstance() {

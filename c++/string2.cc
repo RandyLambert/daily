@@ -2,7 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include <iostream>
 #include <string> 
- 
+using namespace std;
 #define ERROR_LEXICAL_CAST     1 
  
 int main()
@@ -13,7 +13,9 @@ int main()
     double        b = 0.0;
     std::string s = ""; 
     int            e = 0;    
- 
+    string x = "1";
+    int c = std::stoi(x);
+    cout<<c<<endl;
     try
     { 
         // ----- 字符串 --> 数值 

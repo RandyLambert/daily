@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 int n,a[1001],b[1001];
 int main(){

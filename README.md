@@ -13,3 +13,5 @@ system目录|csapp，编译原理，Unix环境编程练习
 front-end目录|学习前端
 go目录|学习go
 sql目录|之前写的项目的sql建表语句
+os目录|学习操作系统
+asm目录|学习汇编

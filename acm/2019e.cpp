@@ -16,7 +16,7 @@ public:
 int nx[4] = {0,-1,1,0};
 int ny[4] = {-1,0,0,1};
 
-map<int,char> mp{{0,'D'},{1,'L'},{2,'R'},{3,'U'}};
+map<int,char> mp{{0,'L'},{1,'U'},{2,'D'},{3,'R'}};
 bool vis[55][55];
 char tu[55][55];
 
@@ -24,7 +24,7 @@ int maxx;
 int maxy;
 
 bool check(int x,int y){
-    if(vis[x][y] == true && tu[x][y] == '1' && x < 0 && y < 0 && x >= maxx && y >= maxy){
+    if(vis[x][y] == true || tu[x][y] == '1' || x < 0 || y < 0 || x >= maxx || y >= maxy){
         return false;
     }
     else{
@@ -41,14 +41,14 @@ int main()
         cin>>tu[i];
     }
 
-    cout<< maxx<<maxy;
+/*    cout<< maxx<<maxy;
     for(int i = 0;i < maxx;i++){
         for(int j = 0;j < maxy;j++){
             cout<<tu[i][j]<<" ";
         }
         cout<<endl;
     }
-
+*/
     que.push(node(0,0,""));
     
     while(!que.empty()){
@@ -71,7 +71,7 @@ int main()
             
             if(check(xx,yy)){
                 vis[xx][yy] = true;
-                que.push(node(xx,yy,"das"));                           
+                que.push(node(xx,yy,temp.lu+mp[i]));                           
             }
         }
         

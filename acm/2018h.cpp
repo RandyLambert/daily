@@ -22,12 +22,15 @@
 3 */
 #include <algorithm>
 #include <iostream>
+#include <vector>
 using namespace std;
+int mp[1010][1010];
 int main()
 {
     int N,D,K,ts,id;
     cin>>N>>D>>K;
     for(int i = 0;i < N;i++){
+
         
     }
     return 0;

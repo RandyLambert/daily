@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 
 # file
+*.in
 *.bin
 a.img
 /go/bin

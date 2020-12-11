@@ -62,25 +62,26 @@ int main()
                     if(ch2[i][j] != ' '){
                         ff = true;
                         xx++;
-                        printf("%c",ch2[i][j]);
+                  //      printf("%c",ch2[i][j]);
                     }
                 }else{
-                    printf("%c",ch2[i][j]);
+                //    printf("%c",ch2[i][j]);
                     xx++;
                 }
             } else {
                 xx = 0;
                 ff = false;
                 ans++;
-                printf("%c\n",ch2[i][j]);
+              //  printf("%c\n",ch2[i][j]);
             }
         }
-        if(xx != 10)
+        if(xx != 9){
             ans++;
-        printf("\n");
+            //printf("%d \n",ans);
+        }
     }
 
-    cout<<ans<<endl;
+    cout<<--ans<<endl;
     
     return 0;
 }

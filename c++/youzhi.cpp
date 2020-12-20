@@ -21,6 +21,7 @@ void test02(string &a){
 }
 void test02(string &&a){
     cout<<"02&&"<<endl;
+    a = "test02...";
 }
 void test01(string &&a){
     cout<<"&&"<<endl;
@@ -55,6 +56,9 @@ void stringtest(string_view a){
 
 int main(){
 
+    string xxx = "dads";
+    test02(xxx);
+    cout<<xxx<<endl;
 
     string text = "312232";
     stringtest(text);

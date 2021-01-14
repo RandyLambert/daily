@@ -8,7 +8,7 @@ start:
 
     mov ax,data
     mov ds,ax
-    lex bx,string
+    lex dx,string
 
     mov ah,9h
     int 21h

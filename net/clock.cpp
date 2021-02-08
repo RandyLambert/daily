@@ -79,7 +79,8 @@ int main()
     // time_point是表示时间的类型，值为从某个时间点（比如unix时间戳：1970年1月1日0时0分）开始计时的时间长度
     // 第一个模板参数为开始时间点的时钟类型,第二个为时间单位
     // std::chrono::time_point<std::chrono::system_clock,std::chrono::seconds>
-    
+   
+    /*
     // time_point 可以加减dutation
     auto xxx = std::chrono::high_resolution_clock::now();
     auto yyy = xxx + 1s;
@@ -90,6 +91,6 @@ int main()
     doSomething();
     auto stop = std::chrono::high_resolution_clock::now();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-
+*/
     return 0;
 }

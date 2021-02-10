@@ -1,14 +1,5 @@
-/*
- * @Date: 2020-11-30 21:54:37
- * @LastEditors: OBKoro1
- * @LastEditTime: 2020-12-03 20:37:31
- * @FilePath: /LibraryCodeComments/coroutine/coroutine.c
- * @Auther: SShouxun
- * @GitHub: https://github.com/RandyLambert
- */
 #include "coroutine.h"
 unsigned char *buf;
-int start = 0;
 struct sigcontext context[2];
 struct sigcontext *curr_con;
 unsigned long pc[2];
@@ -23,13 +14,15 @@ struct coroutine *
 _co_new(struct schedule *S, coroutine_func func, void *ud)
 {
 	struct coroutine *co = malloc(sizeof(*co)); //分配协程空间
-	co->func = func; //
+	co->func = func;
 	co->ud = ud;
 	co->sch = S;
-	co->cap = 0;
-	co->size = 0;
+    co->stack = (char *)calloc(1, STACK_SIZE);
+	co->con.rsp = co->con.rbp = (unsigned long)((char *)co->stack + STACK_SIZE);
+	co->con.rip = *(unsigned long*)((unsigned char *)&func);
+	co->cap = STACK_SIZE;
+	co->size = STACK_SIZE;
 	co->status = COROUTINE_READY; // 默认的最初状态都是COROUTINE_READY
-	co->stack = NULL;             // 因为是使用的共享栈,这个栈的作用是在协程切出是保存协程栈,所以这个栈在开始的时候没有大小
 	return co;
 }
 
@@ -54,11 +47,12 @@ coroutine_open(void)
 {
 	// 这里做的主要就是分配内存，同时赋初值
 	struct schedule *S = malloc(sizeof(*S));
-	S->nco = 0;
+	S->nco = 1;
 	S->cap = DEFAULT_COROUTINE;
-	S->running = -1;
+	S->running = 0;
 	S->co = malloc(sizeof(struct coroutine *) * S->cap);
 	memset(S->co, 0, sizeof(struct coroutine *) * S->cap);
+	S->co[0] = _co_new(S,NULL,NULL);
 	return S;
 }
 
@@ -212,35 +206,11 @@ void coroutine_resume(struct schedule *S, int id)
 }
 
 /**
- * @description: 将本协程的栈内容保存起来,找到栈顶的位置 
- * @param {top 栈顶 }
- * @return {*}
- */
-static void
-_save_stack(struct coroutine *C, char *top)
-{
-	// 这个dummy很关键，是求取整个栈的关键
-	// 这个非常经典，涉及到linux的内存分布，栈是从高地址向低地址扩展，因此
-	// S->stack + STACK_SIZE就是运行时栈的栈底
-	// dummy，此时在栈中，肯定是位于最底的位置的，即栈顶
-	// top - &dummy 即整个栈的容量
-	char dummy = 0;
-	assert(top - &dummy <= STACK_SIZE); // 断言以分配内存小于当前栈的大小
-	if (C->cap < top - &dummy)// 如果已分配内存小于当前栈的大小,则释放内存重新分配
-	{
-		free(C->stack);
-		C->cap = top - &dummy;
-		C->stack = malloc(C->cap);
-	}
-	C->size = top - &dummy;
-	memcpy(C->stack, &dummy, C->size); // 从dummy 拷贝 size 内存到 C->stack
-}
-
-/**
  * @description: 将当前正在运行的协程让出，切换到主协程上 
  * @param {S 协程调度器}
  * @return {*}
  */
+ // todo 未修改
 void coroutine_yield(struct schedule *S)
 {
 	// 取出当前正在运行的协程
@@ -291,107 +261,52 @@ int coroutine_running(struct schedule *S)
 	return S->running; 
 }
 
-
-void thread1(struct schedule * S, void *ud)
-{
-    int i = 1;
-    while (1) {
-        printf("I am thread:%d\n", i);
-        sleep(1);
-    }
-}
-
-void thread2(struct schedule * S, void *ud)
-{
-    int i = 2;
-    while (1) {
-        printf("I am thread:%d\n", i);
-        sleep(1);
-    }
-}
-
-int wait_start()
-{
-    for (;;) {
-        sleep(1000);
-    }
-}
-
-// SIGINT用来启动所有线程，每次信号启动一个。
-void sig_start(int dunno)
-{
-    unsigned long a = 0, *p;
-    if (start == 0) {  // 启动第一个线程
-        // 首先定位到sigcontext的rip，启动线程仅仅修改rip即可，目标是跳入到thread1线程处理函数
-        p = (unsigned long*)((unsigned char *)&a + PC_OFFSET);
-        *p = pc[0];
-        // 定位到sigcontext
-        p = (unsigned long *)((unsigned char *)&a + CONTEXT_OFFSET);
-        curr_con = (struct sigcontext *)p;
-        // 初始化其堆栈寄存器为为该线程分配的独立堆栈空间。
-        curr_con->rsp = curr_con->rbp = (unsigned long)((unsigned char *)stack1 + STACK_SIZE);
-        start++;
-    } else if (start == 1) { // 启动第二个线程
-        // 定位线程1的sigcontext，保存其上下文，因为马上就要schedule线程2了。
-        p = (unsigned long *)((unsigned char *)&a + CONTEXT_OFFSET);
-        curr_con = (struct sigcontext *)p;
-        memcpy((void *)&context[0], (const void *)curr_con, sizeof(struct sigcontext));
-
-        // 保存第一个线程的上下文后再定位到sigcontext的rip并修改之，同线程1
-        p = (unsigned long *)((char*)&a + PC_OFFSET);
-        idx = 1;
-        *p = pc[1];
-        p = (unsigned long *)((unsigned char *)&a + CONTEXT_OFFSET);
-        curr_con = (struct sigcontext *)p;
-        // 初始化其堆栈寄存器为为该线程分配的独立堆栈空间。
-        curr_con->rsp = curr_con->rbp = (unsigned long)((unsigned char *)stack2 + STACK_SIZE);
-        start++;
-        // 两个线程均启动完毕，开启时间片轮转调度吧。
-//        alarm(2);
-        signal(SIGINT, NULL);
-    }
-
-    return;
-}
-
 void sig_schedule(int signum,siginfo_t *info,void *myact)
 {
     unsigned long a = 0;
-    unsigned char *p;
     struct schedule *S = (*info).si_ptr;
 
-
-    // 取出当前正在运行的协程
-    int id = S->running; // running代表当前运行协程的id
-    printf("running %d\n ",S->running);
-    if(id == -1) { // shuo ming zai zhu xian cheng
+    _Bool flag = 0;
+    int id_ready;
+    for (int i = 0; i < S->cap; i++) //遍历找到协程为空的协程
+    {
+        // 算是一种优化策略，因为前nco有很大概率都非NULL的，直接跳过去更好,寻找协程
+        id_ready = (i + S->running) % S->cap;
+        if (S->co[id_ready] != NULL && S->co[id_ready]->status == COROUTINE_READY)
+        {
+           flag = 1;
+           break;
+        }
+    }
+    // dang qian mei you zai yun xing d xie cheng
+    if(flag == 0) {
+        printf("no task\n");
         return ;
     }
-//    assert(id >= 0);
 
-    struct coroutine *C = S->co[id]; // 根据id找到对应的协程
-    assert((char *)&C > S->stack);
+    // 取出当前正在运行的协程
+     int now = S->running; // running代表当前运行协程的id
+    // assert(id >= 0);
+    struct coroutine *Cur = S->co[now]; // 根据id找到对应的协程
 
+    // assert((char *)&C > S->stack);
     // 将当前运行的协程的栈内容保存起来,因为 coroutine 是基于共享栈的,所以协程的栈内容需要单独保存起来
-    _save_stack(C, S->stack + STACK_SIZE); // 关键点在找栈顶
+    // _save_stack(Cur, S->stack + STACK_SIZE); // 关键点在找栈顶
 
     // 将当前栈的状态改为 挂起
-    C->status = COROUTINE_SUSPEND;
-    S->running = -1; // s的运行状态改为没有运行任何协程
-
-    // swapcontext 将当前上下文保存到当前协程的 ucontext 中,同时替换当前上下文为主协程的上下文,这样的话.当前协程会被挂起,主协程会被继续执行
-    // swapcontext(&C->ctx, &S->main); // 这里可以看到，只能从协程切换到主协程中
-
+    Cur->status = COROUTINE_SUSPEND;
+    S->running = id_ready; // s的运行状态改为没有运行任何协程
 
     // 保存当前线程的上下文
+    unsigned char *p;
     p = (unsigned char *)((unsigned char *)&a + CONTEXT_OFFSET);
-    struct sigcontext *curr_con_temp = (struct sigcontext *)p;
+    struct sigcontext *curr_con_ptr = (struct sigcontext *)p;
+    memcpy((void *)&Cur->con, (const void *)curr_con_ptr, sizeof(struct sigcontext));
 
-//    memcpy((void *)&context[idx%2], curr_con_temp, sizeof(struct sigcontext));
-    memcpy((void *)&C->curr_con, curr_con_temp, sizeof(struct sigcontext));
-
+    struct coroutine *Next = S->co[id_ready]; // 根据id找到对应的协程
     // 轮转调度下一个线程，恢复其上下文。
-    memcpy(curr_con, (void *)&S->main2, sizeof(struct sigcontext));
+    memcpy(curr_con_ptr, (void *)&Next->con, sizeof(struct sigcontext));
+
     return;
 }
 

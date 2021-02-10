@@ -1,21 +1,11 @@
-/*
- * @Date: 2020-11-30 21:54:37
- * @LastEditors: OBKoro1
- * @LastEditTime: 2020-12-02 17:46:34
- * @FilePath: /LibraryCodeComments/coroutine/coroutine.h
- * @Auther: SShouxun
- * @GitHub: https://github.com/RandyLambert
- */
 #ifndef C_COROUTINE_H
 #define C_COROUTINE_H
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <signal.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include <stddef.h>
 #include <string.h>
@@ -35,8 +25,6 @@
 #define STACK_SIZE (1024 * 1024)
 #define DEFAULT_COROUTINE 16
 
-// 仅仅是测试demo，分配4096字节的stack足够了。
-#define STACK_SIZE		4096
 /*
  * 为什么是72？
  * 因为我们在信号处理中增加了一个局部变量，这样pretcode的偏移就是32字节了。
@@ -46,7 +34,6 @@
 // rip寄存器相对于局部变量a的偏移。注意rip在sigcontext中的偏移是16
 #define PC_OFFSET		200
 extern unsigned char *buf;
-extern int start;
 extern struct sigcontext context[2];
 extern struct sigcontext *curr_con;
 extern unsigned long pc[2];
@@ -79,12 +66,6 @@ int coroutine_running(struct schedule *);
 
 // 切出协程
 void coroutine_yield(struct schedule *);
-
-void thread1(struct schedule * S, void *ud);
-
-void thread2(struct schedule * S, void *ud);
-
-int wait_start();
 
 void sig_start(int dunno);
 
@@ -124,10 +105,11 @@ struct schedule
 struct coroutine
 {
     coroutine_func func;  // 协程所用的函数
+//    void () func;
     void *ud;			  // 协程参数
     ucontext_t ctx;		  // 协程上下文
 
-    struct sigcontext curr_con; // xin hao shang xia wen
+    struct sigcontext con; // xin hao shang xia wen
 
     struct schedule *sch; // 该协程所属的调度器
     ptrdiff_t cap;		  // stack区已经分配的内存大小

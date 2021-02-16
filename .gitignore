@@ -58,3 +58,4 @@ a.img
 /go/bin
 a.out
 ./front-end/Login
+.idea/
